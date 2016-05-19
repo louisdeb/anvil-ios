@@ -13,6 +13,7 @@
 
 @implementation Peripheral
 
+static NSString *const SERVICE_NAME = @"Peripheral App";
 static NSString *const SERVICE_UUID_STRING = @"180F";
 static NSString *const CHARACTERISTIC_UUID_STRING = @"2A19";
 
@@ -24,7 +25,7 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"2A19";
 }
 
 - (void)setupPeripheral {
-  _serviceName = @"Peripheral App";
+  _serviceName = SERVICE_NAME;
   _serviceUUID = [CBUUID UUIDWithString:SERVICE_UUID_STRING];
   _characteristicUUID = [CBUUID UUIDWithString:CHARACTERISTIC_UUID_STRING];
   
@@ -42,6 +43,32 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"2A19";
   
   NSLog(@"Peripheral set up");
 }
+
+/* Did update state */
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {}
+
+
+/* Did add service */
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+            didAddService:(CBService *)service
+                    error:(NSError *)error {}
+
+/* Did start advertising */
+- (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
+                                       error:(NSError *)error {}
+
+/* Did subscribe to characteristic */
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+                  central:(CBCentral *)central
+        didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {}
+
+/* Did receive read request */
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+    didReceiveReadRequest:(CBATTRequest *)request {}
+
+/* Did receive write request */
+- (void)peripheralManager:(CBPeripheralManager *)peripheral
+  didReceiveWriteRequests:(NSArray *)requests {}
 
 
 @end
