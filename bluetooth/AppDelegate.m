@@ -1,14 +1,9 @@
-//
-//  AppDelegate.m
-//  bluetooth
-//
-//  Created by Louis de Beaumont on 19/05/2016.
-//  Copyright © 2016 webapps. All rights reserved.
-//
-
 #import "AppDelegate.h"
+#import "Bluetooth/Peripheral.h"
 
 @interface AppDelegate ()
+
+@property(nonatomic, strong) Peripheral *peripheral;
 
 @end
 
@@ -16,7 +11,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
+  NSLog(@"Creating peripheral");
+  self.peripheral = [[Peripheral alloc] init];
+  
   return YES;
 }
 

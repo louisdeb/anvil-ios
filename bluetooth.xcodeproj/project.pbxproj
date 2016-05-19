@@ -14,6 +14,7 @@
 		BF744E021CEE0A5100BBE6F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF744E011CEE0A5100BBE6F6 /* Assets.xcassets */; };
 		BF744E051CEE0A5100BBE6F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF744E031CEE0A5100BBE6F6 /* LaunchScreen.storyboard */; };
 		BF744E101CEE0A5100BBE6F6 /* bluetoothTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744E0F1CEE0A5100BBE6F6 /* bluetoothTests.m */; };
+		BF744E1C1CEE0BCD00BBE6F6 /* Peripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744E1B1CEE0BCD00BBE6F6 /* Peripheral.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		BF744E0B1CEE0A5100BBE6F6 /* bluetoothTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bluetoothTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF744E0F1CEE0A5100BBE6F6 /* bluetoothTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bluetoothTests.m; sourceTree = "<group>"; };
 		BF744E111CEE0A5100BBE6F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF744E1B1CEE0BCD00BBE6F6 /* Peripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Peripheral.m; path = Bluetooth/Peripheral.m; sourceTree = "<group>"; };
+		BF744E1D1CEE0BDE00BBE6F6 /* Peripheral.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Peripheral.h; path = Bluetooth/Peripheral.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 			children = (
 				BF744DF81CEE0A5000BBE6F6 /* AppDelegate.h */,
 				BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */,
+				BF744E1A1CEE0BA800BBE6F6 /* Bluetooth */,
 				BF744DFB1CEE0A5000BBE6F6 /* ViewController.h */,
 				BF744DFC1CEE0A5100BBE6F6 /* ViewController.m */,
 				BF744DFE1CEE0A5100BBE6F6 /* Main.storyboard */,
@@ -109,6 +113,15 @@
 				BF744E111CEE0A5100BBE6F6 /* Info.plist */,
 			);
 			path = bluetoothTests;
+			sourceTree = "<group>";
+		};
+		BF744E1A1CEE0BA800BBE6F6 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				BF744E1B1CEE0BCD00BBE6F6 /* Peripheral.m */,
+				BF744E1D1CEE0BDE00BBE6F6 /* Peripheral.h */,
+			);
+			name = Bluetooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +227,7 @@
 				BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */,
 				BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */,
 				BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */,
+				BF744E1C1CEE0BCD00BBE6F6 /* Peripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
