@@ -44,8 +44,47 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"2A19";
   NSLog(@"Peripheral set up");
 }
 
+/* Start advertising */
+- (void)startAdvertising {
+  NSLog(@"Starting advertising...");
+  
+  NSDictionary *advertisment = @{
+                                 CBAdvertisementDataServiceUUIDsKey : @[self.serviceUUID],
+                                 CBAdvertisementDataLocalNameKey: self.serviceName
+                                 };
+  [self.peripheralManager startAdvertising:advertisment];
+}
+
 /* Did update state */
-- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {}
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
+  switch (peripheral.state) {
+    case CBPeripheralManagerStatePoweredOn:
+      NSLog(@"peripheralStateChange: Powered On");
+      [self startAdvertising];
+      break;
+    case CBPeripheralManagerStatePoweredOff: {
+      NSLog(@"peripheralStateChange: Powered Off");
+      break;
+    }
+    case CBPeripheralManagerStateResetting: {
+      NSLog(@"peripheralStateChange: Resetting");
+      break;
+    }
+    case CBPeripheralManagerStateUnauthorized: {
+      NSLog(@"peripheralStateChange: Deauthorized");
+      break;
+    }
+    case CBPeripheralManagerStateUnsupported: {
+      NSLog(@"peripheralStateChange: Unsupported");
+      break;
+    }
+    case CBPeripheralManagerStateUnknown:
+      NSLog(@"peripheralStateChange: Unknown");
+      break;
+    default:
+      break;
+  }
+}
 
 
 /* Did add service */
@@ -55,7 +94,9 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"2A19";
 
 /* Did start advertising */
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
-                                       error:(NSError *)error {}
+                                       error:(NSError *)error {
+  NSLog(@"Did start advertising");
+}
 
 /* Did subscribe to characteristic */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral

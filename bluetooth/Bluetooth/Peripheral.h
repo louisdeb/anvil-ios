@@ -7,4 +7,6 @@
 @property(nonatomic, strong) CBUUID *serviceUUID;
 @property(nonatomic, strong) CBUUID *characteristicUUID;
 
+- (void)startAdvertising;
+
 @end
