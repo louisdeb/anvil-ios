@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7E89E5D81CEF6738005BD9CA /* InGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */; };
+		BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */; };
 		BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF61CEE0A5000BBE6F6 /* main.m */; };
 		BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */; };
 		BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DFC1CEE0A5100BBE6F6 /* ViewController.m */; };
@@ -31,6 +32,8 @@
 /* Begin PBXFileReference section */
 		7E89E5D61CEF6738005BD9CA /* bluetooth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bluetooth-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameViewController.swift; sourceTree = "<group>"; };
+		BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		BF744DF21CEE0A5000BBE6F6 /* bluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF744DF61CEE0A5000BBE6F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BF744DF81CEE0A5000BBE6F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -92,6 +95,8 @@
 				BF744E1A1CEE0BA800BBE6F6 /* Bluetooth */,
 				BF744DFB1CEE0A5000BBE6F6 /* ViewController.h */,
 				BF744DFC1CEE0A5100BBE6F6 /* ViewController.m */,
+				BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */,
+				BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */,
 				7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */,
 				BF744DFE1CEE0A5100BBE6F6 /* Main.storyboard */,
 				BF744E011CEE0A5100BBE6F6 /* Assets.xcassets */,
@@ -230,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */,
 				7E89E5D81CEF6738005BD9CA /* InGameViewController.swift in Sources */,
 				BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */,
 				BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */,

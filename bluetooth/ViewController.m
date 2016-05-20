@@ -47,16 +47,4 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
   [self performSegueWithIdentifier: ABOUT_SEGUE sender: sender];
 }
 
-#pragma mark About View
-
-int const PAN_TRANSLATION_MIN = 200;
-
-- (IBAction) handlePan:(UIPanGestureRecognizer*) sender
-{
-  CGPoint translation = [sender translationInView: self.view];
-  
-  if (fabs(translation.y) > PAN_TRANSLATION_MIN)
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
 @end

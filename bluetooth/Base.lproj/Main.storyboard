@@ -127,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="1155" y="240"/>
         </scene>
-        <!--View Controller-->
+        <!--About View Controller-->
         <scene sceneID="kPd-57-EHv">
             <objects>
-                <viewController id="6r6-Ee-Mip" sceneMemberID="viewController">
+                <viewController title="About View Controller" id="6r6-Ee-Mip" customClass="AboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PqR-uH-LD7"/>
                         <viewControllerLayoutGuide type="bottom" id="oe0-mQ-Kgt"/>
@@ -139,9 +139,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wJf-Z5-g6k" appends="YES" id="Ew4-5P-bO4"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOp-7w-L8w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="wJf-Z5-g6k">
+                    <connections>
+                        <action selector="handlePan:" destination="6r6-Ee-Mip" id="CtV-d3-EYm"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="369" y="968"/>
         </scene>
