@@ -6,6 +6,8 @@
 
 @implementation ViewController
 
+NSString *const ABOUT_SEGUE = @"aboutSegue";
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
@@ -35,6 +37,26 @@
   animatedImageView.animationRepeatCount = 0;
   [animatedImageView startAnimating];
   [self.view addSubview: animatedImageView];
+}
+
+- (IBAction)aboutButtonUp:(UIButton *) sender {
+//  [UIView beginAnimations:nil context:NULL];
+//  [UIView setAnimationDelay:0.1];
+//  [UIView setAnimationDuration:0.5];
+//  [UIView commitAnimations];
+  [self performSegueWithIdentifier: ABOUT_SEGUE sender: sender];
+}
+
+#pragma mark About View
+
+int const PAN_TRANSLATION_MIN = 200;
+
+- (IBAction) handlePan:(UIPanGestureRecognizer*) sender
+{
+  CGPoint translation = [sender translationInView: self.view];
+  
+  if (fabs(translation.y) > PAN_TRANSLATION_MIN)
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end
