@@ -13,7 +13,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   NSLog(@"Creating peripheral");
   self.peripheral = [[Peripheral alloc] init];
-//  [self.peripheral startAdvertising];
   
   return YES;
 }
