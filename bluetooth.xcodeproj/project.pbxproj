@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E89E5D81CEF6738005BD9CA /* InGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */; };
 		BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF61CEE0A5000BBE6F6 /* main.m */; };
 		BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */; };
 		BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DFC1CEE0A5100BBE6F6 /* ViewController.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E89E5D61CEF6738005BD9CA /* bluetooth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bluetooth-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameViewController.swift; sourceTree = "<group>"; };
 		BF744DF21CEE0A5000BBE6F6 /* bluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF744DF61CEE0A5000BBE6F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BF744DF81CEE0A5000BBE6F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,11 +92,13 @@
 				BF744E1A1CEE0BA800BBE6F6 /* Bluetooth */,
 				BF744DFB1CEE0A5000BBE6F6 /* ViewController.h */,
 				BF744DFC1CEE0A5100BBE6F6 /* ViewController.m */,
+				7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */,
 				BF744DFE1CEE0A5100BBE6F6 /* Main.storyboard */,
 				BF744E011CEE0A5100BBE6F6 /* Assets.xcassets */,
 				BF744E031CEE0A5100BBE6F6 /* LaunchScreen.storyboard */,
 				BF744E061CEE0A5100BBE6F6 /* Info.plist */,
 				BF744DF51CEE0A5000BBE6F6 /* Supporting Files */,
+				7E89E5D61CEF6738005BD9CA /* bluetooth-Bridging-Header.h */,
 			);
 			path = bluetooth;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				TargetAttributes = {
 					BF744DF11CEE0A5000BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = Q5L5446692;
 					};
 					BF744E0A1CEE0A5100BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
@@ -224,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E89E5D81CEF6738005BD9CA /* InGameViewController.swift in Sources */,
 				BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */,
 				BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */,
 				BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */,
@@ -357,6 +364,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = bluetooth/Info.plist;
@@ -364,6 +372,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "bluetooth/bluetooth-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -371,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = bluetooth/Info.plist;
@@ -378,6 +389,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "bluetooth/bluetooth-Bridging-Header.h";
 			};
 			name = Release;
 		};

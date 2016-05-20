@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -41,13 +41,82 @@
                             <constraint firstItem="xQG-2c-MZr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fnf-Yw-Z4V"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="k5f-23-G4R" kind="presentation" id="7EP-pN-Pup"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="375" y="251"/>
         </scene>
+        <!--In Game View Controller-->
+        <scene sceneID="c0w-zA-yE4">
+            <objects>
+                <viewController id="k5f-23-G4R" customClass="InGameViewController" customModule="bluetooth" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9D5-DH-idM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Swc-kj-f3U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1ZC-In-fC4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowN" translatesAutoresizingMaskIntoConstraints="NO" id="t1x-pi-BkG">
+                                <rect key="frame" x="180" y="100" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="oe8-8s-S0o"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowW" translatesAutoresizingMaskIntoConstraints="NO" id="0k7-YP-rGg">
+                                <rect key="frame" x="0.0" y="236" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="7mE-T5-tUg"/>
+                                    <constraint firstAttribute="height" constant="128" id="O7k-i7-kT6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowE" translatesAutoresizingMaskIntoConstraints="NO" id="Iun-VG-mLq">
+                                <rect key="frame" x="360" y="236" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="e9Z-5h-QrW"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowS" translatesAutoresizingMaskIntoConstraints="NO" id="aUk-7D-BVg">
+                                <rect key="frame" x="180" y="372" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t1x-pi-BkG" firstAttribute="centerX" secondItem="1ZC-In-fC4" secondAttribute="centerX" id="7Qf-OO-816"/>
+                            <constraint firstItem="t1x-pi-BkG" firstAttribute="top" secondItem="9D5-DH-idM" secondAttribute="bottom" constant="80" id="7er-D1-zHE"/>
+                            <constraint firstItem="0k7-YP-rGg" firstAttribute="top" secondItem="t1x-pi-BkG" secondAttribute="bottom" constant="8" symbolic="YES" id="9wx-QP-MHO"/>
+                            <constraint firstItem="0k7-YP-rGg" firstAttribute="centerY" secondItem="1ZC-In-fC4" secondAttribute="centerY" id="J6R-zc-5Da"/>
+                            <constraint firstItem="aUk-7D-BVg" firstAttribute="top" secondItem="0k7-YP-rGg" secondAttribute="bottom" constant="8" symbolic="YES" id="JoS-Vh-sgE"/>
+                            <constraint firstAttribute="trailing" secondItem="Iun-VG-mLq" secondAttribute="trailing" id="K2p-cJ-s0t"/>
+                            <constraint firstItem="Swc-kj-f3U" firstAttribute="top" secondItem="aUk-7D-BVg" secondAttribute="bottom" constant="100" id="O5r-Hr-Iku"/>
+                            <constraint firstItem="0k7-YP-rGg" firstAttribute="leading" secondItem="1ZC-In-fC4" secondAttribute="leading" id="VuI-DL-8uq"/>
+                            <constraint firstItem="t1x-pi-BkG" firstAttribute="trailing" secondItem="aUk-7D-BVg" secondAttribute="trailing" id="eNs-is-Z3U"/>
+                            <constraint firstItem="aUk-7D-BVg" firstAttribute="top" secondItem="Iun-VG-mLq" secondAttribute="bottom" constant="8" symbolic="YES" id="fFD-5b-xwo"/>
+                            <constraint firstItem="0k7-YP-rGg" firstAttribute="top" secondItem="Iun-VG-mLq" secondAttribute="top" id="kSJ-JD-jEm"/>
+                            <constraint firstItem="t1x-pi-BkG" firstAttribute="leading" secondItem="aUk-7D-BVg" secondAttribute="leading" id="wYJ-ig-WEX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="eastArrow" destination="Iun-VG-mLq" id="wxw-vX-qhC"/>
+                        <outlet property="northArrow" destination="t1x-pi-BkG" id="2YW-p2-KsZ"/>
+                        <outlet property="southArrow" destination="aUk-7D-BVg" id="NjJ-Dj-6AE"/>
+                        <outlet property="westArrow" destination="0k7-YP-rGg" id="aAb-Qp-BAd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPy-NQ-3Tr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1155" y="240"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="DirectionArrowE" width="512" height="512"/>
+        <image name="DirectionArrowN" width="512" height="512"/>
+        <image name="DirectionArrowS" width="512" height="512"/>
+        <image name="DirectionArrowW" width="512" height="512"/>
         <image name="Title" width="1701" height="567"/>
     </resources>
 </document>
