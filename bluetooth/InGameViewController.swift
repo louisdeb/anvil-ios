@@ -55,4 +55,29 @@ class InGameViewController: UIViewController {
         }
     }
     
+    @IBAction func buttonPressed (sender: AnyObject) {
+        performSegueWithIdentifier("toVariableButtonView", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //let url = NSURL(fileURLWithPath: "test.json")
+        let url = NSURL(fileURLWithPath: "/Users/JHGWhite/Desktop/test.json")
+        let data = NSData(contentsOfURL: url)
+        let handler = JSONViewElementHandler()
+        var components: ElementData?
+        
+        do {
+            components = try handler.parseJSON(data!)
+        } catch JSONError.IncorrectFormatError {
+            print ("JSON format incorrect for parsing")
+        } catch {
+            print (error)
+        }
+        
+        let dest = segue.destinationViewController as! VariableButtonViewController
+        if components != nil { //shit practice, fix later
+            dest.components = components!.elements
+        }
+    }
+    
 }

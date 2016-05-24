@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E4E38031CF3946300DF995B /* example.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E4E38021CF3946300DF995B /* example.json */; };
+		7E4E38051CF3951900DF995B /* JSONViewElementHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E38041CF3951900DF995B /* JSONViewElementHandler.swift */; };
 		7E89E5D81CEF6738005BD9CA /* InGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */; };
+		7EDB2CA91CF4742700D9C9AF /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB2CA81CF4742700D9C9AF /* test.json */; };
+		7EDB2CAB1CF474FC00D9C9AF /* VariableButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB2CAA1CF474FC00D9C9AF /* VariableButtonViewController.swift */; };
 		BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */; };
 		BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF61CEE0A5000BBE6F6 /* main.m */; };
 		BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */; };
@@ -30,8 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E4E38021CF3946300DF995B /* example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = example.json; sourceTree = "<group>"; };
+		7E4E38041CF3951900DF995B /* JSONViewElementHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONViewElementHandler.swift; sourceTree = "<group>"; };
 		7E89E5D61CEF6738005BD9CA /* bluetooth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bluetooth-Bridging-Header.h"; sourceTree = "<group>"; };
 		7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameViewController.swift; sourceTree = "<group>"; };
+		7EDB2CA81CF4742700D9C9AF /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
+		7EDB2CAA1CF474FC00D9C9AF /* VariableButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableButtonViewController.swift; sourceTree = "<group>"; };
 		BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		BF744DF21CEE0A5000BBE6F6 /* bluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,10 +106,14 @@
 				BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */,
 				BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */,
 				7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */,
+				7EDB2CAA1CF474FC00D9C9AF /* VariableButtonViewController.swift */,
+				7E4E38041CF3951900DF995B /* JSONViewElementHandler.swift */,
 				BF744DFE1CEE0A5100BBE6F6 /* Main.storyboard */,
 				BF744E011CEE0A5100BBE6F6 /* Assets.xcassets */,
 				BF744E031CEE0A5100BBE6F6 /* LaunchScreen.storyboard */,
 				BF744E061CEE0A5100BBE6F6 /* Info.plist */,
+				7E4E38021CF3946300DF995B /* example.json */,
+				7EDB2CA81CF4742700D9C9AF /* test.json */,
 				BF744DF51CEE0A5000BBE6F6 /* Supporting Files */,
 				7E89E5D61CEF6738005BD9CA /* bluetooth-Bridging-Header.h */,
 			);
@@ -215,7 +227,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4E38031CF3946300DF995B /* example.json in Resources */,
 				BF744E051CEE0A5100BBE6F6 /* LaunchScreen.storyboard in Resources */,
+				7EDB2CA91CF4742700D9C9AF /* test.json in Resources */,
 				BF744E021CEE0A5100BBE6F6 /* Assets.xcassets in Resources */,
 				BF744E001CEE0A5100BBE6F6 /* Main.storyboard in Resources */,
 			);
@@ -238,8 +252,10 @@
 				BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */,
 				7E89E5D81CEF6738005BD9CA /* InGameViewController.swift in Sources */,
 				BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */,
+				7E4E38051CF3951900DF995B /* JSONViewElementHandler.swift in Sources */,
 				BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */,
 				BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */,
+				7EDB2CAB1CF474FC00D9C9AF /* VariableButtonViewController.swift in Sources */,
 				BF744E1C1CEE0BCD00BBE6F6 /* Peripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
