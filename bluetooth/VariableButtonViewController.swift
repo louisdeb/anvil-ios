@@ -25,7 +25,7 @@ class VariableButtonViewController: UIViewController {
         for view in self.components! {
             let view = view as! UIButton
             
-            view.addTarget(self, action: #selector(VariableButtonViewController.buttonPressed(_:)), forControlEvents: .TouchUpInside)
+            //view.addTarget(self, action: #selector(VariableButtonViewController.buttonPressed(_:)), forControlEvents: .TouchUpInside)
         }
     }
     
