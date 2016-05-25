@@ -45,6 +45,7 @@ class UIBuilderViewController: UIViewController {
         selectedItemOldX = Float((currentSelectedElement!.frame.origin.x))
         selectedItemOldY = Float((currentSelectedElement!.frame.origin.y))
         
+        elementsOnScreen.append(currentSelectedElement!)
         self.view.addSubview(currentSelectedElement!)
     }
     
@@ -78,6 +79,8 @@ extension UIBuilderViewController {
             itemBeingDragged = true
             selectedItemOldX = Float(touchLocation.x)
             selectedItemOldY = Float(touchLocation.y)
+
+            
         }
     }
     
