@@ -7,24 +7,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Variable Button View Controller-->
-        <scene sceneID="fp8-TP-UBv">
-            <objects>
-                <viewController id="dtu-uX-nxJ" customClass="VariableButtonViewController" customModule="bluetooth" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Nxy-fq-uTI"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Bt-TK-ddi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="K3C-6t-zrL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3VK-TZ-gGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="369" y="-463"/>
-        </scene>
         <!--Element Selection View Controller-->
         <scene sceneID="sFF-xW-S06">
             <objects>
@@ -182,7 +164,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="k5f-23-G4R" kind="presentation" id="7EP-pN-Pup"/>
                         <segue destination="6r6-Ee-Mip" kind="popoverPresentation" identifier="aboutSegue" popoverAnchorView="8bC-Xf-vdC" id="o1P-he-nN9">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
@@ -191,78 +172,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="369" y="240"/>
-        </scene>
-        <!--In Game View Controller-->
-        <scene sceneID="c0w-zA-yE4">
-            <objects>
-                <viewController id="k5f-23-G4R" customClass="InGameViewController" customModule="bluetooth" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9D5-DH-idM"/>
-                        <viewControllerLayoutGuide type="bottom" id="Swc-kj-f3U"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1ZC-In-fC4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowN" translatesAutoresizingMaskIntoConstraints="NO" id="t1x-pi-BkG">
-                                <rect key="frame" x="180" y="100" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="oe8-8s-S0o"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowW" translatesAutoresizingMaskIntoConstraints="NO" id="0k7-YP-rGg">
-                                <rect key="frame" x="0.0" y="236" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="7mE-T5-tUg"/>
-                                    <constraint firstAttribute="height" constant="128" id="O7k-i7-kT6"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowE" translatesAutoresizingMaskIntoConstraints="NO" id="Iun-VG-mLq">
-                                <rect key="frame" x="360" y="236" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="e9Z-5h-QrW"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DirectionArrowS" translatesAutoresizingMaskIntoConstraints="NO" id="aUk-7D-BVg">
-                                <rect key="frame" x="180" y="372" width="240" height="128"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFj-fT-a60">
-                                <rect key="frame" x="282" y="285" width="36" height="30"/>
-                                <state key="normal" title="temp"/>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="k5f-23-G4R" eventType="touchUpInside" id="e4m-ah-g7A"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="t1x-pi-BkG" firstAttribute="centerX" secondItem="1ZC-In-fC4" secondAttribute="centerX" id="7Qf-OO-816"/>
-                            <constraint firstItem="t1x-pi-BkG" firstAttribute="top" secondItem="9D5-DH-idM" secondAttribute="bottom" constant="80" id="7er-D1-zHE"/>
-                            <constraint firstItem="0k7-YP-rGg" firstAttribute="top" secondItem="t1x-pi-BkG" secondAttribute="bottom" constant="8" symbolic="YES" id="9wx-QP-MHO"/>
-                            <constraint firstItem="0k7-YP-rGg" firstAttribute="centerY" secondItem="1ZC-In-fC4" secondAttribute="centerY" id="J6R-zc-5Da"/>
-                            <constraint firstItem="aUk-7D-BVg" firstAttribute="top" secondItem="0k7-YP-rGg" secondAttribute="bottom" constant="8" symbolic="YES" id="JoS-Vh-sgE"/>
-                            <constraint firstAttribute="trailing" secondItem="Iun-VG-mLq" secondAttribute="trailing" id="K2p-cJ-s0t"/>
-                            <constraint firstItem="Swc-kj-f3U" firstAttribute="top" secondItem="aUk-7D-BVg" secondAttribute="bottom" constant="100" id="O5r-Hr-Iku"/>
-                            <constraint firstItem="0k7-YP-rGg" firstAttribute="leading" secondItem="1ZC-In-fC4" secondAttribute="leading" id="VuI-DL-8uq"/>
-                            <constraint firstItem="t1x-pi-BkG" firstAttribute="trailing" secondItem="aUk-7D-BVg" secondAttribute="trailing" id="eNs-is-Z3U"/>
-                            <constraint firstItem="aUk-7D-BVg" firstAttribute="top" secondItem="Iun-VG-mLq" secondAttribute="bottom" constant="8" symbolic="YES" id="fFD-5b-xwo"/>
-                            <constraint firstItem="0k7-YP-rGg" firstAttribute="top" secondItem="Iun-VG-mLq" secondAttribute="top" id="kSJ-JD-jEm"/>
-                            <constraint firstItem="IFj-fT-a60" firstAttribute="centerY" secondItem="0k7-YP-rGg" secondAttribute="centerY" id="tbe-D9-pcV"/>
-                            <constraint firstItem="IFj-fT-a60" firstAttribute="centerX" secondItem="t1x-pi-BkG" secondAttribute="centerX" id="voA-75-5ug"/>
-                            <constraint firstItem="t1x-pi-BkG" firstAttribute="leading" secondItem="aUk-7D-BVg" secondAttribute="leading" id="wYJ-ig-WEX"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="eastArrow" destination="Iun-VG-mLq" id="wxw-vX-qhC"/>
-                        <outlet property="northArrow" destination="t1x-pi-BkG" id="2YW-p2-KsZ"/>
-                        <outlet property="southArrow" destination="aUk-7D-BVg" id="NjJ-Dj-6AE"/>
-                        <outlet property="westArrow" destination="0k7-YP-rGg" id="aAb-Qp-BAd"/>
-                        <segue destination="dtu-uX-nxJ" kind="presentation" identifier="toVariableButtonView" id="Y9a-KX-Xp4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DPy-NQ-3Tr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1155" y="240"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="kPd-57-EHv">
@@ -318,10 +227,6 @@
     </scenes>
     <resources>
         <image name="AnvilLogo" width="567" height="567"/>
-        <image name="DirectionArrowE" width="512" height="512"/>
-        <image name="DirectionArrowN" width="512" height="512"/>
-        <image name="DirectionArrowS" width="512" height="512"/>
-        <image name="DirectionArrowW" width="512" height="512"/>
         <image name="Title" width="1701" height="567"/>
     </resources>
 </document>
