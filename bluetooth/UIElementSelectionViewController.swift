@@ -15,6 +15,7 @@ class UIElementSelectionViewController: UIViewController {
     var builder: UIBuilderViewController?
     
     var allAvailableElements: [UIView] = []
+    var pressedButtonViews: Dictionary<UIView, UIView?> = Dictionary<UIView, UIView?>()
     
     let CELLS_PER_ROW = 4
     
@@ -23,6 +24,7 @@ class UIElementSelectionViewController: UIViewController {
         
         //Populate the array of elements that are available for use
         allAvailableElements = populateAvailableElementsFromResources("element_")
+        pressedButtonViews   = populateReciprocalElementDictionary(allAvailableElements, ext: "_pressed")
         print(allAvailableElements.count)
         
         collectionView.registerClass(ElementCell.self, forCellWithReuseIdentifier:"cell1")
@@ -44,21 +46,13 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         let element:UIView = allAvailableElements[indexPath.row]
         element.contentMode = .ScaleAspectFill
         
-//        let newCellFrame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, 128.0, 128.0)
-//        cell.frame = newCellFrame
-        
-        
-        //let newElementFrame = CGRectMake(newCellFrame.origin.x, newCellFrame.origin.y, element.frame.width, element.frame.height)
-        
-        //element.frame = newElementFrame
-        
-        //print(cell.frame)
-        
         //Set the custom class property element
         cell.element = element
         
         //add it to the subview
         cell.contentView.addSubview(element)
+        element.center.x = cell.contentView.center.x
+        element.center.y = cell.contentView.center.y
         
         return cell
     }
@@ -75,6 +69,8 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         print("builder: \(builder)")
         print("cell: \(collectionView.cellForItemAtIndexPath(indexPath) as! ElementCell)")
         builder?.currentSelectedElement = (collectionView.cellForItemAtIndexPath(indexPath) as! ElementCell).element
+        builder?.elementsOnScreenWithReciprocal[(builder?.currentSelectedElement)!]
+            = pressedButtonViews[(builder?.currentSelectedElement)!]
         print(builder?.currentSelectedElement)
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -113,18 +109,38 @@ class ElementCell: UICollectionViewCell {
     }
 }
 
-func populateAvailableElementsFromResources(prefix: String = "", suffix: String = "") -> [UIView]{
-    var elements = [UIView]()
-    
-    while let element = UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)") {
-        //To scale properly
-        let imageView = UIImageView(image: element)
-        imageView.contentMode = .ScaleAspectFill
-        elements.append(imageView)
-    }
-    return elements
-}
+//Helper
 
+extension UIElementSelectionViewController {
+    func populateAvailableElementsFromResources(prefix: String = "", suffix: String = "") -> [UIView]{
+        var elements = [UIView]()
+        
+        while let element = UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)") {
+            element.accessibilityIdentifier = "\(prefix)\(elements.count + 1)\(suffix)"
+            let imageView = UIImageView(image: element)
+            imageView.contentMode = .ScaleAspectFill
+
+            //imageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin,
+            //                              .FlexibleTopMargin, .FlexibleBottomMargin]
+            elements.append(imageView)
+            
+        }
+        return elements
+    }
+    
+    func populateReciprocalElementDictionary(elements: [UIView], ext: String) -> [UIView: UIView?] {
+        var recip: [UIView: UIView?] = [:]
+        
+        elements.forEach { (elem) in
+            let recipImage = UIImage(named: "\(elem.accessibilityIdentifier)\(ext)")
+            recipImage?.accessibilityIdentifier = "\(elem.accessibilityIdentifier)\(ext)"
+            recip[elem] = UIImageView(image: recipImage)
+        }
+        
+        return recip
+    }
+    
+}
 
 
 
