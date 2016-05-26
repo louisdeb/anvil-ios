@@ -8,6 +8,7 @@
 
 NSString *const ABOUT_SEGUE = @"aboutSegue";
 
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
@@ -45,6 +46,14 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 //  [UIView setAnimationDuration:0.5];
 //  [UIView commitAnimations];
   [self performSegueWithIdentifier: ABOUT_SEGUE sender: sender];
+}
+
+- (IBAction)builderButtonUp:(UIButton *) sender {
+    //  [UIView beginAnimations:nil context:NULL];
+    //  [UIView setAnimationDelay:0.1];
+    //  [UIView setAnimationDuration:0.5];
+    //  [UIView commitAnimations];
+    [self performSegueWithIdentifier: @"toCIB" sender: sender];
 }
 
 @end
