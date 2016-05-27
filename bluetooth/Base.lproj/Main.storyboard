@@ -105,17 +105,6 @@
                                     <action selector="showElementSelection:" destination="9ul-vm-n8J" eventType="touchUpInside" id="PU4-Jx-3Tu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interface Builder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzv-dQ-1bH">
-                                <rect key="frame" x="133" y="187" width="335" height="225"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="335" id="gCF-Xd-0s1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="41"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <size key="shadowOffset" width="2" height="-2"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Je-NQ-yhA">
                                 <rect key="frame" x="20" y="550" width="68" height="30"/>
                                 <state key="normal" title="Attributes"/>
@@ -124,12 +113,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Uzv-dQ-1bH" firstAttribute="top" secondItem="IfA-lH-rmZ" secondAttribute="bottom" constant="167" id="6H8-dZ-zch"/>
                             <constraint firstItem="3Je-NQ-yhA" firstAttribute="leading" secondItem="sZz-bn-bfq" secondAttribute="leadingMargin" id="NU5-Ni-Kgl"/>
                             <constraint firstItem="rEG-lz-CT1" firstAttribute="top" secondItem="Myz-XE-1fa" secondAttribute="bottom" constant="20" id="bFA-nK-OfO"/>
-                            <constraint firstItem="Uzv-dQ-1bH" firstAttribute="centerY" secondItem="sZz-bn-bfq" secondAttribute="centerY" id="cDA-Yc-NMI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Myz-XE-1fa" secondAttribute="trailing" constant="-9" id="m5c-OZ-O1R"/>
-                            <constraint firstItem="Uzv-dQ-1bH" firstAttribute="centerX" secondItem="sZz-bn-bfq" secondAttribute="centerX" id="w45-JW-8p3"/>
                             <constraint firstItem="3Je-NQ-yhA" firstAttribute="baseline" secondItem="Myz-XE-1fa" secondAttribute="baseline" id="yJE-8T-709"/>
                         </constraints>
                     </view>

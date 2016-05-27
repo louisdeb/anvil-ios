@@ -41,6 +41,10 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
         let rotate = UIRotationGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handleRotate(_:)))
         rotate.delegate = self
         self.view.addGestureRecognizer(rotate)
+        
+        let drag = UIPanGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handlePan(_:)))
+        drag.delegate = self
+        self.view.addGestureRecognizer(drag)
     }
     
     func handlePinch(sender: UIPinchGestureRecognizer) {
@@ -53,15 +57,15 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
-        var selecting = false
-        for elem in elementsOnScreen {
-            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
-                currentSelectedElement = elem
-                selecting = true
-            }
-        }
+//        var selecting = false
+//        for elem in elementsOnScreen {
+//            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
+//                currentSelectedElement = elem
+//                selecting = true
+//            }
+//        }
         
-        if let elem = currentSelectedElement where !selecting {
+        if let elem = currentSelectedElement where !elementsOnScreen.contains(elem) {
             //To string - allow for optionals
             placeElement(Float(sender.locationInView(self.view).x), y: Float(sender.locationInView(self.view).y), elem: elem)
         }
@@ -73,6 +77,18 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
             if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
                 elem.transform = CGAffineTransformRotate(elem.transform, sender.rotation)
                 sender.rotation = 0
+            }
+        }
+    }
+    
+    func handlePan(sender: UIPanGestureRecognizer) {
+        print("bosh")
+        for elem in elementsOnScreen {
+            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
+                let translation: CGPoint = sender.translationInView(self.view)
+                elem.center = CGPointMake(elem.center.x + translation.x,
+                                          elem.center.y + translation.y)
+                sender.setTranslation(CGPointMake(0, 0), inView: self.view)
             }
         }
     }
