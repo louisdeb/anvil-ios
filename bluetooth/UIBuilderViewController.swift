@@ -30,13 +30,51 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handlePinch))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handleTap(_:)))
+        tap.delegate = self
+        self.view.addGestureRecognizer(tap)
+        
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handlePinch(_:)))
         pinch.delegate = self
         self.view.addGestureRecognizer(pinch)
+        
+        let rotate = UIRotationGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handleRotate(_:)))
+        rotate.delegate = self
+        self.view.addGestureRecognizer(rotate)
     }
     
-    func handlePinch() {
+    func handlePinch(sender: UIPinchGestureRecognizer) {
+        elementsOnScreen.forEach { (elem) in
+            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
+                elem.transform = CGAffineTransformScale(elem.transform, sender.scale, sender.scale)
+                sender.scale = 1
+            }
+        }
+    }
+    
+    func handleTap(sender: UITapGestureRecognizer) {
+        var selecting = false
+        for elem in elementsOnScreen {
+            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
+                currentSelectedElement = elem
+                selecting = true
+            }
+        }
         
+        if let elem = currentSelectedElement where !selecting {
+            //To string - allow for optionals
+            placeElement(Float(sender.locationInView(self.view).x), y: Float(sender.locationInView(self.view).y), elem: elem)
+        }
+    }
+    
+    
+    func handleRotate(sender: UIRotationGestureRecognizer) {
+        for elem in elementsOnScreen {
+            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
+                elem.transform = CGAffineTransformRotate(elem.transform, sender.rotation)
+                sender.rotation = 0
+            }
+        }
     }
     
     /* Function to check for touches - if the currentSelectedElement has a non-nil
@@ -77,33 +115,6 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func showElementSelection (sender: AnyObject) {
         performSegueWithIdentifier(ELEMENT_SELECTION, sender: sender)
-    }
-}
-
-
-extension UIBuilderViewController {
-    
-    //Place the currently selected element at the location of the touch
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        touches.forEach { (touch) in
-            
-            var selecting = false
-            for elem in elementsOnScreen {
-                if CGRectContainsPoint(elem.frame, touch.locationInView(self.view)) {
-
-                    currentSelectedElement = elem
-//                    currentSelectedElement?.layer.borderColor = UIColor.cyanColor().CGColor
-//                    currentSelectedElement?.layer.cornerRadius = 5.0
-//                    currentSelectedElement?.layer.borderWidth = 2
-                    selecting = true
-                }
-            }
-            
-            if let elem = currentSelectedElement where !selecting {
-                //To string - allow for optionals
-                placeElement(Float(touch.locationInView(self.view).x), y: Float(touch.locationInView(self.view).y), elem: elem)
-            }
-        }
     }
 }
 
