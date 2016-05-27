@@ -7,6 +7,24 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Attribute Configuration View Controller-->
+        <scene sceneID="9DC-ZK-Y8m">
+            <objects>
+                <viewController id="h6K-Rp-2hr" customClass="AttributeConfigurationViewController" customModule="bluetooth" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hh3-uP-N0j"/>
+                        <viewControllerLayoutGuide type="bottom" id="sMs-yM-gIp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XaN-g6-Na2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFU-XR-Eja" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1403" y="988"/>
+        </scene>
         <!--Element Selection View Controller-->
         <scene sceneID="sFF-xW-S06">
             <objects>
@@ -98,18 +116,26 @@
                                 <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="2" height="-2"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Je-NQ-yhA">
+                                <rect key="frame" x="20" y="550" width="68" height="30"/>
+                                <state key="normal" title="Attributes"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Uzv-dQ-1bH" firstAttribute="top" secondItem="IfA-lH-rmZ" secondAttribute="bottom" constant="167" id="6H8-dZ-zch"/>
+                            <constraint firstItem="3Je-NQ-yhA" firstAttribute="leading" secondItem="sZz-bn-bfq" secondAttribute="leadingMargin" id="NU5-Ni-Kgl"/>
                             <constraint firstItem="rEG-lz-CT1" firstAttribute="top" secondItem="Myz-XE-1fa" secondAttribute="bottom" constant="20" id="bFA-nK-OfO"/>
                             <constraint firstItem="Uzv-dQ-1bH" firstAttribute="centerY" secondItem="sZz-bn-bfq" secondAttribute="centerY" id="cDA-Yc-NMI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Myz-XE-1fa" secondAttribute="trailing" constant="-9" id="m5c-OZ-O1R"/>
                             <constraint firstItem="Uzv-dQ-1bH" firstAttribute="centerX" secondItem="sZz-bn-bfq" secondAttribute="centerX" id="w45-JW-8p3"/>
+                            <constraint firstItem="3Je-NQ-yhA" firstAttribute="baseline" secondItem="Myz-XE-1fa" secondAttribute="baseline" id="yJE-8T-709"/>
                         </constraints>
                     </view>
                     <connections>
                         <segue destination="2mm-2x-aeQ" kind="presentation" identifier="showElementSelection" id="UfS-ja-U7i"/>
+                        <segue destination="h6K-Rp-2hr" kind="presentation" identifier="toAttributeConfiguration" id="bCp-qz-r5u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGU-Z6-Xq6" userLabel="First Responder" sceneMemberID="firstResponder"/>

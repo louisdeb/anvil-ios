@@ -15,6 +15,7 @@
 		7E89E5D81CEF6738005BD9CA /* InGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */; };
 		7EDB2CA91CF4742700D9C9AF /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB2CA81CF4742700D9C9AF /* test.json */; };
 		7EDB2CAB1CF474FC00D9C9AF /* VariableButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB2CAA1CF474FC00D9C9AF /* VariableButtonViewController.swift */; };
+		7EE04A8E1CF852F4003791AD /* AttributeConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */; };
 		BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */; };
 		BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF61CEE0A5000BBE6F6 /* main.m */; };
 		BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */; };
@@ -46,6 +47,7 @@
 		7E89E5D71CEF6738005BD9CA /* InGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameViewController.swift; sourceTree = "<group>"; };
 		7EDB2CA81CF4742700D9C9AF /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		7EDB2CAA1CF474FC00D9C9AF /* VariableButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableButtonViewController.swift; sourceTree = "<group>"; };
+		7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeConfigurationViewController.swift; sourceTree = "<group>"; };
 		BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		BF744DF21CEE0A5000BBE6F6 /* bluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				7E62510F1CF499930036058A /* UIBuilderViewController.swift */,
+				7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */,
 				7E6251111CF499AB0036058A /* UIElementSelectionViewController.swift */,
 			);
 			name = "Custom UI Builder";
@@ -212,7 +215,7 @@
 				TargetAttributes = {
 					BF744DF11CEE0A5000BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = QJQGH9NF7F;
+						DevelopmentTeam = Q5L5446692;
 					};
 					BF744E0A1CEE0A5100BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
@@ -276,6 +279,7 @@
 				BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */,
 				BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */,
 				7EDB2CAB1CF474FC00D9C9AF /* VariableButtonViewController.swift in Sources */,
+				7EE04A8E1CF852F4003791AD /* AttributeConfigurationViewController.swift in Sources */,
 				BF744E1C1CEE0BCD00BBE6F6 /* Peripheral.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +416,7 @@
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth;
+				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bluetooth/bluetooth-Bridging-Header.h";
@@ -430,7 +434,7 @@
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth;
+				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bluetooth/bluetooth-Bridging-Header.h";

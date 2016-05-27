@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class UIBuilderViewController: UIViewController {
+class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let ELEMENT_SELECTION: String = "showElementSelection"
+    let ATTRIBUTE_CONFIGURATION: String = "toAttributeConfiguration"
     
     var currentSelectedElement: UIView?
     var elementsOnScreen: [UIView] = []
@@ -28,6 +29,14 @@ class UIBuilderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handlePinch))
+        pinch.delegate = self
+        self.view.addGestureRecognizer(pinch)
+    }
+    
+    func handlePinch() {
+        
     }
     
     /* Function to check for touches - if the currentSelectedElement has a non-nil
@@ -58,6 +67,8 @@ class UIBuilderViewController: UIViewController {
             let dest = segue.destinationViewController as! UIElementSelectionViewController 
             dest.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             dest.builder = self
+        case ATTRIBUTE_CONFIGURATION?:
+            let dest = segue.destinationViewController as! AttributeConfigurationViewController
             
         default:
             return
@@ -95,7 +106,6 @@ extension UIBuilderViewController {
         }
     }
 }
-
 
 /* Code for detecting pressed on a button and depressing button by changing image */
 //var inView: Bool = false
