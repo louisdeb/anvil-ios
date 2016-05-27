@@ -40,14 +40,14 @@ class UIBuilderViewController: UIViewController {
         //Fix issue for no element being chose at the point of button press
         //Extend CGFloat?
         
-        currentSelectedElement?.frame = CGRect(x: CGFloat(x), y: CGFloat(y), width: (currentSelectedElement?.frame.width)!, height: (currentSelectedElement?.frame.height)!)
-        currentSelectedElement?.center.x = CGFloat(x)
-        currentSelectedElement?.center.y = CGFloat(y)
-        selectedItemOldX = Float((currentSelectedElement!.frame.origin.x))
-        selectedItemOldY = Float((currentSelectedElement!.frame.origin.y))
+        elem.frame = CGRect(x: CGFloat(x), y: CGFloat(y), width: elem.frame.width, height: elem.frame.height)
+        elem.center.x = CGFloat(x)
+        elem.center.y = CGFloat(y)
+        selectedItemOldX = Float(elem.frame.origin.x)
+        selectedItemOldY = Float(elem.frame.origin.y)
         
-        elementsOnScreen.append(currentSelectedElement!)
-        self.view.addSubview(currentSelectedElement!)
+        elementsOnScreen.append(elem)
+        self.view.addSubview(elem)
     }
     
     
@@ -88,9 +88,9 @@ extension UIBuilderViewController {
                 }
             }
             
-            if !selecting {
+            if let elem = currentSelectedElement where !selecting {
                 //To string - allow for optionals
-                placeElement(Float(touch.locationInView(self.view).x), y: Float(touch.locationInView(self.view).y), elem: currentSelectedElement!)
+                placeElement(Float(touch.locationInView(self.view).x), y: Float(touch.locationInView(self.view).y), elem: elem)
             }
         }
     }
