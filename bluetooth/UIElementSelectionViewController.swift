@@ -31,7 +31,8 @@ class UIElementSelectionViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(CGFloat(0.5))
+        self.view.backgroundColor = collectionView.backgroundColor
     }
 }
 
