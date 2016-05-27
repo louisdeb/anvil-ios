@@ -27,10 +27,14 @@ class UIElementSelectionViewController: UIViewController {
         pressedButtonViews   = populateReciprocalElementDictionary(allAvailableElements, ext: "_pressed")
         print(allAvailableElements.count)
         
+        //Allow use of custom cell
         collectionView.registerClass(ElementCell.self, forCellWithReuseIdentifier:"cell1")
         
+        //Set up of collection view
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        //Opacity
         collectionView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(CGFloat(0.5))
         self.view.backgroundColor = collectionView.backgroundColor
     }
