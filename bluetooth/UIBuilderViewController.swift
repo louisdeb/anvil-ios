@@ -34,8 +34,8 @@ class UIBuilderViewController: UIViewController {
      * value then place it at the location of the tap.
      */
     
-    
-    func placeElement(x: Float, y: Float) {
+    // Asserts that an element has been selected
+    func placeElement(x: Float, y: Float, elem: UIView) {
         
         //Fix issue for no element being chose at the point of button press
         //Extend CGFloat?
@@ -45,10 +45,6 @@ class UIBuilderViewController: UIViewController {
         currentSelectedElement?.center.y = CGFloat(y)
         selectedItemOldX = Float((currentSelectedElement!.frame.origin.x))
         selectedItemOldY = Float((currentSelectedElement!.frame.origin.y))
-        
-        currentSelectedElement?.layer.borderColor = UIColor.cyanColor().CGColor
-        currentSelectedElement?.layer.cornerRadius = 5.0
-        currentSelectedElement?.layer.borderWidth = 2
         
         elementsOnScreen.append(currentSelectedElement!)
         self.view.addSubview(currentSelectedElement!)
@@ -93,7 +89,8 @@ extension UIBuilderViewController {
             }
             
             if !selecting {
-                placeElement(Float(touch.locationInView(self.view).x), y: Float(touch.locationInView(self.view).y))
+                //To string - allow for optionals
+                placeElement(Float(touch.locationInView(self.view).x), y: Float(touch.locationInView(self.view).y), elem: currentSelectedElement!)
             }
         }
     }

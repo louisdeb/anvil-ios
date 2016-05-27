@@ -15,11 +15,11 @@
                         <viewControllerLayoutGuide type="top" id="3xf-SE-TjV"/>
                         <viewControllerLayoutGuide type="bottom" id="HHE-ej-7Iz"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WIZ-iP-scq">
+                    <view key="view" alpha="0.5" contentMode="scaleToFill" id="WIZ-iP-scq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zRL-xt-WdP">
+                            <collectionView multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zRL-xt-WdP">
                                 <rect key="frame" x="20" y="64" width="560" height="516"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.75451255751533741" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jaT-Kn-Y7X">
