@@ -14,7 +14,7 @@
 
 @implementation Peripheral
 
-static NSString *const SERVICE_NAME = @"Peripheral App";
+static NSString *const SERVICE_NAME = @"iPhone App - group 17";
 static NSString *const SERVICE_UUID_STRING = @"C93FC016-11E3-4FF2-9CE1-D559AD8828F7";
 static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 
