@@ -7,24 +7,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Attribute Configuration View Controller-->
-        <scene sceneID="9DC-ZK-Y8m">
-            <objects>
-                <viewController id="h6K-Rp-2hr" customClass="AttributeConfigurationViewController" customModule="bluetooth" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Hh3-uP-N0j"/>
-                        <viewControllerLayoutGuide type="bottom" id="sMs-yM-gIp"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XaN-g6-Na2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bFU-XR-Eja" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1403" y="988"/>
-        </scene>
         <!--Element Selection View Controller-->
         <scene sceneID="sFF-xW-S06">
             <objects>
@@ -105,28 +87,49 @@
                                     <action selector="showElementSelection:" destination="9ul-vm-n8J" eventType="touchUpInside" id="PU4-Jx-3Tu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Je-NQ-yhA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-KC-yji">
                                 <rect key="frame" x="20" y="550" width="68" height="30"/>
-                                <state key="normal" title="Attributes"/>
+                                <state key="normal" title="Controller"/>
+                                <connections>
+                                    <action selector="showControllerScreen:" destination="9ul-vm-n8J" eventType="touchUpInside" id="c6n-3o-os3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="3Je-NQ-yhA" firstAttribute="leading" secondItem="sZz-bn-bfq" secondAttribute="leadingMargin" id="NU5-Ni-Kgl"/>
+                            <constraint firstItem="rEG-lz-CT1" firstAttribute="top" secondItem="TiH-KC-yji" secondAttribute="bottom" constant="20" id="5TW-0z-QXR"/>
+                            <constraint firstItem="TiH-KC-yji" firstAttribute="leading" secondItem="sZz-bn-bfq" secondAttribute="leading" constant="20" id="VdB-PQ-Ncg"/>
                             <constraint firstItem="rEG-lz-CT1" firstAttribute="top" secondItem="Myz-XE-1fa" secondAttribute="bottom" constant="20" id="bFA-nK-OfO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Myz-XE-1fa" secondAttribute="trailing" constant="-9" id="m5c-OZ-O1R"/>
-                            <constraint firstItem="3Je-NQ-yhA" firstAttribute="baseline" secondItem="Myz-XE-1fa" secondAttribute="baseline" id="yJE-8T-709"/>
                         </constraints>
                     </view>
                     <connections>
                         <segue destination="2mm-2x-aeQ" kind="presentation" identifier="showElementSelection" id="UfS-ja-U7i"/>
-                        <segue destination="h6K-Rp-2hr" kind="presentation" identifier="toAttributeConfiguration" id="bCp-qz-r5u"/>
+                        <segue destination="bBF-g0-7ab" kind="presentation" identifier="toController" id="W5W-v9-30M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wGU-Z6-Xq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1403" y="240"/>
+            <point key="canvasLocation" x="1397" y="234"/>
+        </scene>
+        <!--Controller View Controller-->
+        <scene sceneID="80U-0a-KF7">
+            <objects>
+                <viewController id="bBF-g0-7ab" customClass="ControllerViewController" customModule="bluetooth" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7t8-c1-4xy"/>
+                        <viewControllerLayoutGuide type="bottom" id="1LO-kC-ZGC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pbx-Kf-N96">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jzJ-7E-qr3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1397" y="996"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -170,7 +173,7 @@
                                     <action selector="builderButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YsC-ha-8uL"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Title" highlightedImage="Title" translatesAutoresizingMaskIntoConstraints="NO" id="xQG-2c-MZr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteTitle" highlightedImage="Title" translatesAutoresizingMaskIntoConstraints="NO" id="xQG-2c-MZr">
                                 <rect key="frame" x="20" y="20" width="559" height="188"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="388" id="99Z-Yt-deo"/>
@@ -265,5 +268,6 @@
         <image name="AnvilLogo" width="567" height="567"/>
         <image name="Background" width="960" height="540"/>
         <image name="Title" width="1701" height="567"/>
+        <image name="WhiteTitle" width="1701" height="567"/>
     </resources>
 </document>

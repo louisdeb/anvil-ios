@@ -13,6 +13,7 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let ELEMENT_SELECTION: String = "showElementSelection"
     let ATTRIBUTE_CONFIGURATION: String = "toAttributeConfiguration"
+    let CONTROLLER: String = "toController"
     
     var currentSelectedElement: UIView?
     var elementsOnScreen: [UIView] = []
@@ -82,7 +83,6 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func handlePan(sender: UIPanGestureRecognizer) {
-        print("bosh")
         for elem in elementsOnScreen {
             if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
                 let translation: CGPoint = sender.translationInView(self.view)
@@ -121,16 +121,16 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
             let dest = segue.destinationViewController as! UIElementSelectionViewController 
             dest.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             dest.builder = self
-        case ATTRIBUTE_CONFIGURATION?:
-            let dest = segue.destinationViewController as! AttributeConfigurationViewController
-            
+        case CONTROLLER?:
+            let dest = segue.destinationViewController as! ControllerViewController
+            dest.controls = self.elementsOnScreen
         default:
             return
         }
     }
     
     @IBAction func showControllerScreen (sender: AnyObject) {
-    
+        performSegueWithIdentifier(CONTROLLER, sender: sender)
     }
     
     @IBAction func showElementSelection (sender: AnyObject) {
