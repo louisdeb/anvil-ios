@@ -39,6 +39,7 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
   
   _service = [[CBMutableService alloc] initWithType:_serviceUUID primary:YES];
   _service.characteristics = @[_characteristic];
+
   
   NSLog(@"Peripheral set up");
 }
@@ -51,7 +52,13 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
                                  CBAdvertisementDataServiceUUIDsKey : @[self.serviceUUID],
                                  CBAdvertisementDataLocalNameKey: self.serviceName
                                  };
+    [self addServices];
   [self.peripheralManager startAdvertising:advertisment];
+}
+
+/* Adds any services we would like to advertise */
+- (void) addServices {
+    [_peripheralManager addService:_service];
 }
 
 /* Did update state */
@@ -91,6 +98,7 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
             didAddService:(CBService *)service
                     error:(NSError *)error {
   NSLog(@"Did add service");
+    NSLog(@"%@", service.UUID);
   if (error) {
     NSLog(@"Error in adding service: %@", [error localizedDescription]);
     NSLog(@"UUID: %@", service.UUID);
@@ -101,7 +109,7 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
                                        error:(NSError *)error {
   NSLog(@"Did start advertising");
-  [_peripheralManager addService:_service];
+  //[_peripheralManager addService:_service];
 }
 
 /* Did subscribe to characteristic */
