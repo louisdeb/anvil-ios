@@ -13,10 +13,13 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let ELEMENT_SELECTION: String = "showElementSelection"
     let ATTRIBUTE_CONFIGURATION: String = "toAttributeConfiguration"
+    let CONTROLLER: String = "toController"
     
     var currentSelectedElement: UIView?
     var elementsOnScreen: [UIView] = []
     var elementsOnScreenWithReciprocal: [UIView: UIView?] = [:]
+    
+    var filenameToView: [UIView: String]?
     
     // Capability for item that is being touched to be the selected item, and have
     // old values for x and y for each of them - which are changed when that is the item that
@@ -57,13 +60,6 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
-//        var selecting = false
-//        for elem in elementsOnScreen {
-//            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
-//                currentSelectedElement = elem
-//                selecting = true
-//            }
-//        }
         
         if let elem = currentSelectedElement where !elementsOnScreen.contains(elem) {
             //To string - allow for optionals
@@ -82,7 +78,6 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func handlePan(sender: UIPanGestureRecognizer) {
-        print("bosh")
         for elem in elementsOnScreen {
             if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
                 let translation: CGPoint = sender.translationInView(self.view)
@@ -121,12 +116,17 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
             let dest = segue.destinationViewController as! UIElementSelectionViewController 
             dest.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             dest.builder = self
-        case ATTRIBUTE_CONFIGURATION?:
-            let dest = segue.destinationViewController as! AttributeConfigurationViewController
-            
+        case CONTROLLER?:
+            let dest = segue.destinationViewController as! ControllerViewController
+            dest.controls = self.elementsOnScreen
+            dest.filenameToView = filenameToView
         default:
             return
         }
+    }
+    
+    @IBAction func showControllerScreen (sender: AnyObject) {
+        performSegueWithIdentifier(CONTROLLER, sender: sender)
     }
     
     @IBAction func showElementSelection (sender: AnyObject) {

@@ -17,6 +17,8 @@ class UIElementSelectionViewController: UIViewController {
     var allAvailableElements: [UIView] = []
     var pressedButtonViews: Dictionary<UIView, UIView?> = Dictionary<UIView, UIView?>()
     
+    var filenameToView: [UIView: String] = [:]
+    
     let CELLS_PER_ROW = 4
     
     override func viewDidLoad() {
@@ -25,7 +27,6 @@ class UIElementSelectionViewController: UIViewController {
         //Populate the array of elements that are available for use
         allAvailableElements = populateAvailableElementsFromResources("element_")
         pressedButtonViews   = populateReciprocalElementDictionary(allAvailableElements, ext: "_pressed")
-        print(allAvailableElements.count)
         
         //Allow use of custom cell
         collectionView.registerClass(ElementCell.self, forCellWithReuseIdentifier:"cell1")
@@ -77,6 +78,8 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         builder?.elementsOnScreenWithReciprocal[(builder?.currentSelectedElement)!]
             = pressedButtonViews[(builder?.currentSelectedElement)!]
         print(builder?.currentSelectedElement)
+        
+        builder?.filenameToView = filenameToView
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -128,6 +131,7 @@ extension UIElementSelectionViewController {
             //imageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin,
             //                              .FlexibleTopMargin, .FlexibleBottomMargin]
             elements.append(imageView)
+            filenameToView[imageView] = "\(prefix)\(elements.count + 1)\(suffix)"
             
         }
         return elements
