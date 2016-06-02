@@ -39,6 +39,11 @@ class UIElementSelectionViewController: UIViewController {
         collectionView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(CGFloat(0.5))
         self.view.backgroundColor = collectionView.backgroundColor
     }
+    
+    
+    @IBAction func unwindToInterfaceBuilder(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 extension UIElementSelectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -130,8 +135,8 @@ extension UIElementSelectionViewController {
 
             //imageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin,
             //                              .FlexibleTopMargin, .FlexibleBottomMargin]
-            elements.append(imageView)
             filenameToView[imageView] = "\(prefix)\(elements.count + 1)\(suffix)"
+            elements.append(imageView)
             
         }
         return elements

@@ -50,6 +50,7 @@
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="zRL-xt-WdP" firstAttribute="top" secondItem="3xf-SE-TjV" secondAttribute="bottom" constant="44" id="4On-43-8mQ"/>
                             <constraint firstItem="vdf-vg-ONC" firstAttribute="centerX" secondItem="zRL-xt-WdP" secondAttribute="centerX" id="G9i-Bq-Siw"/>
@@ -59,12 +60,20 @@
                             <constraint firstItem="zRL-xt-WdP" firstAttribute="leading" secondItem="WIZ-iP-scq" secondAttribute="leadingMargin" id="f0T-Tr-wHY"/>
                             <constraint firstItem="vdf-vg-ONC" firstAttribute="leading" secondItem="WIZ-iP-scq" secondAttribute="leading" id="zNL-w8-mhW"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cgx-0D-hNA" appends="YES" id="kJq-Vs-vGo"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="zRL-xt-WdP" id="LL6-MD-jJU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYE-w8-0v5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="cgx-0D-hNA">
+                    <connections>
+                        <action selector="unwindToInterfaceBuilder:" destination="2mm-2x-aeQ" id="D1e-cs-hod"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1403" y="-573"/>
         </scene>
