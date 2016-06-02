@@ -12,7 +12,7 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  [self displayWifiGIF];
+  [self displayBluetoothGIF];
   
 }
 
@@ -21,22 +21,27 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
   // Dispose of any resources that can be recreated.
 }
 
-- (void)displayWifiGIF {
+- (void)displayBluetoothGIF {
   CGFloat height = 200;
   CGFloat width = 200;
   CGFloat posX = (self.view.frame.size.width / 2) - (width / 2);
-  CGFloat posY = (self.view.frame.size.height / 2) - (height / 2);
-  CGFloat speed = 1.5;
+  CGFloat posY = (self.view.frame.size.height / 2) - (height / 2) + 100;
+  CGFloat speed = 3.2;
   
   UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(posX, posY, width, height)];
-  animatedImageView.animationImages = [NSArray arrayWithObjects:
-                                       [UIImage imageNamed:@"wifi0.png"],
-                                       [UIImage imageNamed:@"wifi1.png"],
-                                       [UIImage imageNamed:@"wifi2.png"],
-                                       [UIImage imageNamed:@"wifi3.png"], nil];
+  NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:90];
+  
+  for (int i = 0; i <= 89; i++) {
+    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"bluetooth-logo-_%05d.png", i]];
+    [tempArray addObject:image];
+  }
+  
+  animatedImageView.animationImages = [NSArray arrayWithArray:tempArray];
+  
   animatedImageView.animationDuration = speed;
   animatedImageView.animationRepeatCount = 0;
   [animatedImageView startAnimating];
+  animatedImageView.contentMode = UIViewContentModeScaleAspectFit;
   [self.view addSubview: animatedImageView];
 }
 
