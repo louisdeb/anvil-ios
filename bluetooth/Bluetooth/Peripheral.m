@@ -14,12 +14,13 @@
 
 @implementation Peripheral
 
-static NSString *const SERVICE_NAME = @"iPhone App - group 17";
+static NSString *SERVICE_NAME;
 static NSString *const SERVICE_UUID_STRING = @"C93FC016-11E3-4FF2-9CE1-D559AD8828F7";
 static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 
 - (id)init {
   NSLog(@"init Peripheral");
+  SERVICE_NAME = [[UIDevice currentDevice] name];
   self = [super init];
   [self setupPeripheral];
   return self;
