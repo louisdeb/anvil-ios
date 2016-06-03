@@ -89,20 +89,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Myz-XE-1fa">
-                                <rect key="frame" x="526" y="550" width="63" height="30"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                <state key="normal" title="Elements"/>
-                                <connections>
-                                    <action selector="showElementSelection:" destination="9ul-vm-n8J" eventType="touchUpInside" id="PU4-Jx-3Tu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-KC-yji">
                                 <rect key="frame" x="20" y="550" width="68" height="30"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <state key="normal" title="Controller"/>
                                 <connections>
                                     <action selector="showControllerScreen:" destination="9ul-vm-n8J" eventType="touchUpInside" id="c6n-3o-os3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Myz-XE-1fa">
+                                <rect key="frame" x="517" y="550" width="63" height="30"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <state key="normal" title="Elements"/>
+                                <connections>
+                                    <action selector="showElementSelection:" destination="9ul-vm-n8J" eventType="touchUpInside" id="PU4-Jx-3Tu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -112,7 +112,7 @@
                             <constraint firstItem="rEG-lz-CT1" firstAttribute="top" secondItem="TiH-KC-yji" secondAttribute="bottom" constant="20" id="5TW-0z-QXR"/>
                             <constraint firstItem="TiH-KC-yji" firstAttribute="leading" secondItem="sZz-bn-bfq" secondAttribute="leading" constant="20" id="VdB-PQ-Ncg"/>
                             <constraint firstItem="rEG-lz-CT1" firstAttribute="top" secondItem="Myz-XE-1fa" secondAttribute="bottom" constant="20" id="bFA-nK-OfO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Myz-XE-1fa" secondAttribute="trailing" constant="-9" id="m5c-OZ-O1R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Myz-XE-1fa" secondAttribute="trailing" id="m5c-OZ-O1R"/>
                         </constraints>
                     </view>
                     <connections>
