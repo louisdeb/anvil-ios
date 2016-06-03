@@ -47,6 +47,10 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handlePan(_:)))
         drag.delegate = self
         self.view.addGestureRecognizer(drag)
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handleLongPress(_:)))
+        longPress.delegate = self
+        self.view.addGestureRecognizer(longPress)
     }
     
     func handlePinch(sender: UIPinchGestureRecognizer) {
@@ -83,6 +87,32 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
                 elem.center = CGPointMake(elem.center.x + translation.x,
                                           elem.center.y + translation.y)
                 sender.setTranslation(CGPointMake(0, 0), inView: self.view)
+            }
+        }
+    }
+    
+    func handleLongPress(sender: UILongPressGestureRecognizer) {
+        for elem in elementsOnScreen {
+            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
+                let alertView = UIAlertController(title: "Attributes", message: "Test", preferredStyle: .ActionSheet)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) in
+                    //
+                })
+                alertView.addAction(cancelAction)
+                
+                let someAction = UIAlertAction(title: "Assign Letter", style: .Default, handler: { (action) in
+                    let popup = UIAlertController(title: "Choose a keypress", message: "Enter a letter", preferredStyle: .Alert)
+                    
+                    popup.addTextFieldWithConfigurationHandler({ (field) in
+                        //
+                        field.returnKeyType = .Done
+                    })
+                    self.presentViewController(popup, animated: true, completion: nil)
+                })
+                alertView.addAction(someAction)
+                
+                self.presentViewController(alertView, animated: true, completion: nil)
             }
         }
     }

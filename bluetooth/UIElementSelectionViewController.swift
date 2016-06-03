@@ -85,6 +85,7 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         return allAvailableElements.count
     }
     
+    //Collection View Cell pressed
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 //        builder?.currentSelectedElement = collectionView.cellForItemAtIndexPath(indexPath)?
 //                                         .contentView.subviews.last
@@ -170,24 +171,3 @@ extension UIElementSelectionViewController {
         return elements
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
