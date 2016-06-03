@@ -53,7 +53,7 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
                                  CBAdvertisementDataServiceUUIDsKey : @[self.serviceUUID],
                                  CBAdvertisementDataLocalNameKey: self.serviceName
                                  };
-    [self addServices];
+  [self addServices];
   [self.peripheralManager startAdvertising:advertisment];
 }
 
@@ -99,7 +99,7 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
             didAddService:(CBService *)service
                     error:(NSError *)error {
   NSLog(@"Did add service");
-    NSLog(@"%@", service.UUID);
+  NSLog(@"%@", service.UUID);
   if (error) {
     NSLog(@"Error in adding service: %@", [error localizedDescription]);
     NSLog(@"UUID: %@", service.UUID);
@@ -110,13 +110,26 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
                                        error:(NSError *)error {
   NSLog(@"Did start advertising");
-  //[_peripheralManager addService:_service];
+  
+  NSString* str = @"Y";
+  NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
+//  [peripheral writeValue:data forCharacteristic:_characteristic type:CBCharacteristicWriteWithResponse];
+  
+//  - (BOOL)updateValue:(NSData *)value forCharacteristic:(CBMutableCharacteristic *)characteristic onSubscribedCentrals:(NSArray *)centrals
+//  [peripheral updateValue:data forCharacteristic:_characteristic onSubscribedCentrals:nil];
+  [self.peripheralManager updateValue:data forCharacteristic:_characteristic onSubscribedCentrals:nil];
+  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_characteristic onSubscribedCentrals:nil];
+
 }
 
 /* Did subscribe to characteristic */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
                   central:(CBCentral *)central
         didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
+  NSString* str = @"Y";
+  NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
+  [self.peripheralManager updateValue:data forCharacteristic:_characteristic onSubscribedCentrals:nil];
+  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_characteristic onSubscribedCentrals:nil];
   NSLog(@"Central subscribed to a characteristic");
 }
 
@@ -124,6 +137,8 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
     didReceiveReadRequest:(CBATTRequest *)request {
   NSLog(@"Did receive read request");
+//  - (void)respondToRequest:(CBATTRequest *)request withResult:(CBATTError)result
+  [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
 }
 
 /* Did receive write request */
