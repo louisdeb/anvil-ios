@@ -60,8 +60,13 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         let cell: ElementCell = self.collectionView.dequeueReusableCellWithReuseIdentifier("cell1", forIndexPath: indexPath) as! ElementCell
         
 
-        //Get the corresponding element from the array of all possible elements
-        let element:UIView = allAvailableElements[indexPath.row]
+        //Get the corresponding element from the array of all possible element
+        
+        //let element:UIView = allAvailableElements[indexPath.row]
+        let element = allAvailableButtons[indexPath.row]
+        
+        
+        
         element.contentMode = .ScaleAspectFill
         
         //Set the custom class property element
@@ -151,7 +156,15 @@ extension UIElementSelectionViewController {
         while let elementImage = UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)") {
             let button = UIButton()
             button.setImage(elementImage, forState: .Normal)
+            button.setImage(UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)_pressed"), forState: .Highlighted)
             button.contentMode = .ScaleAspectFill
+            
+            //There must be a better way of doing this:
+            let temp = UIImageView(image: elementImage)
+            temp.contentMode = .ScaleAspectFill
+            button.frame = temp.frame
+            
+            button.userInteractionEnabled = false
             elements.append(button)
         }
         return elements

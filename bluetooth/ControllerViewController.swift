@@ -19,6 +19,8 @@ class ControllerViewController: UIViewController {
         
         controls?.forEach({ (elem) in 
             
+            elem.userInteractionEnabled = true
+            
             let tap = UITapGestureRecognizer(target: self, action: #selector(ControllerViewController.depressButton(_:)))
             tap.delegate = self
             self.view.addGestureRecognizer(tap)
