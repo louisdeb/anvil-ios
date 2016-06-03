@@ -32,7 +32,7 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
   NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:90];
   
   for (int i = 0; i <= 89; i++) {
-    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"bluetooth-logo-_%05d.png", i]];
+    UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"bluetooth-logo_%05d.png", i]];
     [tempArray addObject:image];
   }
   
