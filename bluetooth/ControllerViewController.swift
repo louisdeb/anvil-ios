@@ -19,63 +19,9 @@ class ControllerViewController: UIViewController {
         
         controls?.forEach({ (elem) in 
             
-            let tap = UITapGestureRecognizer(target: self, action: #selector(ControllerViewController.depressButton(_:)))
-            tap.delegate = self
-            self.view.addGestureRecognizer(tap)
-            self.view.addSubview(elem)
+            elem.userInteractionEnabled = true
         })
         
         print(filenameToView)
     }
 }
-
-
-//Depress Button
-extension ControllerViewController: UIGestureRecognizerDelegate {
-    
-    func depressButton(sender: UITapGestureRecognizer) {
-        
-        if sender.state == .Began {
-        
-            controls?.forEach({ (elem) in
-                if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
-                    changeButtonToPressed(elem as! UIImageView)
-                }
-            })
-        } else {
-            print("Derkhead")
-        }
-    }
-}
-
-//Utility
-extension ControllerViewController {
-    
-    func changeButtonToPressed(button: UIImageView) {
-        let filename = filenameToView![button]
-        print("The filename is: \(filename)\n")
-        let newFilename = filename! + "_pressed"
-        let newImage = UIImage(named: newFilename)
-        button.image = newImage
-    }
-    
-    func changePressedToButton(button: UIImageView) {
-        let filename = filenameToView![button]
-        let newImage = UIImage(named: filename!)
-        button.image = newImage
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-

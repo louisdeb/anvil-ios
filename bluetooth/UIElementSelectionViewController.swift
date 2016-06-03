@@ -14,19 +14,26 @@ class UIElementSelectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var builder: UIBuilderViewController?
     
+    //Deprecated soon {
     var allAvailableElements: [UIView] = []
-    var pressedButtonViews: Dictionary<UIView, UIView?> = Dictionary<UIView, UIView?>()
-    
     var filenameToView: [UIView: String] = [:]
+    // }
+    
+    var allAvailableButtons: [UIButton] = []
     
     let CELLS_PER_ROW = 4
+    let UNIVERSAL_RESOURCE_PREFIX = "element_"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Deprecated soon {
         //Populate the array of elements that are available for use
-        allAvailableElements = populateAvailableElementsFromResources("element_")
-        pressedButtonViews   = populateReciprocalElementDictionary(allAvailableElements, ext: "_pressed")
+        allAvailableElements = populateAvailableElementsFromResources(UNIVERSAL_RESOURCE_PREFIX)
+        // }
+        
+        //Populate the array of buttons that are available for use
+        allAvailableButtons = populateAvailableElementsAsButtonsFromResources(UNIVERSAL_RESOURCE_PREFIX)
         
         //Allow use of custom cell
         collectionView.registerClass(ElementCell.self, forCellWithReuseIdentifier:"cell1")
@@ -53,8 +60,13 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         let cell: ElementCell = self.collectionView.dequeueReusableCellWithReuseIdentifier("cell1", forIndexPath: indexPath) as! ElementCell
         
 
-        //Get the corresponding element from the array of all possible elements
-        let element:UIView = allAvailableElements[indexPath.row]
+        //Get the corresponding element from the array of all possible element
+        
+        //let element:UIView = allAvailableElements[indexPath.row]
+        let element = allAvailableButtons[indexPath.row]
+        
+        
+        
         element.contentMode = .ScaleAspectFill
         
         //Set the custom class property element
@@ -80,8 +92,6 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         print("builder: \(builder)")
         print("cell: \(collectionView.cellForItemAtIndexPath(indexPath) as! ElementCell)")
         builder?.currentSelectedElement = (collectionView.cellForItemAtIndexPath(indexPath) as! ElementCell).element
-        builder?.elementsOnScreenWithReciprocal[(builder?.currentSelectedElement)!]
-            = pressedButtonViews[(builder?.currentSelectedElement)!]
         print(builder?.currentSelectedElement)
         
         builder?.filenameToView = filenameToView
@@ -106,7 +116,6 @@ extension UIElementSelectionViewController: UICollectionViewDelegateFlowLayout {
 
 
 //Subclass the collection view cell with a property of my content.
-
 class ElementCell: UICollectionViewCell {
     
     var element: UIView?
@@ -123,7 +132,6 @@ class ElementCell: UICollectionViewCell {
 }
 
 //Helper
-
 extension UIElementSelectionViewController {
     func populateAvailableElementsFromResources(prefix: String = "", suffix: String = "") -> [UIView]{
         var elements = [UIView]()
@@ -142,18 +150,25 @@ extension UIElementSelectionViewController {
         return elements
     }
     
-    func populateReciprocalElementDictionary(elements: [UIView], ext: String) -> [UIView: UIView?] {
-        var recip: [UIView: UIView?] = [:]
+    func populateAvailableElementsAsButtonsFromResources(prefix: String = "", suffix: String = "") -> [UIButton] {
+        var elements = [UIButton]()
         
-        elements.forEach { (elem) in
-            let recipImage = UIImage(named: "\(elem.accessibilityIdentifier)\(ext)")
-            recipImage?.accessibilityIdentifier = "\(elem.accessibilityIdentifier)\(ext)"
-            recip[elem] = UIImageView(image: recipImage)
+        while let elementImage = UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)") {
+            let button = UIButton()
+            button.setImage(elementImage, forState: .Normal)
+            button.setImage(UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)_pressed"), forState: .Highlighted)
+            button.contentMode = .ScaleAspectFill
+            
+            //There must be a better way of doing this:
+            let temp = UIImageView(image: elementImage)
+            temp.contentMode = .ScaleAspectFill
+            button.frame = temp.frame
+            
+            button.userInteractionEnabled = false
+            elements.append(button)
         }
-        
-        return recip
+        return elements
     }
-    
 }
 
 
