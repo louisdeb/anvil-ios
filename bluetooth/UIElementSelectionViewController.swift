@@ -15,8 +15,6 @@ class UIElementSelectionViewController: UIViewController {
     var builder: UIBuilderViewController?
     
     var allAvailableElements: [UIView] = []
-    var pressedButtonViews: Dictionary<UIView, UIView?> = Dictionary<UIView, UIView?>()
-    
     var filenameToView: [UIView: String] = [:]
     
     let CELLS_PER_ROW = 4
@@ -26,7 +24,6 @@ class UIElementSelectionViewController: UIViewController {
         
         //Populate the array of elements that are available for use
         allAvailableElements = populateAvailableElementsFromResources("element_")
-        pressedButtonViews   = populateReciprocalElementDictionary(allAvailableElements, ext: "_pressed")
         
         //Allow use of custom cell
         collectionView.registerClass(ElementCell.self, forCellWithReuseIdentifier:"cell1")
@@ -80,8 +77,6 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         print("builder: \(builder)")
         print("cell: \(collectionView.cellForItemAtIndexPath(indexPath) as! ElementCell)")
         builder?.currentSelectedElement = (collectionView.cellForItemAtIndexPath(indexPath) as! ElementCell).element
-        builder?.elementsOnScreenWithReciprocal[(builder?.currentSelectedElement)!]
-            = pressedButtonViews[(builder?.currentSelectedElement)!]
         print(builder?.currentSelectedElement)
         
         builder?.filenameToView = filenameToView
@@ -106,7 +101,6 @@ extension UIElementSelectionViewController: UICollectionViewDelegateFlowLayout {
 
 
 //Subclass the collection view cell with a property of my content.
-
 class ElementCell: UICollectionViewCell {
     
     var element: UIView?
@@ -123,7 +117,6 @@ class ElementCell: UICollectionViewCell {
 }
 
 //Helper
-
 extension UIElementSelectionViewController {
     func populateAvailableElementsFromResources(prefix: String = "", suffix: String = "") -> [UIView]{
         var elements = [UIView]()
@@ -141,19 +134,6 @@ extension UIElementSelectionViewController {
         }
         return elements
     }
-    
-    func populateReciprocalElementDictionary(elements: [UIView], ext: String) -> [UIView: UIView?] {
-        var recip: [UIView: UIView?] = [:]
-        
-        elements.forEach { (elem) in
-            let recipImage = UIImage(named: "\(elem.accessibilityIdentifier)\(ext)")
-            recipImage?.accessibilityIdentifier = "\(elem.accessibilityIdentifier)\(ext)"
-            recip[elem] = UIImageView(image: recipImage)
-        }
-        
-        return recip
-    }
-    
 }
 
 

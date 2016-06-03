@@ -17,7 +17,6 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var currentSelectedElement: UIView?
     var elementsOnScreen: [UIView] = []
-    var elementsOnScreenWithReciprocal: [UIView: UIView?] = [:]
     
     var filenameToView: [UIView: String]?
     
@@ -133,53 +132,3 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
         performSegueWithIdentifier(ELEMENT_SELECTION, sender: sender)
     }
 }
-
-/* Code for detecting pressed on a button and depressing button by changing image */
-//var inView: Bool = false
-//elementsOnScreen.forEach({ (elem) in
-//    let touchLoc = touch.locationInView(self.view)
-//    if CGRectContainsPoint(elem.frame, touchLoc) {
-//        if elem is UIImageView {
-//            let imgView = elem as! UIImageView
-//            if let rec = elementsOnScreenWithReciprocal[imgView] {
-//                print(elementsOnScreenWithReciprocal.count)
-//                imgView.image = (rec as! UIImageView).image
-//            }
-//        }
-//        inView = true
-//    }
-//})
-
-
-////Adding functionality for touches
-//extension UIBuilderViewController {
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//
-//        let touch: UITouch = (event?.allTouches()?.first)!
-//        let touchLocation: CGPoint = touch.locationInView(self.view)
-//        
-//        if CGRectContainsPoint((currentSelectedElement?.frame)!, touchLocation) {
-//            itemBeingDragged = true
-//            selectedItemOldX = Float(touchLocation.x)
-//            selectedItemOldY = Float(touchLocation.y)
-//
-//            
-//        }
-//    }
-//    
-//    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        let touch: UITouch = (event?.allTouches()?.first)!
-//        let touchLocation: CGPoint = touch.locationInView(self.view)
-//        
-//        if itemBeingDragged {
-//            var frame: CGRect = (currentSelectedElement?.frame)!
-//            frame.origin.x = currentSelectedElement!.frame.origin.x + touchLocation.x - CGFloat(selectedItemOldX)
-//            frame.origin.y = currentSelectedElement!.frame.origin.y + touchLocation.y - CGFloat(selectedItemOldY)
-//            currentSelectedElement!.frame = frame
-//        }
-//    }
-//    
-//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        itemBeingDragged = false
-//    }
-//}
