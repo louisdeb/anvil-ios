@@ -168,18 +168,8 @@
                                     <action selector="aboutButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IKy-ET-gnI"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteTitle" highlightedImage="Title" translatesAutoresizingMaskIntoConstraints="NO" id="xQG-2c-MZr">
-                                <rect key="frame" x="20" y="20" width="559" height="188"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="388" id="99Z-Yt-deo"/>
-                                    <constraint firstAttribute="width" constant="559" id="Cyg-bF-2Qq"/>
-                                    <constraint firstAttribute="height" constant="188" id="KUb-Sw-BaA"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="188" id="TNt-rz-yjR"/>
-                                    <constraint firstAttribute="width" secondItem="xQG-2c-MZr" secondAttribute="height" multiplier="388:207" constant="206.61352657004829" id="uyY-Wf-XyT"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USL-wo-n2w">
-                                <rect key="frame" x="168" y="477" width="262" height="103"/>
+                                <rect key="frame" x="168" y="418" width="262" height="103"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="262" id="4mD-kQ-uAN"/>
@@ -193,16 +183,26 @@
                                     <action selector="builderButtonUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YsC-ha-8uL"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteTitle" highlightedImage="Title" translatesAutoresizingMaskIntoConstraints="NO" id="xQG-2c-MZr">
+                                <rect key="frame" x="20" y="-14" width="559" height="188"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="388" id="99Z-Yt-deo"/>
+                                    <constraint firstAttribute="width" constant="559" id="Cyg-bF-2Qq"/>
+                                    <constraint firstAttribute="height" constant="188" id="KUb-Sw-BaA"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="188" id="TNt-rz-yjR"/>
+                                    <constraint firstAttribute="width" secondItem="xQG-2c-MZr" secondAttribute="height" multiplier="388:207" constant="206.61352657004829" id="uyY-Wf-XyT"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.60698250891265582" blue="0.80254567736185389" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="USL-wo-n2w" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="269" id="1t7-Ku-vZP"/>
+                            <constraint firstItem="USL-wo-n2w" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="244" id="1t7-Ku-vZP"/>
                             <constraint firstItem="xQG-2c-MZr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="H0N-rc-fIs"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="USL-wo-n2w" secondAttribute="bottom" constant="20" id="NSS-5Y-CMi"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="USL-wo-n2w" secondAttribute="bottom" constant="79" id="NSS-5Y-CMi"/>
                             <constraint firstItem="USL-wo-n2w" firstAttribute="centerX" secondItem="xQG-2c-MZr" secondAttribute="centerX" id="RWW-NA-RXk"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="392" id="dOp-fT-Ttd"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="426" id="dOp-fT-Ttd"/>
                             <constraint firstItem="xQG-2c-MZr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dcK-c5-Nxk"/>
-                            <constraint firstItem="xQG-2c-MZr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fnf-Yw-Z4V"/>
+                            <constraint firstItem="xQG-2c-MZr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-34" id="fnf-Yw-Z4V"/>
                             <constraint firstAttribute="trailing" secondItem="uNc-zK-YjO" secondAttribute="trailing" id="nbz-IP-7r7"/>
                             <constraint firstItem="uNc-zK-YjO" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="xln-hK-rop"/>
                         </constraints>
@@ -239,7 +239,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GHW-ep-pHK">
                                 <rect key="frame" x="20" y="166" width="560" height="426"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ya dunkno bout that velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ya dunkno bout that velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

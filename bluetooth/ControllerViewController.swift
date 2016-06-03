@@ -20,8 +20,7 @@ class ControllerViewController: UIViewController {
         controls?.forEach({ (elem) in 
             
             elem.userInteractionEnabled = true
+            self.view.addSubview(elem)
         })
-        
-        print(filenameToView)
     }
 }
