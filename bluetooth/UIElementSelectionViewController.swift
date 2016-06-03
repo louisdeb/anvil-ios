@@ -14,16 +14,26 @@ class UIElementSelectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var builder: UIBuilderViewController?
     
+    //Deprecated soon {
     var allAvailableElements: [UIView] = []
     var filenameToView: [UIView: String] = [:]
+    // }
+    
+    var allAvailableButtons: [UIButton] = []
     
     let CELLS_PER_ROW = 4
+    let UNIVERSAL_RESOURCE_PREFIX = "element_"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Deprecated soon {
         //Populate the array of elements that are available for use
-        allAvailableElements = populateAvailableElementsFromResources("element_")
+        allAvailableElements = populateAvailableElementsFromResources(UNIVERSAL_RESOURCE_PREFIX)
+        // }
+        
+        //Populate the array of buttons that are available for use
+        allAvailableButtons = populateAvailableElementsAsButtonsFromResources(UNIVERSAL_RESOURCE_PREFIX)
         
         //Allow use of custom cell
         collectionView.registerClass(ElementCell.self, forCellWithReuseIdentifier:"cell1")
