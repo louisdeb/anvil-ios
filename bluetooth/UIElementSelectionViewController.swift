@@ -134,6 +134,18 @@ extension UIElementSelectionViewController {
         }
         return elements
     }
+    
+    func populateAvailableElementsAsButtonsFromResources(prefix: String = "", suffix: String = "") -> [UIButton] {
+        var elements = [UIButton]()
+        
+        while let elementImage = UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)") {
+            let button = UIButton()
+            button.setImage(elementImage, forState: .Normal)
+            button.contentMode = .ScaleAspectFill
+            elements.append(button)
+        }
+        return elements
+    }
 }
 
 
