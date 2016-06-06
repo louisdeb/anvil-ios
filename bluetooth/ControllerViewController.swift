@@ -14,6 +14,8 @@ class ControllerViewController: UIViewController {
     var controls: [UIView]?
     var filenameToView: [UIView: String]?
     
+    var mappedLetter: [UIView: Character]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +23,14 @@ class ControllerViewController: UIViewController {
             
             elem.userInteractionEnabled = true
             self.view.addSubview(elem)
+            if elem is UIButton {
+                let button = elem as! UIButton
+                button.addTarget(self, action: #selector(ControllerViewController.buttonPressed(_:)), forControlEvents: .TouchUpInside)
+            }
         })
+    }
+    
+    func buttonPressed(sender: UIButton) {
+        print(mappedLetter![sender])
     }
 }
