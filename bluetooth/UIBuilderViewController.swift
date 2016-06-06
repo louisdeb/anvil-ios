@@ -20,7 +20,7 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var filenameToView: [UIView: String]?
     
-    var mappedLetter: [UIView: Character] = [:]
+    var mappedLetter: [UIView: String] = [:]
     
     // Capability for item that is being touched to be the selected item, and have
     // old values for x and y for each of them - which are changed when that is the item that
@@ -112,7 +112,7 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
                         
                     })
                     let textDone = UIAlertAction(title: "Done", style: .Default, handler: { (action) in
-                        self.mappedLetter[elem] = Character(popup.textFields![0].text!)
+                        self.mappedLetter[elem] = popup.textFields![0].text!
                     })
                     popup.addAction(textDone)
                     

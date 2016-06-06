@@ -14,7 +14,7 @@ class ControllerViewController: UIViewController {
     var controls: [UIView]?
     var filenameToView: [UIView: String]?
     
-    var mappedLetter: [UIView: Character]?
+    var mappedLetter: [UIView: String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
