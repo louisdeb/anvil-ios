@@ -28,6 +28,8 @@ class ControllerViewController: UIViewController {
                 button.addTarget(self, action: #selector(ControllerViewController.buttonPressed(_:)), forControlEvents: .TouchUpInside)
             }
         })
+        
+        SaveConfig.saveScreenshot(self.view);
     }
     
     func buttonPressed(sender: UIButton) {
