@@ -72,6 +72,8 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         //Set the custom class property element
         cell.element = element
         
+        element.frame = cell.frame
+        
         //add it to the subview
         cell.contentView.addSubview(element)
         element.center.x = cell.contentView.center.x
