@@ -28,6 +28,14 @@
     errorLabel.layer.masksToBounds = YES;
     errorLabel.numberOfLines = 0;
     errorLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -67,7 +75,6 @@
 }
 
 - (void)displayError:(int)error {
-
     errorLabel.hidden = NO;
     errorLabel.text = [errorMessages objectAtIndex:error];
 }
@@ -85,8 +92,8 @@
     NSString *username = userField.text;
     NSString *password = passField.text;
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM user_info WHERE username='%@' and password='%@'", username, password];
-    const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
-    PGresult *result = PQexec(conn, const_sql);
+    const char *constSQL = [sql cStringUsingEncoding:NSASCIIStringEncoding];
+    PGresult *result = PQexec(conn, constSQL);
     
     if (PQresultStatus(result) == PGRES_FATAL_ERROR) {
         [self displayError:2];
