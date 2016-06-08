@@ -16,6 +16,7 @@
 		7EDB2CA91CF4742700D9C9AF /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB2CA81CF4742700D9C9AF /* test.json */; };
 		7EE04A8E1CF852F4003791AD /* AttributeConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */; };
 		AF0C08161D070492002C930E /* SaveConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0C08151D070492002C930E /* SaveConfig.m */; };
+		AFF9028B1D0864EA00E23B48 /* libpq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF9028A1D0864EA00E23B48 /* libpq.framework */; };
 		BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */; };
 		BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF61CEE0A5000BBE6F6 /* main.m */; };
 		BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */; };
@@ -49,6 +50,7 @@
 		7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeConfigurationViewController.swift; sourceTree = "<group>"; };
 		AF0C08141D070492002C930E /* SaveConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveConfig.h; sourceTree = "<group>"; };
 		AF0C08151D070492002C930E /* SaveConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveConfig.m; sourceTree = "<group>"; };
+		AFF9028A1D0864EA00E23B48 /* libpq.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpq.framework; path = bluetooth/libpq.framework; sourceTree = "<group>"; };
 		BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		BF744DF21CEE0A5000BBE6F6 /* bluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFF9028B1D0864EA00E23B48 /* libpq.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,9 +99,18 @@
 			name = "Custom UI Builder";
 			sourceTree = "<group>";
 		};
+		AFF9028C1D08653300E23B48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFF9028A1D0864EA00E23B48 /* libpq.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BF744DE91CEE0A5000BBE6F6 = {
 			isa = PBXGroup;
 			children = (
+				AFF9028C1D08653300E23B48 /* Frameworks */,
 				BF744DF41CEE0A5000BBE6F6 /* bluetooth */,
 				BF744E0E1CEE0A5100BBE6F6 /* bluetoothTests */,
 				BF744DF31CEE0A5000BBE6F6 /* Products */,
@@ -415,6 +427,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/bluetooth",
+				);
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -433,6 +449,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/bluetooth",
+				);
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
