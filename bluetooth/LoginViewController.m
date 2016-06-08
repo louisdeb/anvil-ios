@@ -14,9 +14,37 @@
 
 @implementation LoginViewController
 
+@synthesize userField, passField, loginButton, errorLabel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    errorMessages = [NSArray arrayWithObjects:@"Please enter a value in both fields.", @"Invalid login credentials, please try again.", @"Could not connect to database, please try again later.", nil];
+    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+    
+    errorLabel.hidden = YES;
+    errorLabel.layer.cornerRadius = 8;
+    errorLabel.layer.masksToBounds = YES;
+    errorLabel.numberOfLines = 0;
+    errorLabel.lineBreakMode = NSLineBreakByWordWrapping;
+}
+
+- (void)viewDidLayoutSubviews {
+    CALayer *userBorder = [CALayer layer];
+    CGFloat borderWidth = 1;
+    userBorder.borderColor = [UIColor whiteColor].CGColor;
+    userBorder.frame = CGRectMake(0, userField.frame.size.height - borderWidth, userField.frame.size.width, userField.frame.size.height);
+    userBorder.borderWidth = borderWidth;
+    [userField.layer addSublayer:userBorder];
+    userField.layer.masksToBounds = YES;
+    
+    CALayer *passBorder = [CALayer layer];
+    passBorder.borderColor = userBorder.borderColor;
+    passBorder.frame = userBorder.frame;
+    passBorder.borderWidth = userBorder.borderWidth;
+    [passField.layer addSublayer:passBorder];
+    passField.layer.masksToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +52,52 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    [self loginButtonPressed:self];
+    [textField resignFirstResponder];
+    return NO;
 }
-*/
+
+- (void)loginButtonPressed:(id)sender {
+    if ([userField.text isEqualToString:@""] || [passField.text isEqualToString:@""]) {
+        [self displayError:0];
+    } else {
+        [self connectToDatabase];
+    }
+}
+
+- (void)displayError:(int)error {
+
+    errorLabel.hidden = NO;
+    errorLabel.text = [errorMessages objectAtIndex:error];
+}
+
+- (void)connectToDatabase {
+    const char *conninfo = "host=db.doc.ic.ac.uk port=5432 dbname=g1527117_u user=g1527117_u password=pcauqNdppz";
+    PGconn *conn = PQconnectdb(conninfo);
+    
+    if (PQstatus(conn) != CONNECTION_OK) {
+        [self displayError:2];
+    }
+    
+    NSLog(@"Connection successful");
+    
+    NSString *username = userField.text;
+    NSString *password = passField.text;
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM user_info WHERE username='%@' and password='%@'", username, password];
+    const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
+    PGresult *result = PQexec(conn, const_sql);
+    
+    if (PQresultStatus(result) == PGRES_FATAL_ERROR) {
+        [self displayError:2];
+    }
+    
+    int numRows = PQntuples(result);
+    if (numRows == 1) {
+        [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+    } else {
+        [self displayError:1];
+    }
+}
 
 @end

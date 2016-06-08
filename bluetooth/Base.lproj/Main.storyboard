@@ -154,52 +154,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDs-fK-3Wd">
-                                <rect key="frame" x="252" y="66" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDs-fK-3Wd">
+                                <rect key="frame" x="190" y="181" width="220" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="vY9-Ac-gME"/>
-                                    <constraint firstAttribute="height" constant="30" id="zQe-0z-OcP"/>
+                                    <constraint firstAttribute="width" constant="220" id="vY9-Ac-gME"/>
+                                    <constraint firstAttribute="height" constant="41" id="zQe-0z-OcP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" white="0.85036974035460366" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tya-Vc-1HA">
-                                <rect key="frame" x="252" y="104" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tya-Vc-1HA">
+                                <rect key="frame" x="190" y="230" width="220" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6JC-Hj-GkV"/>
-                                    <constraint firstAttribute="width" constant="97" id="bm5-Z9-pD6"/>
+                                    <constraint firstAttribute="height" constant="41" id="6JC-Hj-GkV"/>
+                                    <constraint firstAttribute="width" constant="220" id="bm5-Z9-pD6"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" white="0.8507543103344829" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chg-hB-S9h">
-                                <rect key="frame" x="281" y="151" width="38" height="30"/>
+                                <rect key="frame" x="255" y="391" width="91" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="MYb-SM-pXB"/>
-                                    <constraint firstAttribute="width" constant="38" id="Rvv-bh-Pl5"/>
+                                    <constraint firstAttribute="height" constant="45" id="MYb-SM-pXB"/>
+                                    <constraint firstAttribute="width" constant="91" id="Rvv-bh-Pl5"/>
                                 </constraints>
-                                <state key="normal" title="Login"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="popoverPresentation" popoverAnchorView="chg-hB-S9h" id="Ho9-eb-rEB">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="loginButtonPressed:" destination="sFv-cY-gMB" eventType="touchUpInside" id="rsz-ly-af1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8c6-sw-mOj">
+                                <rect key="frame" x="190" y="298" width="220" height="52"/>
+                                <color key="backgroundColor" red="1" green="0.39257152214334007" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="4GD-cb-hVB"/>
+                                    <constraint firstAttribute="height" constant="52" id="vRj-Uj-P7B"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Error message">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="16" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.60784313725490191" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="chg-hB-S9h" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="17" id="AS5-Af-3JC"/>
+                            <constraint firstItem="chg-hB-S9h" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="120" id="AS5-Af-3JC"/>
+                            <constraint firstItem="8c6-sw-mOj" firstAttribute="centerX" secondItem="Ge1-w1-e4H" secondAttribute="centerX" id="D1Z-M3-SL5"/>
+                            <constraint firstItem="8c6-sw-mOj" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="27" id="JWi-1h-ZhP"/>
+                            <constraint firstItem="chg-hB-S9h" firstAttribute="top" secondItem="8c6-sw-mOj" secondAttribute="bottom" constant="41" id="Soi-6F-rRQ"/>
                             <constraint firstItem="tya-Vc-1HA" firstAttribute="top" secondItem="gDs-fK-3Wd" secondAttribute="bottom" constant="8" id="agZ-Ib-gmG"/>
                             <constraint firstItem="chg-hB-S9h" firstAttribute="centerX" secondItem="Ge1-w1-e4H" secondAttribute="centerX" id="l4a-5q-kv2"/>
                             <constraint firstItem="gDs-fK-3Wd" firstAttribute="centerX" secondItem="Ge1-w1-e4H" secondAttribute="centerX" id="mst-eD-YZ3"/>
                             <constraint firstItem="tya-Vc-1HA" firstAttribute="centerX" secondItem="Ge1-w1-e4H" secondAttribute="centerX" id="pom-OE-ltf"/>
-                            <constraint firstItem="xs2-SJ-Bkx" firstAttribute="top" secondItem="chg-hB-S9h" secondAttribute="bottom" constant="419" id="pqa-5u-eqM"/>
+                            <constraint firstItem="xs2-SJ-Bkx" firstAttribute="top" secondItem="chg-hB-S9h" secondAttribute="bottom" constant="164" id="pqa-5u-eqM"/>
                             <constraint firstItem="tya-Vc-1HA" firstAttribute="top" secondItem="gDs-fK-3Wd" secondAttribute="bottom" constant="8" id="r3k-bG-Sfg"/>
-                            <constraint firstItem="chg-hB-S9h" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="17" id="se2-2k-Gh4"/>
-                            <constraint firstItem="gDs-fK-3Wd" firstAttribute="top" secondItem="oB8-c0-SLz" secondAttribute="bottom" constant="46" id="tRQ-aE-5gd"/>
+                            <constraint firstItem="chg-hB-S9h" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="120" id="se2-2k-Gh4"/>
+                            <constraint firstItem="gDs-fK-3Wd" firstAttribute="top" secondItem="oB8-c0-SLz" secondAttribute="bottom" constant="161" id="tRQ-aE-5gd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="errorLabel" destination="8c6-sw-mOj" id="Mq6-7r-icX"/>
+                        <outlet property="loginButton" destination="chg-hB-S9h" id="Fjt-pd-Z7n"/>
+                        <outlet property="passField" destination="tya-Vc-1HA" id="Nyd-gL-wu6"/>
+                        <outlet property="userField" destination="gDs-fK-3Wd" id="wzx-co-Ffu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Flp-YG-0Z2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
