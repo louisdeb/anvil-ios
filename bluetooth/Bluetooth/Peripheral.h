@@ -4,8 +4,8 @@
 @interface Peripheral : NSObject
 
 @property(nonatomic, strong) NSString *serviceName;
-@property(nonatomic, strong) CBUUID *serviceUUID;
-@property(nonatomic, strong) CBUUID *characteristicUUID;
+@property(nonatomic, strong) CBUUID *defaultServiceUUID;
+@property(nonatomic, strong) CBUUID *readyCUUID;
 @property(nonatomic, strong) CBUUID *keyServiceUUID;
 
 - (void)startAdvertising;

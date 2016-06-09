@@ -6,8 +6,8 @@
 @interface Peripheral () <CBPeripheralManagerDelegate>
 
 @property(nonatomic, strong) CBPeripheralManager *peripheralManager;
-@property(nonatomic, strong) CBMutableCharacteristic *characteristic;
-@property(nonatomic, strong) CBMutableService *service;
+@property(nonatomic, strong) CBMutableCharacteristic *readyCharacteristic;
+@property(nonatomic, strong) CBMutableService *defaultService;
 @property(nonatomic, strong) CBMutableService *keyService;
 
 @end
@@ -19,6 +19,8 @@ static NSString *const SERVICE_UUID_STRING = @"C93FC016-11E3-4FF2-9CE1-D559AD882
 static NSString *const READY_CUUID = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD7E29E59";
 
+NSMutableDictionary *keyToUuidDict;
+
 - (id)init {
   NSLog(@"init Peripheral");
   SERVICE_NAME = [[UIDevice currentDevice] name];
@@ -29,38 +31,30 @@ static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD
 
 - (void)setupPeripheral {
   _serviceName = SERVICE_NAME;
-  _serviceUUID = [CBUUID UUIDWithString:SERVICE_UUID_STRING];
-  _characteristicUUID = [CBUUID UUIDWithString:READY_CUUID];
+  _defaultServiceUUID = [CBUUID UUIDWithString:SERVICE_UUID_STRING];
+  _readyCUUID = [CBUUID UUIDWithString:READY_CUUID];
   
   _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
   
-  _characteristic = [[CBMutableCharacteristic alloc] initWithType:_characteristicUUID
+  _readyCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_readyCUUID
                                                      properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify
                                                      value:nil
                                                      permissions:CBAttributePermissionsReadable];
   
-  _service = [[CBMutableService alloc] initWithType:_serviceUUID primary:YES];
-  _service.characteristics = @[_characteristic];
-
+  _defaultService = [[CBMutableService alloc] initWithType:_defaultServiceUUID primary:YES];
+  _defaultService.characteristics = @[_readyCharacteristic];
   
   NSLog(@"Peripheral set up");
 }
 
-/* Start advertising */
+/* Add our default service and start advertising. */
 - (void)startAdvertising {
-  NSLog(@"Starting advertising...");
-  
   NSDictionary *advertisment = @{
-                                 CBAdvertisementDataServiceUUIDsKey : @[self.serviceUUID],
+                                 CBAdvertisementDataServiceUUIDsKey : @[self.defaultServiceUUID],
                                  CBAdvertisementDataLocalNameKey: self.serviceName
                                  };
-  [self addServices];
+  [_peripheralManager addService:_defaultService];
   [self.peripheralManager startAdvertising:advertisment];
-}
-
-/* Adds any services we would like to advertise */
-- (void) addServices {
-    [_peripheralManager addService:_service];
 }
 
 /* Did update state */
@@ -118,9 +112,22 @@ static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
                   central:(CBCentral *)central
         didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
-  
   NSLog(@"Central subscribed to a characteristic");
-  
+  if(characteristic == _readyCharacteristic) {
+    NSLog(@"Subscribed to ready characteristic");
+    // Produce screen to select controller
+    [self addKeyService:@[@2, @4, @10]];
+    [self setReady];
+  }
+}
+
+/* Update and set readyCharacteristic to let OSX know we have added
+   the configuration service and characteristics. */
+- (void)setReady {
+  NSString* msg = @"Timan is a derkhead";
+  NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
+  [self.peripheralManager updateValue:data forCharacteristic:_readyCharacteristic onSubscribedCentrals:nil];
+  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_readyCharacteristic onSubscribedCentrals:nil];
 }
 
 //  NSString* str = @"Y";
@@ -146,8 +153,6 @@ static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD
   NSLog(@"Did discover services");
 }
 
-/* --- */
-
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {
   NSLog(@"Adding service");
   /* Set up service. */
@@ -162,18 +167,16 @@ static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD
   NSLog(@"Finished adding service");
 }
 
-NSMutableDictionary *dict;
 
-- (NSArray *)addKeyCharacteristics:(NSMutableArray<NSNumber *> *)keyCodes {
-  dict = [[NSMutableDictionary alloc] init];
-  NSMutableArray *characteristics;
+- (NSArray<CBMutableCharacteristic *> *)addKeyCharacteristics:(NSMutableArray<NSNumber *> *)keyCodes {
+  keyToUuidDict = [[NSMutableDictionary alloc] init];
+  NSMutableArray<CBMutableCharacteristic *> *characteristics = [[NSMutableArray alloc] init];
   for(NSNumber *key in keyCodes) {
-    NSString *uuidString = [[NSUUID UUID] UUIDString]; //UUID of our characteristic for this key
-    NSLog(@"%@", uuidString);
+    NSString *uuidString = [[NSUUID UUID] UUIDString];
     CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
     CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:uuid properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
     [characteristics addObject:characteristic];
-    [dict setObject:characteristic forKey:key];
+    [keyToUuidDict setObject:characteristic forKey:key];
   }
   NSArray *result = [characteristics copy];
   return result;
