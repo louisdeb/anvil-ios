@@ -6,7 +6,6 @@ int const PAN_TRANSLATION_MIN = 200;
 
 -(void)viewDidLoad {
   [super viewDidLoad];
-  NSLog(@"AboutViewController loaded");
 }
 
 -(IBAction)handlePan:(UIPanGestureRecognizer*) sender {
