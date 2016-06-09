@@ -3,7 +3,7 @@
 
 @interface ViewController : UIViewController <LoginDelegate>
 {
-    LoginViewController *loginViewController;
+    UINavigationController *navController;
     NSString *username;
     bool loggedIn;
 }

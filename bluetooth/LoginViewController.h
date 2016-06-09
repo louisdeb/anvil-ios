@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <libpq/libpq-fe.h>
 #import <QuartzCore/QuartzCore.h>
+#import "RegisterViewController.h"
 
 @protocol LoginDelegate <NSObject>
 
@@ -22,11 +23,12 @@
 }
 
 @property (strong, nonatomic) IBOutlet UITextField *userField, *passField;
-@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton, *registerButton;
 @property (strong, nonatomic) IBOutlet UILabel *errorLabel;
 @property (nonatomic, assign) id<LoginDelegate> delegate;
 
 - (IBAction)loginButtonPressed:(id)sender;
+- (IBAction)registerButtonPressed:(id)sender;
 
 - (void)displayError:(int)error;
 - (void)connectToDatabase;

@@ -79,6 +79,12 @@
     }
 }
 
+- (void)registerButtonPressed:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RegisterViewController *registerViewController = [storyboard instantiateViewControllerWithIdentifier:@"register"];
+    [self.navigationController showViewController:registerViewController sender:self];
+}
+
 - (void)displayError:(int)error {
     errorLabel.hidden = NO;
     errorLabel.text = [errorMessages objectAtIndex:error];
@@ -106,7 +112,7 @@
     
     int numRows = PQntuples(result);
     if (numRows == 1) {
-        [delegate passBackData:username loggedIn:YES];
+        [self.delegate passBackData:username loggedIn:YES];
         [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self displayError:1];

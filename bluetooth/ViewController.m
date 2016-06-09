@@ -15,8 +15,8 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
     [self setNeedsStatusBarAppearanceUpdate];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
-//    loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    navController = [storyboard instantiateViewControllerWithIdentifier:@"navController"];
+    LoginViewController *loginViewController = [navController.viewControllers objectAtIndex:0];
     loginViewController.delegate = self;
     
     [self displayBluetoothGIF];
@@ -27,6 +27,7 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"username: %@", username);
     if (loggedIn) {
         welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
         welcomeLabel.hidden = NO;
@@ -94,7 +95,7 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
     if (loggedIn) {
         // log out...
     } else {
-        [self presentViewController:loginViewController animated:YES completion:nil];
+        [self presentViewController:navController animated:YES completion:nil];
     }
 }
 @end
