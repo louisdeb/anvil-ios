@@ -17,8 +17,8 @@
   return YES;
 }
 
-- (void)addKeyService:(int)keyCode {
-  [_peripheral addKeyService:keyCode];
+- (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {
+  [_peripheral addKeyService:keyCodes];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (void)addKeyService:(int)keyCode;
+- (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes;
 
 
 @end

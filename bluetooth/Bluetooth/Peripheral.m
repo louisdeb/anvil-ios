@@ -8,7 +8,7 @@
 @property(nonatomic, strong) CBPeripheralManager *peripheralManager;
 @property(nonatomic, strong) CBMutableCharacteristic *characteristic;
 @property(nonatomic, strong) CBMutableService *service;
-
+@property(nonatomic, strong) CBMutableService *keyService;
 
 @end
 
@@ -17,6 +17,7 @@
 static NSString *SERVICE_NAME;
 static NSString *const SERVICE_UUID_STRING = @"C93FC016-11E3-4FF2-9CE1-D559AD8828F7";
 static NSString *const READY_CUUID = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
+static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD7E29E59";
 
 - (id)init {
   NSLog(@"init Peripheral");
@@ -146,13 +147,23 @@ static NSString *const READY_CUUID = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 
 /* --- */
 
-- (void)addKeyService:(int)keyCode {
+- (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {
   NSLog(@"Adding service");
-  NSString *serUUIDString = @"A74EDFB7-10CA-4711-AA86-308FD7E29E59";
-  CBUUID *serUUID = [CBUUID UUIDWithString:serUUIDString];
-  CBMutableService *newservice = [[CBMutableService alloc] initWithType:serUUID primary:YES];
-  [_peripheralManager addService:newservice];
+  /* Set up service. */
+  _keyServiceUUID = [CBUUID UUIDWithString:KEY_SERVICE_UUID_STRING];
+  _keyService = [[CBMutableService alloc] initWithType:_keyServiceUUID primary:YES];
+  
+  /* Add characteristics to service. */
+  [self addKeyCharacteristics:keyCodes];
+  
+  [_peripheralManager addService:_keyService];
   NSLog(@"Finished adding service");
+}
+
+- (void)addKeyCharacteristics:(NSMutableArray<NSNumber *> *)keyCodes {
+  for(NSNumber *key in keyCodes) {
+    NSString *uuid = [[NSUUID UUID] UUIDString]; //UUID of our characteristic for this key
+  }
 }
 
 @end

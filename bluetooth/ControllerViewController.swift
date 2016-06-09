@@ -35,6 +35,6 @@ class ControllerViewController: UIViewController {
     func buttonPressed(sender: UIButton) {
         print(mappedLetter![sender])
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.addKeyService(10)
+        appDelegate.addKeyService([10])
     }
 }

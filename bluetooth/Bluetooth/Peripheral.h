@@ -6,8 +6,9 @@
 @property(nonatomic, strong) NSString *serviceName;
 @property(nonatomic, strong) CBUUID *serviceUUID;
 @property(nonatomic, strong) CBUUID *characteristicUUID;
+@property(nonatomic, strong) CBUUID *keyServiceUUID;
 
 - (void)startAdvertising;
-- (void)addKeyService:(int)keyCode;
+- (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes;
 
 @end
