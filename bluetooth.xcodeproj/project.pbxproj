@@ -16,6 +16,9 @@
 		7EDB2CA91CF4742700D9C9AF /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB2CA81CF4742700D9C9AF /* test.json */; };
 		7EE04A8E1CF852F4003791AD /* AttributeConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */; };
 		AF0C08161D070492002C930E /* SaveConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0C08151D070492002C930E /* SaveConfig.m */; };
+		AF700C551D09BE2C002798E6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF700C541D09BE2C002798E6 /* CFNetwork.framework */; };
+		AF700C581D09BE9A002798E6 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AF700C561D09BE75002798E6 /* libz.1.dylib */; };
+		AFBB99901D09C9FB00F8995F /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFBB998F1D09C9FB00F8995F /* NMSSH.framework */; };
 		AFF9028B1D0864EA00E23B48 /* libpq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF9028A1D0864EA00E23B48 /* libpq.framework */; };
 		AFF902921D0877FC00E23B48 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF902911D0877FC00E23B48 /* LoginViewController.m */; };
 		AFF902941D08B04D00E23B48 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF902931D08B04D00E23B48 /* QuartzCore.framework */; };
@@ -53,6 +56,9 @@
 		7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeConfigurationViewController.swift; sourceTree = "<group>"; };
 		AF0C08141D070492002C930E /* SaveConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveConfig.h; sourceTree = "<group>"; };
 		AF0C08151D070492002C930E /* SaveConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveConfig.m; sourceTree = "<group>"; };
+		AF700C541D09BE2C002798E6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		AF700C561D09BE75002798E6 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
+		AFBB998F1D09C9FB00F8995F /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
 		AFF9028A1D0864EA00E23B48 /* libpq.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpq.framework; path = bluetooth/libpq.framework; sourceTree = "<group>"; };
 		AFF902901D0877FC00E23B48 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AFF902911D0877FC00E23B48 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -83,8 +89,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF700C581D09BE9A002798E6 /* libz.1.dylib in Frameworks */,
+				AF700C551D09BE2C002798E6 /* CFNetwork.framework in Frameworks */,
 				AFF902941D08B04D00E23B48 /* QuartzCore.framework in Frameworks */,
 				AFF9028B1D0864EA00E23B48 /* libpq.framework in Frameworks */,
+				AFBB99901D09C9FB00F8995F /* NMSSH.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +120,9 @@
 		AFF9028C1D08653300E23B48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AFBB998F1D09C9FB00F8995F /* NMSSH.framework */,
+				AF700C561D09BE75002798E6 /* libz.1.dylib */,
+				AF700C541D09BE2C002798E6 /* CFNetwork.framework */,
 				AFF902931D08B04D00E23B48 /* QuartzCore.framework */,
 				AFF9028A1D0864EA00E23B48 /* libpq.framework */,
 			);
@@ -447,6 +459,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluetooth",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -470,6 +483,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluetooth",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

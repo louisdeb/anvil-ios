@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
-// #import <NMSSH/NMSSH.h>
 #import <libpq/libpq-fe.h>
+#import <NMSSH/NMSSH.h>
 #import "ViewController.h"
 
 @interface SaveConfig : NSObject
 
-+ (NSString *)saveScreenshot:(UIView *)view;
-+ (bool)uploadToServer:(NSString *)path;
-+ (bool)saveToDatabase:(NSString *)name filePath:(NSString *)path;
+- (NSString *)saveScreenshot:(UIView *)view;
+- (void)uploadToServer:(NSString *)path;
+- (void)saveToDatabase:(NSString *)name url:(NSString *)url;
 
 @end

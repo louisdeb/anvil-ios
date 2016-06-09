@@ -29,8 +29,9 @@ class ControllerViewController: UIViewController {
             }
         })
         
-        SaveConfig.saveScreenshot(self.view);
-        SaveConfig.saveToDatabase("test_name", filePath: "test_img");
+        let saveConfig = SaveConfig()
+        saveConfig.saveScreenshot(self.view)
+//        SaveConfig.saveToDatabase("test_name", filePath: "test_img");
     }
     
     func buttonPressed(sender: UIButton) {
