@@ -154,7 +154,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-Ge-Eof">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-Ge-Eof">
                                 <rect key="frame" x="190" y="174" width="220" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="p71-yO-juh"/>
@@ -169,7 +169,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcQ-gf-TZs">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kcQ-gf-TZs">
                                 <rect key="frame" x="190" y="125" width="220" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="eMk-i8-QFv"/>
@@ -184,7 +184,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8nu-3U-mGI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8nu-3U-mGI">
                                 <rect key="frame" x="190" y="223" width="220" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="00j-K0-baK"/>
@@ -199,7 +199,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-J0-grM">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b0B-J0-grM">
                                 <rect key="frame" x="190" y="272" width="220" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="8e4-Xu-b3W"/>
@@ -214,7 +214,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knS-uA-mOc">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knS-uA-mOc">
                                 <rect key="frame" x="254" y="380" width="94" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="bpR-kn-wig"/>
@@ -228,7 +228,7 @@
                                     <action selector="registerButtonPressed:" destination="lan-8G-2Ts" eventType="touchUpInside" id="bfo-gc-3A2"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Error message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01h-QA-5sG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01h-QA-5sG">
                                 <rect key="frame" x="190" y="321" width="220" height="52"/>
                                 <color key="backgroundColor" red="1" green="0.39257152210000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -239,7 +239,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yS2-Nb-xmk">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yS2-Nb-xmk">
                                 <rect key="frame" x="190" y="76" width="220" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="SXo-Ej-1gL"/>
@@ -405,7 +405,6 @@
                         <outlet property="errorLabel" destination="8c6-sw-mOj" id="Mq6-7r-icX"/>
                         <outlet property="loginButton" destination="chg-hB-S9h" id="Fjt-pd-Z7n"/>
                         <outlet property="passField" destination="tya-Vc-1HA" id="Nyd-gL-wu6"/>
-                        <outlet property="registerButton" destination="P9Z-Ci-NPe" id="89e-6b-qoa"/>
                         <outlet property="userField" destination="gDs-fK-3Wd" id="wzx-co-Ffu"/>
                     </connections>
                 </viewController>
@@ -575,7 +574,6 @@
         <!--Navigation Controller-->
         <scene sceneID="19a-fR-MvT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rPV-9i-JtI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="navController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EvK-uX-r5q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wen-p4-6uE">
@@ -587,6 +585,7 @@
                         <segue destination="sFv-cY-gMB" kind="relationship" relationship="rootViewController" id="VH0-eM-1M8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rPV-9i-JtI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="369" y="-573"/>
         </scene>

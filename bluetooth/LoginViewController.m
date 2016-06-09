@@ -79,14 +79,6 @@
     }
 }
 
-- (void)registerButtonPressed:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    RegisterViewController *registerViewController = [storyboard instantiateViewControllerWithIdentifier:@"register"];
-//    ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
-//    registerViewController.delegate = viewController;
-    [self.navigationController showViewController:registerViewController sender:self];
-}
-
 - (void)displayError:(int)error {
     errorLabel.hidden = NO;
     errorLabel.text = [errorMessages objectAtIndex:error];

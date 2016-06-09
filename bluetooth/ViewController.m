@@ -108,7 +108,9 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 
 - (IBAction)loginButtonPressed:(id)sender {
     if (loggedIn) {
-        // log out...
+        welcomeLabel.hidden = YES;
+        loggedIn = false;
+        [loginButton setTitle:@"Login" forState:UIControlStateNormal];
     } else {
         [self presentViewController:navController animated:YES completion:nil];
     }
