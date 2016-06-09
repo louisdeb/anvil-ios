@@ -1,5 +1,10 @@
 #import <UIKit/UIKit.h>
+
+#import "RegisterViewController.h"
+
 #import "LoginViewController.h"
+
+//@protocol LoginDelegate;
 
 @interface ViewController : UIViewController <LoginDelegate>
 {

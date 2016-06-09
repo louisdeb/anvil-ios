@@ -24,6 +24,11 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
     welcomeLabel.numberOfLines = 0;
     welcomeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     welcomeLabel.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleRegister:)
+                                                 name:@"register"
+                                               object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -40,6 +45,10 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -89,6 +98,12 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 - (void)passBackData:(NSString *)user loggedIn:(bool)userLoggedIn {
     username = user;
     loggedIn = userLoggedIn;
+}
+
+- (void)handleRegister:(NSNotification *)notification {
+    NSDictionary *data = [notification userInfo];
+    username = [data objectForKey:@"username"];
+    loggedIn = [data objectForKey:@"loggedIn"];
 }
 
 - (IBAction)loginButtonPressed:(id)sender {

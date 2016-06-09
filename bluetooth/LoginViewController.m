@@ -36,7 +36,7 @@
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];    
 }
 
 - (void)viewDidLayoutSubviews {
@@ -82,6 +82,8 @@
 - (void)registerButtonPressed:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RegisterViewController *registerViewController = [storyboard instantiateViewControllerWithIdentifier:@"register"];
+//    ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
+//    registerViewController.delegate = viewController;
     [self.navigationController showViewController:registerViewController sender:self];
 }
 

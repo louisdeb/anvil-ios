@@ -154,6 +154,10 @@
         constSQL = [sql cStringUsingEncoding:NSASCIIStringEncoding];
         result = PQexec(conn, constSQL);
         numRows = PQntuples(result);
+        NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:username, @"username", [NSNumber numberWithBool:YES], @"loggedIn", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"register"
+                                                            object:self
+                                                          userInfo:data];
         [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     }
 }
