@@ -16,7 +16,7 @@
 
 static NSString *SERVICE_NAME;
 static NSString *const SERVICE_UUID_STRING = @"C93FC016-11E3-4FF2-9CE1-D559AD8828F7";
-static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
+static NSString *const READY_CUUID = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 
 - (id)init {
   NSLog(@"init Peripheral");
@@ -29,7 +29,7 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
 - (void)setupPeripheral {
   _serviceName = SERVICE_NAME;
   _serviceUUID = [CBUUID UUIDWithString:SERVICE_UUID_STRING];
-  _characteristicUUID = [CBUUID UUIDWithString:CHARACTERISTIC_UUID_STRING];
+  _characteristicUUID = [CBUUID UUIDWithString:READY_CUUID];
   
   _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
   
@@ -110,34 +110,26 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
                                        error:(NSError *)error {
   NSLog(@"Did start advertising");
-  
-  NSString* str = @"Y";
-  NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
-//  [peripheral writeValue:data forCharacteristic:_characteristic type:CBCharacteristicWriteWithResponse];
-  
-//  - (BOOL)updateValue:(NSData *)value forCharacteristic:(CBMutableCharacteristic *)characteristic onSubscribedCentrals:(NSArray *)centrals
-//  [peripheral updateValue:data forCharacteristic:_characteristic onSubscribedCentrals:nil];
-  [self.peripheralManager updateValue:data forCharacteristic:_characteristic onSubscribedCentrals:nil];
-  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_characteristic onSubscribedCentrals:nil];
-
 }
 
 /* Did subscribe to characteristic */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
                   central:(CBCentral *)central
         didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
-  NSString* str = @"Y";
-  NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
-  [self.peripheralManager updateValue:data forCharacteristic:_characteristic onSubscribedCentrals:nil];
-  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_characteristic onSubscribedCentrals:nil];
+  
   NSLog(@"Central subscribed to a characteristic");
+  
 }
+
+//  NSString* str = @"Y";
+//  NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
+//  [self.peripheralManager updateValue:data forCharacteristic:_characteristic onSubscribedCentrals:nil];
+//  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_characteristic onSubscribedCentrals:nil];
 
 /* Did receive read request */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
     didReceiveReadRequest:(CBATTRequest *)request {
   NSLog(@"Did receive read request");
-//  - (void)respondToRequest:(CBATTRequest *)request withResult:(CBATTError)result
   [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
 }
 
@@ -150,6 +142,23 @@ static NSString *const CHARACTERISTIC_UUID_STRING = @"27B8CD56-0496-498B-AEE9-B7
 /* Did discover services */
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
   NSLog(@"Did discover services");
+}
+
+/* --- */
+
+- (void)addKeyCharacteristic:(int)keyCode {
+  NSLog(@"Adding characteristic for key code: %d", keyCode);
+  NSString *uuid = [[NSUUID UUID] UUIDString];
+  CBUUID *cuuid = [CBUUID UUIDWithString:uuid];
+  CBMutableCharacteristic *keyCharac = [[CBMutableCharacteristic alloc] initWithType:cuuid
+                                                                        properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify
+                                                                        value:nil
+                                                                        permissions:CBAttributePermissionsReadable];
+  NSMutableArray<CBCharacteristic *> *chars = [_service.characteristics mutableCopy];
+  [chars addObject:keyCharac];
+  _service.characteristics = [chars copy];
+  
+  NSLog(@"Added characteristic for key code: %d", keyCode);
 }
 
 @end
