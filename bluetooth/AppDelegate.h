@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)addKeyService:(int)keyCode;
+
 
 @end
 

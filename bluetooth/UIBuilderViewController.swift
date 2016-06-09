@@ -20,6 +20,8 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var filenameToView: [UIView: String]?
     
+    var mappedLetter: [UIView: String] = [:]
+    
     // Capability for item that is being touched to be the selected item, and have
     // old values for x and y for each of them - which are changed when that is the item that
     // being dragged
@@ -47,6 +49,10 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
         let drag = UIPanGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handlePan(_:)))
         drag.delegate = self
         self.view.addGestureRecognizer(drag)
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(UIBuilderViewController.handleLongPress(_:)))
+        longPress.delegate = self
+        self.view.addGestureRecognizer(longPress)
     }
     
     func handlePinch(sender: UIPinchGestureRecognizer) {
@@ -87,6 +93,39 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    func handleLongPress(sender: UILongPressGestureRecognizer) {
+        for elem in elementsOnScreen {
+            if CGRectContainsPoint(elem.frame, sender.locationInView(self.view)) {
+                let alertView = UIAlertController(title: "Attributes", message: "Test", preferredStyle: .ActionSheet)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) in
+                    //
+                })
+                alertView.addAction(cancelAction)
+                
+                let someAction = UIAlertAction(title: "Assign Letter", style: .Default, handler: { (action) in
+                    let popup = UIAlertController(title: "Choose a keypress", message: "Enter a letter", preferredStyle: .Alert)
+                    
+                    popup.addTextFieldWithConfigurationHandler({ (field) in
+                        //
+                        field.returnKeyType = .Done
+                        
+                    })
+                    let textDone = UIAlertAction(title: "Done", style: .Default, handler: { (action) in
+                        self.mappedLetter[elem] = popup.textFields![0].text!
+                    })
+                    popup.addAction(textDone)
+                    
+                    
+                    self.presentViewController(popup, animated: true, completion: nil)
+                })
+                alertView.addAction(someAction)
+                
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }
+        }
+    }
+    
     /* Function to check for touches - if the currentSelectedElement has a non-nil
      * value then place it at the location of the tap.
      */
@@ -119,6 +158,7 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
             let dest = segue.destinationViewController as! ControllerViewController
             dest.controls = self.elementsOnScreen
             dest.filenameToView = filenameToView
+            dest.mappedLetter = self.mappedLetter
         default:
             return
         }

@@ -146,19 +146,13 @@ static NSString *const READY_CUUID = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 
 /* --- */
 
-- (void)addKeyCharacteristic:(int)keyCode {
-  NSLog(@"Adding characteristic for key code: %d", keyCode);
-  NSString *uuid = [[NSUUID UUID] UUIDString];
-  CBUUID *cuuid = [CBUUID UUIDWithString:uuid];
-  CBMutableCharacteristic *keyCharac = [[CBMutableCharacteristic alloc] initWithType:cuuid
-                                                                        properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify
-                                                                        value:nil
-                                                                        permissions:CBAttributePermissionsReadable];
-  NSMutableArray<CBCharacteristic *> *chars = [_service.characteristics mutableCopy];
-  [chars addObject:keyCharac];
-  _service.characteristics = [chars copy];
-  
-  NSLog(@"Added characteristic for key code: %d", keyCode);
+- (void)addKeyService:(int)keyCode {
+  NSLog(@"Adding service");
+  NSString *serUUIDString = @"A74EDFB7-10CA-4711-AA86-308FD7E29E59";
+  CBUUID *serUUID = [CBUUID UUIDWithString:serUUIDString];
+  CBMutableService *newservice = [[CBMutableService alloc] initWithType:serUUID primary:YES];
+  [_peripheralManager addService:newservice];
+  NSLog(@"Finished adding service");
 }
 
 @end

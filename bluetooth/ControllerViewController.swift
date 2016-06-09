@@ -14,14 +14,27 @@ class ControllerViewController: UIViewController {
     var controls: [UIView]?
     var filenameToView: [UIView: String]?
     
+    var mappedLetter: [UIView: String]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         controls?.forEach({ (elem) in 
             
             elem.userInteractionEnabled = true
+            
+            if elem is UIButton {
+                let button = elem as! UIButton
+                button.addTarget(self, action: #selector(ControllerViewController.buttonPressed(_:)), forControlEvents: .TouchUpInside)
+            }
+            
+            self.view.addSubview(elem)
         })
-        
-        print(filenameToView)
+    }
+    
+    func buttonPressed(sender: UIButton) {
+        print(mappedLetter![sender])
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.addKeyService(10)
     }
 }

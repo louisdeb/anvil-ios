@@ -11,8 +11,6 @@ import Foundation
 
 class AttributeConfigurationViewController: UIViewController {
     
-    var attribute: UIView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

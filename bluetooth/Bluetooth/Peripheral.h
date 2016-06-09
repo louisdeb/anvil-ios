@@ -8,5 +8,6 @@
 @property(nonatomic, strong) CBUUID *characteristicUUID;
 
 - (void)startAdvertising;
+- (void)addKeyService:(int)keyCode;
 
 @end

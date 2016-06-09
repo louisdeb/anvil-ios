@@ -11,7 +11,8 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+    [self setNeedsStatusBarAppearanceUpdate];
+    
   [self displayBluetoothGIF];
   
 }
@@ -21,11 +22,15 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
   // Dispose of any resources that can be recreated.
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)displayBluetoothGIF {
   CGFloat height = 200;
   CGFloat width = 200;
   CGFloat posX = (self.view.frame.size.width / 2) - (width / 2);
-  CGFloat posY = (self.view.frame.size.height / 2) - (height / 2) + 100;
+  CGFloat posY = (self.view.frame.size.height / 2) - (height / 2);
   CGFloat speed = 3.2;
   
   UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(posX, posY, width, height)];
