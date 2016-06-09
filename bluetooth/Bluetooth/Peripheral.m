@@ -190,7 +190,7 @@ NSMutableDictionary *keyToUuidDict;
 - (void)keyPress:(NSNumber *)key {
   CBMutableCharacteristic *keyChar = keyToUuidDict[key];
   int keyInt = [key intValue];
-  NSData *data = [NSData dataWithBytes:&keyInt length:sizeof(key)];
+  NSData *data = [NSData dataWithBytes:&keyInt length:sizeof(keyInt)];
   [self.peripheralManager updateValue:data forCharacteristic:keyChar onSubscribedCentrals:nil];
   [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:keyChar onSubscribedCentrals:nil];
   NSLog(@"Sent key press");
