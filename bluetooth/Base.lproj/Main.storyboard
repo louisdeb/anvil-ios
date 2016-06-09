@@ -163,12 +163,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HnN-8F-09k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="-558"/>
+            <point key="canvasLocation" x="369" y="-558"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initialView" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -235,6 +235,7 @@
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                         <segue destination="9ul-vm-n8J" kind="presentation" identifier="toCIB" id="gDH-IN-nfC"/>
+                        <segue destination="Yzr-GH-bqw" kind="presentation" identifier="configSelectSegue" id="FkH-8n-1rI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

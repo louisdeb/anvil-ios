@@ -2,6 +2,7 @@
 
 @interface ViewController : UIViewController
 
+- (void)showConfigSelectView:(NSNotification *) notif;
 
 @end
 

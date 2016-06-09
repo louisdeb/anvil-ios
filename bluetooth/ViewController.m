@@ -7,14 +7,20 @@
 @implementation ViewController
 
 NSString *const ABOUT_SEGUE = @"aboutSegue";
-
+NSString *const SELECT_SEGUE = @"configSelectSegue";
+NSString *const BUILDER_SEGUE = @"toCIB";
+NSString *const SELECT_NOTIF = @"showSelect";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-    [self setNeedsStatusBarAppearanceUpdate];
-    
+  [self setNeedsStatusBarAppearanceUpdate];
   [self displayBluetoothGIF];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConfigSelectView:) name:SELECT_NOTIF object:nil];
+}
+
+- (void)viewDidUnload {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,7 +61,7 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 //  [UIView setAnimationDelay:0.1];
 //  [UIView setAnimationDuration:0.5];
 //  [UIView commitAnimations];
-  [self performSegueWithIdentifier: ABOUT_SEGUE sender: sender];
+  [self performSegueWithIdentifier:ABOUT_SEGUE sender:sender];
 }
 
 - (IBAction)builderButtonUp:(UIButton *) sender {
@@ -63,7 +69,11 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
     //  [UIView setAnimationDelay:0.1];
     //  [UIView setAnimationDuration:0.5];
     //  [UIView commitAnimations];
-    [self performSegueWithIdentifier: @"toCIB" sender: sender];
+    [self performSegueWithIdentifier:BUILDER_SEGUE sender:sender];
+}
+
+- (void)showConfigSelectView:(NSNotification *) notif {
+  [self performSegueWithIdentifier:SELECT_SEGUE sender:self];
 }
 
 @end

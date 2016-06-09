@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "Peripheral.h"
+#import "ViewController.h"
 @import CoreBluetooth;
 @import UIKit;
 
@@ -20,6 +21,7 @@ static NSString *const READY_CUUID = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD7E29E59";
 
 static NSString *const READY_MESSAGE = @"Timan is a derkhead";
+static NSString *const SELECT_NOTIF = @"showSelect";
 
 NSMutableDictionary *keyToUuidDict;
 
@@ -117,12 +119,15 @@ NSMutableDictionary *keyToUuidDict;
   NSLog(@"Central subscribed to a characteristic");
   if(characteristic == _readyCharacteristic) {
     NSLog(@"Subscribed to ready characteristic");
-    // Produce screen to select controller
-    [self addKeyService:@[@2, @4, @10]];
-    [self setReady];
+    [self showConfigSelectView];
+//    [self setReady];
   } else {
     NSLog(@"Subscribed to key characteristic");
   }
+}
+
+- (void)showConfigSelectView {
+  [[NSNotificationCenter defaultCenter] postNotificationName:SELECT_NOTIF object:nil];
 }
 
 /* Update and set readyCharacteristic to let OSX know we have added
@@ -169,6 +174,7 @@ NSMutableDictionary *keyToUuidDict;
 - (NSArray<CBMutableCharacteristic *> *)addKeyCharacteristics:(NSMutableArray<NSNumber *> *)keyCodes {
   keyToUuidDict = [[NSMutableDictionary alloc] init];
   NSMutableArray<CBMutableCharacteristic *> *characteristics = [[NSMutableArray alloc] init];
+  
   for(NSNumber *key in keyCodes) {
     NSString *uuidString = [[NSUUID UUID] UUIDString];
     CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
@@ -176,6 +182,7 @@ NSMutableDictionary *keyToUuidDict;
     [characteristics addObject:characteristic];
     [keyToUuidDict setObject:characteristic forKey:key];
   }
+  
   NSArray *result = [characteristics copy];
   return result;
 }
