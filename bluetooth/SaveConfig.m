@@ -8,11 +8,29 @@
 
 #import "SaveConfig.h"
 
+
+
 @implementation SaveConfig
 
 NSString *password = @"Anvil4lyfe";
 
-- (NSString *)saveScreenshot:(UIView *)view {
++ (void)saveConfiguration:(UIView *)view configUser:(NSString *)username configName:(NSString *)name {
+    NSString *path = [self saveScreenshot:view];
+    bool uploaded = false;
+    
+    if (path) {
+        NSString *remotePath = [NSString stringWithFormat:@"/vol/project/2015/271/g1527117/configs/%@-%@.png", username, name];
+        uploaded = [self uploadToServer:path remotePath:remotePath];
+    }
+    
+    if (uploaded) {
+        NSString *url = [NSString stringWithFormat:@"https://www.doc.ic.ac.uk/project/2015/271/g1527117/configs/%@-%@.png", username, name];
+        [self saveToDatabase:username configName:name url:url];
+    }
+    
+}
+
++ (NSString *)saveScreenshot:(UIView *)view {
     UIGraphicsBeginImageContext(view.bounds.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [view.layer renderInContext:context];
@@ -33,11 +51,10 @@ NSString *password = @"Anvil4lyfe";
         return NULL;
     }
     NSLog(@"Image saved to %@", path);
-    [self uploadToServer:path];
     return path;
 }
 
-- (void)uploadToServer:(NSString *)path {
++ (bool)uploadToServer:(NSString *)path remotePath:(NSString *)remotePath {
     NMSSHSession *session = [NMSSHSession connectToHost:@"shell1.doc.ic.ac.uk"
                                            withUsername:@"jam614"];
     
@@ -49,16 +66,13 @@ NSString *password = @"Anvil4lyfe";
         }
     }
     
-    bool success = [session.channel uploadFile:path to:@"/vol/project/2015/271/g1527117/configs/"];
+    bool success = [session.channel uploadFile:path to:remotePath];
     [session disconnect];
     
-    if (success) {
-        NSString *url = @"https://www.doc.ic.ac.uk/project/2015/271/g1527117/configs/screenshot.png";
-        [self saveToDatabase:@"test name" url:url];
-    }
+    return success;
 }
 
-- (void)saveToDatabase:(NSString *)name url:(NSString *)url {
++ (void)saveToDatabase:(NSString *)username configName:(NSString *)name url:(NSString *)url {
     const char *conninfo = "host=db.doc.ic.ac.uk port=5432 dbname=g1527117_u user=g1527117_u password=pcauqNdppz";
     PGconn *conn = PQconnectdb(conninfo);
     
@@ -67,7 +81,7 @@ NSString *password = @"Anvil4lyfe";
     }
     
     NSLog(@"Connection successful");
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO configurations(username, name, json, img) VALUES ('jonomuller', '%@', 'json', '%@')", name, url];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO configurations(username, name, json, img, numfavs) VALUES ('%@', '%@', 'json', '%@', '0')", username, name, url];
     const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
     PGresult *result = PQexec(conn, const_sql);
     

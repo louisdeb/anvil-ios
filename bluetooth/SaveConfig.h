@@ -14,8 +14,9 @@
 
 @interface SaveConfig : NSObject
 
-- (NSString *)saveScreenshot:(UIView *)view;
-- (void)uploadToServer:(NSString *)path;
-- (void)saveToDatabase:(NSString *)name url:(NSString *)url;
++ (void)saveConfiguration:(UIView *)view configUser:(NSString *)username configName:(NSString *)name;
++ (NSString *)saveScreenshot:(UIView *)view;
++ (bool)uploadToServer:(NSString *)path remotePath:(NSString *)remotePath;
++ (void)saveToDatabase:(NSString *)username configName:(NSString *)name url:(NSString *)url;
 
 @end

@@ -19,7 +19,7 @@ class ControllerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        controls?.forEach({ (elem) in 
+        controls?.forEach({ (elem) in
             
             elem.userInteractionEnabled = true
             self.view.addSubview(elem)
@@ -29,12 +29,17 @@ class ControllerViewController: UIViewController {
             }
         })
         
-        let saveConfig = SaveConfig()
-        saveConfig.saveScreenshot(self.view)
+        SaveConfig.saveConfiguration(self.view, configUser: "jonomuller", configName: "my_config")
+//        let saveConfig = SaveConfig()
+//        SaveConfig.saveScreenshot(self.view)
 //        SaveConfig.saveToDatabase("test_name", filePath: "test_img");
     }
     
     func buttonPressed(sender: UIButton) {
         print(mappedLetter![sender])
+    }
+    
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: {});
     }
 }
