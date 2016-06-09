@@ -100,6 +100,7 @@ static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD
             didAddService:(CBService *)service
                     error:(NSError *)error {
   NSLog(@"Did add service");
+  NSLog(@"with %lu characteristics", [service.characteristics count]);
   NSLog(@"%@", service.UUID);
   if (error) {
     NSLog(@"Error in adding service: %@", [error localizedDescription]);
@@ -154,16 +155,28 @@ static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD
   _keyService = [[CBMutableService alloc] initWithType:_keyServiceUUID primary:YES];
   
   /* Add characteristics to service. */
-  [self addKeyCharacteristics:keyCodes];
+  NSArray *chars = [self addKeyCharacteristics:keyCodes];
+  _keyService.characteristics = chars;
   
   [_peripheralManager addService:_keyService];
   NSLog(@"Finished adding service");
 }
 
-- (void)addKeyCharacteristics:(NSMutableArray<NSNumber *> *)keyCodes {
+NSMutableDictionary *dict;
+
+- (NSArray *)addKeyCharacteristics:(NSMutableArray<NSNumber *> *)keyCodes {
+  dict = [[NSMutableDictionary alloc] init];
+  NSMutableArray *characteristics;
   for(NSNumber *key in keyCodes) {
-    NSString *uuid = [[NSUUID UUID] UUIDString]; //UUID of our characteristic for this key
+    NSString *uuidString = [[NSUUID UUID] UUIDString]; //UUID of our characteristic for this key
+    NSLog(@"%@", uuidString);
+    CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
+    CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:uuid properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
+    [characteristics addObject:characteristic];
+    [dict setObject:characteristic forKey:key];
   }
+  NSArray *result = [characteristics copy];
+  return result;
 }
 
 @end
