@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNeedsStatusBarAppearanceUpdate];
     
     errorMessages = [NSArray arrayWithObjects:@"Please enter a value in all fields.", @"A user with that username already exists, please try again.", @"A user with that email already exists, please try again.", @"Please make sure both passwords are the same.", @"Could not connect to database, please try again later.", nil];
     
@@ -68,6 +69,10 @@
     nameBorder.borderWidth = userBorder.borderWidth;
     [nameField.layer addSublayer:nameBorder];
     nameField.layer.masksToBounds = YES;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,7 +154,7 @@
         constSQL = [sql cStringUsingEncoding:NSASCIIStringEncoding];
         result = PQexec(conn, constSQL);
         numRows = PQntuples(result);
-        [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

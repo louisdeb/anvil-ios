@@ -10,6 +10,12 @@
 #import <libpq/libpq-fe.h>
 #import <QuartzCore/QuartzCore.h>
 
+@protocol LoginDelegate <NSObject>
+
+- (void)passBackData:(NSString *)user loggedIn:(bool)userLoggedIn;
+
+@end
+
 @interface LoginViewController : UIViewController
 {
     NSArray *errorMessages;
@@ -18,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *userField, *passField;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UILabel *errorLabel;
+@property (nonatomic, assign) id<LoginDelegate> delegate;
 
 - (IBAction)loginButtonPressed:(id)sender;
 

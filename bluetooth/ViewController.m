@@ -6,15 +6,34 @@
 
 @implementation ViewController
 
+@synthesize welcomeLabel, loginButton;
+
 NSString *const ABOUT_SEGUE = @"aboutSegue";
 
-
 - (void)viewDidLoad {
-  [super viewDidLoad];
+    [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
     
-  [self displayBluetoothGIF];
-  
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"login"];
+//    loginViewController = [[LoginViewController alloc] initWithNibName:nil bundle:nil];
+    loginViewController.delegate = self;
+    
+    [self displayBluetoothGIF];
+    
+    welcomeLabel.numberOfLines = 0;
+    welcomeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    welcomeLabel.hidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (loggedIn) {
+        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
+        welcomeLabel.hidden = NO;
+        [loginButton setTitle:@"Logout" forState:UIControlStateNormal];
+    } else {
+        welcomeLabel.hidden = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,4 +85,16 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
     [self performSegueWithIdentifier: @"toCIB" sender: sender];
 }
 
+- (void)passBackData:(NSString *)user loggedIn:(bool)userLoggedIn {
+    username = user;
+    loggedIn = userLoggedIn;
+}
+
+- (IBAction)loginButtonPressed:(id)sender {
+    if (loggedIn) {
+        // log out...
+    } else {
+        [self presentViewController:loginViewController animated:YES completion:nil];
+    }
+}
 @end

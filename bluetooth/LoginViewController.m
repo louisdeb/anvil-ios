@@ -14,10 +14,11 @@
 
 @implementation LoginViewController
 
-@synthesize userField, passField, loginButton, errorLabel;
+@synthesize userField, passField, loginButton, errorLabel, delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNeedsStatusBarAppearanceUpdate];
     
     errorMessages = [NSArray arrayWithObjects:@"Please enter a value in both fields.", @"Invalid login credentials, please try again.", @"Could not connect to database, please try again later.", nil];
     
@@ -53,6 +54,10 @@
     passBorder.borderWidth = userBorder.borderWidth;
     [passField.layer addSublayer:passBorder];
     passField.layer.masksToBounds = YES;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,7 +106,8 @@
     
     int numRows = PQntuples(result);
     if (numRows == 1) {
-        [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+        [delegate passBackData:username loggedIn:YES];
+        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self displayError:1];
     }
