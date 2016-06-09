@@ -1,4 +1,5 @@
 #import "ConfigurationSelectViewController.h"
+#import "AppDelegate.h"
 
 @implementation ConfigurationSelectViewController
 
@@ -10,6 +11,13 @@ NSString *const CONTROLLER_SEGUE = @"controllerSegue";
 }
 
 -(IBAction)selectView:(id)sender {
+  /* Add key service. This should be done based on the JSON file. */
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  NSMutableArray<NSNumber *> *codes = [[NSMutableArray alloc] init];
+  NSNumber *num = [NSNumber numberWithInt:10];
+  [codes addObject:num];
+  [appDelegate addKeyService:codes];
+  
   [self performSegueWithIdentifier:CONTROLLER_SEGUE sender:sender];
 }
 

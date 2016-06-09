@@ -120,7 +120,6 @@ NSMutableDictionary *keyToUuidDict;
   if(characteristic == _readyCharacteristic) {
     NSLog(@"Subscribed to ready characteristic");
     [self showConfigSelectView];
-//    [self setReady];
   } else {
     NSLog(@"Subscribed to key characteristic");
   }
@@ -167,6 +166,7 @@ NSMutableDictionary *keyToUuidDict;
   _keyService.characteristics = chars;
   
   [_peripheralManager addService:_keyService];
+  [self setReady];
 }
 
 /* Sets up key code service, which contains key code characteristics. Populates dictionary
@@ -185,6 +185,15 @@ NSMutableDictionary *keyToUuidDict;
   
   NSArray *result = [characteristics copy];
   return result;
+}
+
+- (void)keyPress:(NSNumber *)key {
+  CBMutableCharacteristic *keyChar = keyToUuidDict[key];
+  int keyInt = [key intValue];
+  NSData *data = [NSData dataWithBytes:&keyInt length:sizeof(key)];
+  [self.peripheralManager updateValue:data forCharacteristic:keyChar onSubscribedCentrals:nil];
+  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:keyChar onSubscribedCentrals:nil];
+  NSLog(@"Sent key press");
 }
 
 @end
