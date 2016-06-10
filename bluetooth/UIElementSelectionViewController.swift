@@ -72,6 +72,8 @@ extension UIElementSelectionViewController: UICollectionViewDataSource, UICollec
         //Set the custom class property element
         cell.element = element
         
+        element.frame = cell.frame
+        
         //add it to the subview
         cell.contentView.addSubview(element)
         element.center.x = cell.contentView.center.x
@@ -158,6 +160,8 @@ extension UIElementSelectionViewController {
             let button = UIButton()
             button.setImage(elementImage, forState: .Normal)
             button.setImage(UIImage(named: "\(prefix)\(elements.count + 1)\(suffix)_pressed"), forState: .Highlighted)
+            
+            
             button.contentMode = .ScaleAspectFill
             
             //There must be a better way of doing this:

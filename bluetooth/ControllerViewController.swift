@@ -22,11 +22,13 @@ class ControllerViewController: UIViewController {
         controls?.forEach({ (elem) in
             
             elem.userInteractionEnabled = true
-            self.view.addSubview(elem)
+            
             if elem is UIButton {
                 let button = elem as! UIButton
                 button.addTarget(self, action: #selector(ControllerViewController.buttonPressed(_:)), forControlEvents: .TouchUpInside)
             }
+            
+            self.view.addSubview(elem)
         })
         
         SaveConfig.saveConfiguration(self.view, configUser: "jonomuller", configName: "my_config")
