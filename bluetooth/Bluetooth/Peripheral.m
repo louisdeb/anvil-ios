@@ -193,7 +193,7 @@ NSMutableDictionary *keyToUuidDict;
   NSData *data = [NSData dataWithBytes:&keyInt length:sizeof(keyInt)];
   [self.peripheralManager updateValue:data forCharacteristic:keyChar onSubscribedCentrals:nil];
   [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:keyChar onSubscribedCentrals:nil];
-  NSLog(@"Sent key press");
+  NSLog(@"Sent key press %d", [key intValue]);
 }
 
 @end

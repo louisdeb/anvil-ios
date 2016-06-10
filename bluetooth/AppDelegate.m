@@ -21,8 +21,23 @@
   [_peripheral addKeyService:keyCodes];
 }
 
-- (void)keyPress:(NSNumber *)key {
+- (void)keyPress:(NSString *)letter {
+  NSNumber *key = [self getKeyCodeFromString:letter];
   [_peripheral keyPress:key];
+}
+
+- (NSNumber *)getKeyCodeFromString:(NSString *)letter {
+  if([letter isEqual: @"a"]) {
+    return [NSNumber numberWithInt:0];
+  } else if([letter isEqual: @"b"]) {
+    return [NSNumber numberWithInt:1];
+  } else if([letter isEqual: @"c"]) {
+    return [NSNumber numberWithInt:2];
+  } else if([letter isEqual: @"d"]) {
+    return [NSNumber numberWithInt:13];
+  }
+  
+  return [NSNumber numberWithInt:-1];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -13,7 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes;
-- (void)keyPress:(NSNumber *)key;
+- (void)keyPress:(NSString *)letter;
 
 @end
 

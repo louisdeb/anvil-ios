@@ -14,10 +14,19 @@ NSString *const CONTROLLER_SEGUE = @"controllerSegue";
   /* Add key service. This should be done based on the JSON file. */
   AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   NSMutableArray<NSNumber *> *codes = [[NSMutableArray alloc] init];
-  NSNumber *num = [NSNumber numberWithInt:10];
-  [codes addObject:num];
-  [appDelegate addKeyService:codes];
   
+  /* Hard coded */
+  NSNumber *num = [NSNumber numberWithInt:0];
+  [codes addObject:num];
+  num = [NSNumber numberWithInt:1];
+  [codes addObject:num];
+  num = [NSNumber numberWithInt:2];
+  [codes addObject:num];
+  num = [NSNumber numberWithInt:13];
+  [codes addObject:num];
+  /* --- */
+  
+  [appDelegate addKeyService:codes];
   [self performSegueWithIdentifier:CONTROLLER_SEGUE sender:sender];
 }
 
