@@ -20,8 +20,10 @@ static NSString *const SERVICE_UUID_STRING = @"C93FC016-11E3-4FF2-9CE1-D559AD882
 static NSString *const READY_CUUID = @"27B8CD56-0496-498B-AEE9-B746E9F74225";
 static NSString *const KEY_SERVICE_UUID_STRING = @"A74EDFB7-10CA-4711-AA86-308FD7E29E59";
 
-static NSString *const READY_MESSAGE = @"Timan is a derkhead";
+static NSString *const READY_MESSAGE = @"Ready";
+static NSString *const ALT_READY_MESSAGE = @"Timan is a derkhead";
 static NSString *const SELECT_NOTIF = @"showSelect";
+static int const RELEASE_SHIFT = 130;
 
 NSMutableDictionary *keyToUuidDict;
 
@@ -187,13 +189,15 @@ NSMutableDictionary *keyToUuidDict;
   return result;
 }
 
-- (void)keyPress:(NSNumber *)key {
+/* State true if key pressed down. State false if key pressed up. */
+- (void)keyPress:(NSNumber *)key state:(Boolean)state {
   CBMutableCharacteristic *keyChar = keyToUuidDict[key];
   int keyInt = [key intValue];
+  keyInt = state ? keyInt : keyInt + RELEASE_SHIFT; // Set to shifted value if key pressed up.
   NSData *data = [NSData dataWithBytes:&keyInt length:sizeof(keyInt)];
   [self.peripheralManager updateValue:data forCharacteristic:keyChar onSubscribedCentrals:nil];
   [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:keyChar onSubscribedCentrals:nil];
-  NSLog(@"Sent key press %d", [key intValue]);
+  NSLog(@"Sent key press %d", keyInt);
 }
 
 @end

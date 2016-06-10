@@ -10,6 +10,6 @@
 
 - (void)startAdvertising;
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes;
-- (void)keyPress:(NSNumber *)key;
+- (void)keyPress:(NSNumber *)key state:(Boolean)state;
 
 @end

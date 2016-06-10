@@ -21,20 +21,32 @@
   [_peripheral addKeyService:keyCodes];
 }
 
-- (void)keyPress:(NSString *)letter {
+- (void)keyPress:(NSString *)letter state:(Boolean)state {
   NSNumber *key = [self getKeyCodeFromString:letter];
-  [_peripheral keyPress:key];
+  [_peripheral keyPress:key state:state];
 }
 
 - (NSNumber *)getKeyCodeFromString:(NSString *)letter {
   if([letter isEqual: @"a"]) {
     return [NSNumber numberWithInt:0];
   } else if([letter isEqual: @"b"]) {
-    return [NSNumber numberWithInt:1];
+    return [NSNumber numberWithInt:11];
   } else if([letter isEqual: @"c"]) {
-    return [NSNumber numberWithInt:2];
+    return [NSNumber numberWithInt:8];
   } else if([letter isEqual: @"d"]) {
+    return [NSNumber numberWithInt:2];
+  } else if([letter isEqual: @"e"]) {
+    return [NSNumber numberWithInt:14];
+  } else if([letter isEqual: @"f"]) {
+    return [NSNumber numberWithInt:3];
+  } else if([letter isEqual: @"q"]) {
+    return [NSNumber numberWithInt:12];
+  } else if([letter isEqual: @"s"]) {
+    return [NSNumber numberWithInt:1];
+  } else if([letter isEqual: @"w"]) {
     return [NSNumber numberWithInt:13];
+  } else if([letter isEqual: @"SPACE"]) {
+    return [NSNumber numberWithInt:49];
   }
   
   return [NSNumber numberWithInt:-1];
