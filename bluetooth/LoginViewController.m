@@ -15,6 +15,7 @@
 @implementation LoginViewController
 
 @synthesize userField, passField, loginButton, errorLabel, delegate;
+NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -107,7 +108,8 @@
     int numRows = PQntuples(result);
     if (numRows == 1) {
         [self.delegate passBackData:username loggedIn:YES];
-        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+//        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier: HOME_SCREEN_SEGUE sender: self];
     } else {
         [self displayError:1];
     }
