@@ -13,7 +13,7 @@
 
 @protocol LoginDelegate;
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController <UITextFieldDelegate>
 {
     NSArray *errorMessages, *fields;
 }

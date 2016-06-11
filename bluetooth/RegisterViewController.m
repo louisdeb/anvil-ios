@@ -31,6 +31,12 @@
     errorLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     fields = @[userField, passField, confirmField, emailField, nameField];
+  
+    userField.delegate = self;
+    passField.delegate = self;
+    confirmField.delegate = self;
+    emailField.delegate = self;
+    nameField.delegate = self;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -78,12 +84,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    //    [self loginButtonPressed:self];
-    [textField resignFirstResponder];
-    return NO;
 }
 
 - (void)registerButtonPressed:(id)sender {
@@ -162,6 +162,9 @@
     }
 }
 
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 
 @end
