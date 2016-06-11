@@ -380,15 +380,28 @@
                                     <segue destination="lan-8G-2Ts" kind="show" id="X0r-8S-mOs"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteTitle" highlightedImage="Title" translatesAutoresizingMaskIntoConstraints="NO" id="pPe-tj-uaN">
+                                <rect key="frame" x="163" y="64" width="275" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="275" id="557-TG-kz6"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="91" id="5MS-xv-9Al"/>
+                                    <constraint firstAttribute="width" constant="275" id="J2R-XG-f4I"/>
+                                    <constraint firstAttribute="height" constant="91" id="vH6-Tr-jkB"/>
+                                    <constraint firstAttribute="width" secondItem="pPe-tj-uaN" secondAttribute="height" multiplier="388:207" constant="104.42995169082124" id="vb9-ls-t6u"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.60784313725490191" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="8c6-sw-mOj" firstAttribute="top" secondItem="P9Z-Ci-NPe" secondAttribute="bottom" constant="7" id="6ux-2W-wXF"/>
+                            <constraint firstItem="pPe-tj-uaN" firstAttribute="width" secondItem="pPe-tj-uaN" secondAttribute="height" multiplier="388:207" constant="104.42995169082124" id="7DV-fi-dW9"/>
                             <constraint firstItem="chg-hB-S9h" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="117" id="AS5-Af-3JC"/>
                             <constraint firstItem="8c6-sw-mOj" firstAttribute="centerX" secondItem="Ge1-w1-e4H" secondAttribute="centerX" id="D1Z-M3-SL5"/>
+                            <constraint firstItem="pPe-tj-uaN" firstAttribute="centerX" secondItem="gDs-fK-3Wd" secondAttribute="centerX" id="IVa-9o-gOe"/>
                             <constraint firstItem="8c6-sw-mOj" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="42" id="JWi-1h-ZhP"/>
                             <constraint firstItem="P9Z-Ci-NPe" firstAttribute="top" secondItem="tya-Vc-1HA" secondAttribute="bottom" constant="3" id="OtJ-0V-caJ"/>
                             <constraint firstItem="chg-hB-S9h" firstAttribute="top" secondItem="8c6-sw-mOj" secondAttribute="bottom" constant="23" id="Soi-6F-rRQ"/>
+                            <constraint firstItem="pPe-tj-uaN" firstAttribute="top" secondItem="oB8-c0-SLz" secondAttribute="bottom" id="UaH-fL-qgU"/>
                             <constraint firstItem="P9Z-Ci-NPe" firstAttribute="centerX" secondItem="Ge1-w1-e4H" secondAttribute="centerX" id="Z0z-BS-6b0"/>
                             <constraint firstItem="tya-Vc-1HA" firstAttribute="top" secondItem="gDs-fK-3Wd" secondAttribute="bottom" constant="8" id="agZ-Ib-gmG"/>
                             <constraint firstItem="chg-hB-S9h" firstAttribute="centerX" secondItem="Ge1-w1-e4H" secondAttribute="centerX" id="l4a-5q-kv2"/>
