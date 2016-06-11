@@ -112,17 +112,13 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
     }
 }
 
-/* Minimise keyboards when return/done pressed. */
+/* Minimise keyboards when return/done pressed. Click login button if password 'Done' pressed. */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    return NO;
-}
-
-/* When we click done when inputting a password, cause the login button press. */
-- (void)textFieldDidEndEditing:(UITextField *)textField {
     if(textField == passField) {
       [self loginButtonPressed: self];
     }
+    return NO;
 }
 
 @end

@@ -421,7 +421,7 @@
                         <outlet property="loginButton" destination="chg-hB-S9h" id="Fjt-pd-Z7n"/>
                         <outlet property="passField" destination="tya-Vc-1HA" id="Nyd-gL-wu6"/>
                         <outlet property="userField" destination="gDs-fK-3Wd" id="wzx-co-Ffu"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="homeScreenSegue" id="EZW-nd-Qhx"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="homeScreenSegue" modalTransitionStyle="crossDissolve" id="EZW-nd-Qhx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Flp-YG-0Z2" userLabel="First Responder" sceneMemberID="firstResponder"/>
