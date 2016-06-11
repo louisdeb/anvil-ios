@@ -32,6 +32,17 @@ NSString *const CONTROLLER_SEGUE = @"controllerSegue";
   [codes addObject:num];
   num = [NSNumber numberWithInt:14];
   [codes addObject:num];
+  num = [NSNumber numberWithInt:46];
+  [codes addObject:num];
+  num = [NSNumber numberWithInt:123];
+  [codes addObject:num];
+  num = [NSNumber numberWithInt:124];
+  [codes addObject:num];
+  num = [NSNumber numberWithInt:125];
+  [codes addObject:num];
+  num = [NSNumber numberWithInt:126];
+  [codes addObject:num];
+  
   /* --- */
   
   [appDelegate addKeyService:codes];

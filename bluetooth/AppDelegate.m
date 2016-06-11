@@ -39,6 +39,8 @@
     return [NSNumber numberWithInt:14];
   } else if([letter isEqual: @"f"]) {
     return [NSNumber numberWithInt:3];
+  } else if([letter isEqual: @"m"]) {
+    return [NSNumber numberWithInt:46];
   } else if([letter isEqual: @"q"]) {
     return [NSNumber numberWithInt:12];
   } else if([letter isEqual: @"s"]) {
@@ -47,6 +49,14 @@
     return [NSNumber numberWithInt:13];
   } else if([letter isEqual: @"SPACE"]) {
     return [NSNumber numberWithInt:49];
+  } else if([letter isEqual: @"LEFT"]) {
+    return [NSNumber numberWithInt:123];
+  } else if([letter isEqual: @"RIGHT"]) {
+    return [NSNumber numberWithInt:124];
+  } else if([letter isEqual: @"DOWN"]) {
+    return [NSNumber numberWithInt:125];
+  } else if([letter isEqual: @"UP"]) {
+    return [NSNumber numberWithInt:126];
   }
   
   return [NSNumber numberWithInt:-1];

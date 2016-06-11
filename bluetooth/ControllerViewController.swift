@@ -29,7 +29,7 @@ class ControllerViewController: UIViewController {
         //button.setImage(buttonPressedImage, forState: .Highlighted)
         button.imageView?.contentMode = .ScaleAspectFit
         button.frame = CGRectMake(50, 100, 100, 100)
-        mappedLetter![button] = "a"
+        mappedLetter![button] = "LEFT"
         self.view.addSubview(button)
 
         let button2 = UIButton()
@@ -39,7 +39,7 @@ class ControllerViewController: UIViewController {
         //button2.setImage(buttonPressedImage2, forState: .Highlighted)
         button2.imageView?.contentMode = .ScaleAspectFit
         button2.frame = CGRectMake(50, 250, 100, 100)
-        mappedLetter![button2] = "s"
+        mappedLetter![button2] = "DOWN"
         self.view.addSubview(button2)
       
         let button3 = UIButton()
@@ -49,7 +49,7 @@ class ControllerViewController: UIViewController {
         //button3.setImage(buttonPressedImage3, forState: .Highlighted)
         button3.imageView?.contentMode = .ScaleAspectFit
         button3.frame = CGRectMake(50, 400, 100, 100)
-        mappedLetter![button3] = "d"
+        mappedLetter![button3] = "RIGHT"
         self.view.addSubview(button3)
       
         let button4 = UIButton()
@@ -59,7 +59,7 @@ class ControllerViewController: UIViewController {
         //button4.setImage(buttonPressedImage4, forState: .Highlighted)
         button4.imageView?.contentMode = .ScaleAspectFit
         button4.frame = CGRectMake(190, 250, 100, 100)
-        mappedLetter![button4] = "w"
+        mappedLetter![button4] = "UP"
         self.view.addSubview(button4)
       
         let button5 = UIButton()
@@ -69,7 +69,7 @@ class ControllerViewController: UIViewController {
         //button4.setImage(buttonPressedImage4, forState: .Highlighted)
         button5.imageView?.contentMode = .ScaleAspectFit
         button5.frame = CGRectMake(190, 450, 100, 100)
-        mappedLetter![button5] = "SPACE"
+        mappedLetter![button5] = "m"
         self.view.addSubview(button5)
       
         button.addTarget(self, action: #selector(ControllerViewController.buttonPressedDown(_:)), forControlEvents: .TouchDown)
