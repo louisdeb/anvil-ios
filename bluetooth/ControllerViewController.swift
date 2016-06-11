@@ -18,9 +18,9 @@ class ControllerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+
         mappedLetter = [:]
-      
+
         /* Temporary buttons */
         let button = UIButton()
         let buttonImage = UIImage(named: "element_15")
@@ -31,9 +31,7 @@ class ControllerViewController: UIViewController {
         button.frame = CGRectMake(50, 100, 100, 100)
         mappedLetter![button] = "a"
         self.view.addSubview(button)
-      
-      
-      
+
         let button2 = UIButton()
         let buttonImage2 = UIImage(named: "element_17")
         let buttonPressedImage2 = UIImage(named: "element_10_pressed")
@@ -94,6 +92,7 @@ class ControllerViewController: UIViewController {
             if elem is UIButton {
                 let button = elem as! UIButton
                 button.addTarget(self, action: #selector(ControllerViewController.buttonPressedDown(_:)), forControlEvents: .TouchDown)
+                button.addTarget(self, action: #selector(ControllerViewController.buttonPressedUp(_:)), forControlEvents: [.TouchUpInside, .TouchUpOutside])
             }
             
             self.view.addSubview(elem)
@@ -110,6 +109,5 @@ class ControllerViewController: UIViewController {
       let letter = mappedLetter![sender]
       let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
       appDelegate.keyPress(letter, state: false)
-
     }
 }
