@@ -14,6 +14,7 @@
 
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes;
 - (void)keyPress:(NSString *)letter state:(Boolean)state;
+- (void)startBluetooth;
 
 @end
 

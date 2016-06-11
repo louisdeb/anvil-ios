@@ -11,10 +11,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  return YES;
+}
+
+- (void)startBluetooth {
   NSLog(@"Creating peripheral");
   self.peripheral = [[Peripheral alloc] init];
-  
-  return YES;
 }
 
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {

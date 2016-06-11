@@ -3,7 +3,7 @@
 
 @implementation ConfigurationSelectViewController
 
-int const PAN_TRANSLATION_MIN = 200;
+int const PAN_TRANSLATION_MIN_A = 200;
 NSString *const CONTROLLER_SEGUE = @"controllerSegue";
 
 -(void)viewDidLoad {
@@ -52,7 +52,7 @@ NSString *const CONTROLLER_SEGUE = @"controllerSegue";
 -(IBAction)handlePan:(UIPanGestureRecognizer*) sender {
   CGPoint translation = [sender translationInView: self.view];
   
-  if (fabs(translation.y) > PAN_TRANSLATION_MIN)
+  if (fabs(translation.y) > PAN_TRANSLATION_MIN_A)
     [self dismissViewControllerAnimated:true completion:nil];
 }
 

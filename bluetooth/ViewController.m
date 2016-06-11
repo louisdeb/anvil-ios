@@ -6,26 +6,59 @@
 
 @implementation ViewController
 
+@synthesize welcomeLabel, loginButton;
+
 NSString *const ABOUT_SEGUE = @"aboutSegue";
 NSString *const SELECT_SEGUE = @"configSelectSegue";
 NSString *const BUILDER_SEGUE = @"toCIB";
 NSString *const SELECT_NOTIF = @"showSelect";
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  [self setNeedsStatusBarAppearanceUpdate];
-  [self displayBluetoothGIF];
+    [super viewDidLoad];
+    [self setNeedsStatusBarAppearanceUpdate];
+    [self displayBluetoothGIF];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConfigSelectView:) name:SELECT_NOTIF object:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    navController = [storyboard instantiateViewControllerWithIdentifier:@"navController"];
+    LoginViewController *loginViewController = [navController.viewControllers objectAtIndex:0];
+    loginViewController.delegate = self;
+    
+    [self displayBluetoothGIF];
+    
+    welcomeLabel.numberOfLines = 0;
+    welcomeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    welcomeLabel.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleRegister:)
+                                                 name:@"register"
+                                               object:nil];
+  
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConfigSelectView:) name:SELECT_NOTIF object:nil];
 }
 
 - (void)viewDidUnload {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"username: %@", username);
+    if (loggedIn) {
+        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
+        welcomeLabel.hidden = NO;
+        [loginButton setTitle:@"Logout" forState:UIControlStateNormal];
+    } else {
+        welcomeLabel.hidden = YES;
+    }
+}
+
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -76,4 +109,24 @@ NSString *const SELECT_NOTIF = @"showSelect";
   [self performSegueWithIdentifier:SELECT_SEGUE sender:self];
 }
 
+- (void)passBackData:(NSString *)user loggedIn:(bool)userLoggedIn {
+    username = user;
+    loggedIn = userLoggedIn;
+}
+
+- (void)handleRegister:(NSNotification *)notification {
+    NSDictionary *data = [notification userInfo];
+    username = [data objectForKey:@"username"];
+    loggedIn = [data objectForKey:@"loggedIn"];
+}
+
+- (IBAction)loginButtonPressed:(id)sender {
+    if (loggedIn) {
+        welcomeLabel.hidden = YES;
+        loggedIn = false;
+        [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    } else {
+        [self presentViewController:navController animated:YES completion:nil];
+    }
+}
 @end
