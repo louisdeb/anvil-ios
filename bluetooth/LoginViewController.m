@@ -37,7 +37,11 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+  
+    /* Set text field delegates. */
+    userField.delegate = self;
+    passField.delegate = self;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -64,12 +68,6 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    [self loginButtonPressed:self];
-    [textField resignFirstResponder];
-    return NO;
 }
 
 - (void)loginButtonPressed:(id)sender {
@@ -111,6 +109,19 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
         [self performSegueWithIdentifier: HOME_SCREEN_SEGUE sender: self];
     } else {
         [self displayError:1];
+    }
+}
+
+/* Minimise keyboards when return/done pressed. */
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
+/* When we click done when inputting a password, cause the login button press. */
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if(textField == passField) {
+      [self loginButtonPressed: self];
     }
 }
 

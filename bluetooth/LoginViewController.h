@@ -17,7 +17,7 @@
 
 @end
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <UITextFieldDelegate>
 {
     NSArray *errorMessages;
 }
