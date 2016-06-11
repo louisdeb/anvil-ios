@@ -31,10 +31,7 @@ class ControllerViewController: UIViewController {
             self.view.addSubview(elem)
         })
         
-        SaveConfig.saveConfiguration(self.view, configUser: "jonomuller", configName: "my_config")
-//        let saveConfig = SaveConfig()
-//        SaveConfig.saveScreenshot(self.view)
-//        SaveConfig.saveToDatabase("test_name", filePath: "test_img");
+        SaveConfig.saveConfiguration(self.view, configUser: "jonomuller", configName: "Test Configuration")
     }
     
     func buttonPressed(sender: UIButton) {

@@ -24,7 +24,8 @@ NSString *password = @"Anvil4lyfe";
     }
     
     if (uploaded) {
-        NSString *url = [NSString stringWithFormat:@"https://www.doc.ic.ac.uk/project/2015/271/g1527117/configs/%@-%@.png", username, name];
+        NSString *urlName = [name stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        NSString *url = [NSString stringWithFormat:@"https://www.doc.ic.ac.uk/project/2015/271/g1527117/configs/%@-%@.png", username, urlName];
         [self saveToDatabase:username configName:name url:url];
     }
     

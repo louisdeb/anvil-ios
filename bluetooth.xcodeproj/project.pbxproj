@@ -256,6 +256,11 @@
 					BF744DF11CEE0A5000BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = VWR855X7M3;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+						};
 					};
 					BF744E0A1CEE0A5100BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
