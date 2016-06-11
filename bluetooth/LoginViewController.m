@@ -108,7 +108,6 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
     int numRows = PQntuples(result);
     if (numRows == 1) {
         [self.delegate passBackData:username loggedIn:YES];
-//        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
         [self performSegueWithIdentifier: HOME_SCREEN_SEGUE sender: self];
     } else {
         [self displayError:1];

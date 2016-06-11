@@ -464,20 +464,6 @@
                                     <constraint firstAttribute="width" secondItem="xQG-2c-MZr" secondAttribute="height" multiplier="388:207" constant="206.61352657004829" id="uyY-Wf-XyT"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzG-Ce-FWp">
-                                <rect key="frame" x="235" y="413" width="130" height="51"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="7qq-rJ-4j6"/>
-                                    <constraint firstAttribute="height" constant="51" id="vZv-Tq-1cX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q6c-OE-04p"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDD-yb-CvF">
                                 <rect key="frame" x="0.0" y="354" width="600" height="51"/>
                                 <constraints>
@@ -488,21 +474,35 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzG-Ce-FWp">
+                                <rect key="frame" x="133" y="554" width="108" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="7qq-rJ-4j6"/>
+                                    <constraint firstAttribute="height" constant="46" id="vZv-Tq-1cX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="24"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q6c-OE-04p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.60698250891265582" blue="0.80254567736185389" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="USL-wo-n2w" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="276" id="1t7-Ku-vZP"/>
                             <constraint firstItem="VDD-yb-CvF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Ra-2s-mpn"/>
-                            <constraint firstItem="VzG-Ce-FWp" firstAttribute="top" secondItem="VDD-yb-CvF" secondAttribute="bottom" constant="8" id="CLA-F2-80g"/>
+                            <constraint firstItem="VzG-Ce-FWp" firstAttribute="top" secondItem="VDD-yb-CvF" secondAttribute="bottom" constant="149" id="CLA-F2-80g"/>
                             <constraint firstItem="xQG-2c-MZr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="H0N-rc-fIs"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="USL-wo-n2w" secondAttribute="bottom" constant="47" id="NSS-5Y-CMi"/>
-                            <constraint firstItem="VzG-Ce-FWp" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="239" id="OBx-mf-qXb"/>
+                            <constraint firstItem="VzG-Ce-FWp" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="380" id="OBx-mf-qXb"/>
                             <constraint firstItem="USL-wo-n2w" firstAttribute="centerX" secondItem="xQG-2c-MZr" secondAttribute="centerX" id="RWW-NA-RXk"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="426" id="dOp-fT-Ttd"/>
                             <constraint firstItem="xQG-2c-MZr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dcK-c5-Nxk"/>
                             <constraint firstItem="xQG-2c-MZr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-34" id="fnf-Yw-Z4V"/>
-                            <constraint firstItem="VzG-Ce-FWp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lh8-go-Xzy"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VzG-Ce-FWp" secondAttribute="bottom" constant="136" id="nPg-ll-8Eq"/>
+                            <constraint firstItem="VzG-Ce-FWp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-113" id="lh8-go-Xzy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VzG-Ce-FWp" secondAttribute="bottom" id="nPg-ll-8Eq"/>
                             <constraint firstAttribute="trailing" secondItem="uNc-zK-YjO" secondAttribute="trailing" id="nbz-IP-7r7"/>
                             <constraint firstItem="VDD-yb-CvF" firstAttribute="top" secondItem="xQG-2c-MZr" secondAttribute="bottom" constant="180" id="q3p-Dr-Tte"/>
                             <constraint firstItem="uNc-zK-YjO" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="xln-hK-rop"/>
@@ -519,7 +519,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="369" y="240"/>
+            <point key="canvasLocation" x="379" y="240"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="kPd-57-EHv">
