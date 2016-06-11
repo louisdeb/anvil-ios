@@ -8,14 +8,23 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class SwiftConfigurationSelectViewController: UIViewController {
+    
+    /* See extension */
+    @IBOutlet var tableView: UITableView!
+    
+    var configs: [AnyObject] = ["this", "is", "a", "placeholder"]
     
     let PAN_TRANSLATION_MIN: CGFloat = 200
     let CONTROLLER_SEGUE = "controllerSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     @IBAction func selectView (sender: AnyObject) {
@@ -66,6 +75,22 @@ class SwiftConfigurationSelectViewController: UIViewController {
     
 }
 
-//extension ConfigurationSelectViewController: UITableViewDelegate, UITableViewDataSource {
-//    
-//}
+extension SwiftConfigurationSelectViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return configs.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("configCell")! as UITableViewCell
+        cell.textLabel?.text = configs[indexPath.row] as? String
+        cell.detailTextLabel?.text = "Row: \(indexPath.row)"
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+}
