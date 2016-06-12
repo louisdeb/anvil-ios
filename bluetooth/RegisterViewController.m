@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+//#import "AppDelegate.h"
 
 @interface RegisterViewController ()
 
@@ -15,6 +16,8 @@
 @implementation RegisterViewController
 
 @synthesize userField, passField, confirmField, emailField, nameField, registerButton, errorLabel;
+
+//NSString *const HOME_SCREEN_SEGUE = @"registerToHomeSegue";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,6 +34,12 @@
     errorLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     fields = @[userField, passField, confirmField, emailField, nameField];
+  
+    userField.delegate = self;
+    passField.delegate = self;
+    confirmField.delegate = self;
+    emailField.delegate = self;
+    nameField.delegate = self;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -78,12 +87,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    //    [self loginButtonPressed:self];
-    [textField resignFirstResponder];
-    return NO;
 }
 
 - (void)registerButtonPressed:(id)sender {
@@ -153,15 +156,27 @@
         sql = [NSString stringWithFormat:@"INSERT INTO user_info(username, password, email, fullname) VALUES ('%@', '%@', '%@', '%@')", username, password, email, fullname];
         constSQL = [sql cStringUsingEncoding:NSASCIIStringEncoding];
         result = PQexec(conn, constSQL);
-        numRows = PQntuples(result);
-        NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:username, @"username", [NSNumber numberWithBool:YES], @"loggedIn", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"register"
-                                                            object:self
-                                                          userInfo:data];
-        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+        [self startBluetooth];
+        [SSKeychain setPassword:password forService:@"Anvil" account:username];
+        [self performSegueWithIdentifier:@"registerToHomeSegue" sender:self];
     }
 }
 
+/* Ask the app delegate to start the bluetooth advertising. */
+- (void)startBluetooth {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate startBluetooth];
+}
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == [fields lastObject]) {
+        [textField resignFirstResponder];
+        [self registerButtonPressed:self];
+    } else {
+        NSInteger index = [fields indexOfObject:textField];
+        [[fields objectAtIndex:index+1] becomeFirstResponder];
+    }
+    return NO;
+}
 
 @end

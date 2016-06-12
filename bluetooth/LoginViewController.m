@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
@@ -14,7 +15,8 @@
 
 @implementation LoginViewController
 
-@synthesize userField, passField, loginButton, errorLabel, delegate;
+@synthesize userField, passField, loginButton, errorLabel;
+NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +38,13 @@
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];    
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+  
+    /* Set text field delegates. */
+    userField.delegate = self;
+    passField.delegate = self;
+    
+    fields = @[userField, passField];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -63,12 +71,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-//    [self loginButtonPressed:self];
-    [textField resignFirstResponder];
-    return NO;
 }
 
 - (void)loginButtonPressed:(id)sender {
@@ -106,11 +108,30 @@
     
     int numRows = PQntuples(result);
     if (numRows == 1) {
-        [self.delegate passBackData:username loggedIn:YES];
-        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+        [self startBluetooth];
+        [SSKeychain setPassword:password forService:@"Anvil" account:username];
+        [self performSegueWithIdentifier: HOME_SCREEN_SEGUE sender: self];
     } else {
         [self displayError:1];
     }
+}
+
+/* Ask the app delegate to start the bluetooth advertising. */
+- (void)startBluetooth {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate startBluetooth];
+}
+
+/* Minimise keyboards when return/done pressed. Click login button if password 'Done' pressed. */
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == [fields lastObject]) {
+        [textField resignFirstResponder];
+        [self loginButtonPressed:self];
+    } else {
+        NSInteger index = [fields indexOfObject:textField];
+        [[fields objectAtIndex:index+1] becomeFirstResponder];
+    }
+    return NO;
 }
 
 @end

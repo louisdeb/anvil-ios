@@ -6,39 +6,35 @@
 
 @implementation ViewController
 
-@synthesize welcomeLabel, loginButton;
+@synthesize welcomeLabel, logoutButton;
 
 NSString *const ABOUT_SEGUE = @"aboutSegue";
+NSString *const SELECT_SEGUE = @"configSelectSegue";
+NSString *const BUILDER_SEGUE = @"toCIB";
+NSString *const SELECT_NOTIF = @"showSelect";
+NSString *const KEYCHAIN_SERVICE = @"Anvil";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
+    [self displayBluetoothGIF];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     navController = [storyboard instantiateViewControllerWithIdentifier:@"navController"];
-    LoginViewController *loginViewController = [navController.viewControllers objectAtIndex:0];
-    loginViewController.delegate = self;
-    
-    [self displayBluetoothGIF];
     
     welcomeLabel.numberOfLines = 0;
     welcomeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    welcomeLabel.hidden = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleRegister:)
-                                                 name:@"register"
-                                               object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"username: %@", username);
-    if (loggedIn) {
-        welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
-        welcomeLabel.hidden = NO;
-        [loginButton setTitle:@"Logout" forState:UIControlStateNormal];
-    } else {
-        welcomeLabel.hidden = YES;
+    NSArray *accounts = [SSKeychain accountsForService:KEYCHAIN_SERVICE];
+    NSLog(@"%lu", (unsigned long)[accounts count]);
+    if ([accounts count] > 0) {
+        NSDictionary *credentials = accounts[0];
+        username = [credentials objectForKey:kSSKeychainAccountKey];
+        if (username) {
+            welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
+        } else {
+            welcomeLabel.hidden = YES;
+        }
     }
 }
 
@@ -84,7 +80,7 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
 //  [UIView setAnimationDelay:0.1];
 //  [UIView setAnimationDuration:0.5];
 //  [UIView commitAnimations];
-  [self performSegueWithIdentifier: ABOUT_SEGUE sender: sender];
+  [self performSegueWithIdentifier:ABOUT_SEGUE sender:sender];
 }
 
 - (IBAction)builderButtonUp:(UIButton *) sender {
@@ -92,27 +88,16 @@ NSString *const ABOUT_SEGUE = @"aboutSegue";
     //  [UIView setAnimationDelay:0.1];
     //  [UIView setAnimationDuration:0.5];
     //  [UIView commitAnimations];
-    [self performSegueWithIdentifier: @"toCIB" sender: sender];
+    [self performSegueWithIdentifier:BUILDER_SEGUE sender:sender];
 }
 
-- (void)passBackData:(NSString *)user loggedIn:(bool)userLoggedIn {
-    username = user;
-    loggedIn = userLoggedIn;
+- (void)showConfigSelectView:(NSNotification *) notif {
+  [self performSegueWithIdentifier:SELECT_SEGUE sender:self];
 }
 
-- (void)handleRegister:(NSNotification *)notification {
-    NSDictionary *data = [notification userInfo];
-    username = [data objectForKey:@"username"];
-    loggedIn = [data objectForKey:@"loggedIn"];
+- (IBAction)logoutButtonPressed:(id)sender {
+    [SSKeychain deletePasswordForService:KEYCHAIN_SERVICE account:username];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
-- (IBAction)loginButtonPressed:(id)sender {
-    if (loggedIn) {
-        welcomeLabel.hidden = YES;
-        loggedIn = false;
-        [loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    } else {
-        [self presentViewController:navController animated:YES completion:nil];
-    }
-}
 @end

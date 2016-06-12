@@ -9,12 +9,74 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *navController = [storyboard instantiateViewControllerWithIdentifier:@"navController"];
+    ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
+    NSArray *accounts = [SSKeychain accountsForService:@"Anvil"];
+    
+    if ([accounts count] > 0) {
+        self.window.rootViewController = viewController;
+    } else {
+        self.window.rootViewController = navController;
+    }
+    
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+
+- (void)startBluetooth {
   NSLog(@"Creating peripheral");
   self.peripheral = [[Peripheral alloc] init];
+}
+
+- (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {
+  [_peripheral addKeyService:keyCodes];
+}
+
+- (void)keyPress:(NSString *)letter state:(Boolean)state {
+  NSNumber *key = [self getKeyCodeFromString:letter];
+  [_peripheral keyPress:key state:state];
+}
+
+- (NSNumber *)getKeyCodeFromString:(NSString *)letter {
+  if([letter isEqual: @"a"]) {
+    return [NSNumber numberWithInt:0];
+  } else if([letter isEqual: @"b"]) {
+    return [NSNumber numberWithInt:11];
+  } else if([letter isEqual: @"c"]) {
+    return [NSNumber numberWithInt:8];
+  } else if([letter isEqual: @"d"]) {
+    return [NSNumber numberWithInt:2];
+  } else if([letter isEqual: @"e"]) {
+    return [NSNumber numberWithInt:14];
+  } else if([letter isEqual: @"f"]) {
+    return [NSNumber numberWithInt:3];
+  } else if([letter isEqual: @"m"]) {
+    return [NSNumber numberWithInt:46];
+  } else if([letter isEqual: @"q"]) {
+    return [NSNumber numberWithInt:12];
+  } else if([letter isEqual: @"s"]) {
+    return [NSNumber numberWithInt:1];
+  } else if([letter isEqual: @"w"]) {
+    return [NSNumber numberWithInt:13];
+  } else if([letter isEqual: @"SPACE"]) {
+    return [NSNumber numberWithInt:49];
+  } else if([letter isEqual: @"LEFT"]) {
+    return [NSNumber numberWithInt:123];
+  } else if([letter isEqual: @"RIGHT"]) {
+    return [NSNumber numberWithInt:124];
+  } else if([letter isEqual: @"DOWN"]) {
+    return [NSNumber numberWithInt:125];
+  } else if([letter isEqual: @"UP"]) {
+    return [NSNumber numberWithInt:126];
+  }
   
-  return YES;
+  return [NSNumber numberWithInt:-1];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

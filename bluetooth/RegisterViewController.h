@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <libpq/libpq-fe.h>
 #import <QuartzCore/QuartzCore.h>
-#import "LoginViewController.h"
+#import "AppDelegate.h"
+#import "SSKeychain.h"
 
-@protocol LoginDelegate;
-
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController <UITextFieldDelegate>
 {
     NSArray *errorMessages, *fields;
 }

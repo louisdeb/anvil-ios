@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
+#import "SSKeychain.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes;
+- (void)keyPress:(NSString *)letter state:(Boolean)state;
+- (void)startBluetooth;
 
 @end
 
