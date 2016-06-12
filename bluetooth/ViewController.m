@@ -95,11 +95,9 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
   [self performSegueWithIdentifier:SELECT_SEGUE sender:self];
 }
 
-- (void)passBackData:(NSString *)user loggedIn:(bool)userLoggedIn {
-    username = user;
-    loggedIn = userLoggedIn;
 - (IBAction)logoutButtonPressed:(id)sender {
     [SSKeychain deletePasswordForService:KEYCHAIN_SERVICE account:username];
     [self presentViewController:navController animated:YES completion:nil];
 }
+
 @end
