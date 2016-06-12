@@ -14,9 +14,16 @@
 
 NSString *password = @"Anvil4lyfe";
 
-+ (void)saveConfiguration:(UIView *)view configUser:(NSString *)username configName:(NSString *)name {
++ (BOOL)saveConfiguration:(UIView *)view configUser:(NSString *)username configName:(NSString *)name {
+    const char *conninfo = "host=db.doc.ic.ac.uk port=5432 dbname=g1527117_u user=g1527117_u password=pcauqNdppz";
+    PGconn *conn = PQconnectdb(conninfo);
+    
+    if ([self nameTaken:conn username:username configName:name]) {
+        return NO;
+    }
+    
     NSString *path = [self saveScreenshot:view];
-    bool uploaded = false;
+    BOOL uploaded = false;
     
     if (path) {
         NSString *remotePath = [NSString stringWithFormat:@"/vol/project/2015/271/g1527117/configs/%@-%@.png", username, name];
@@ -26,9 +33,23 @@ NSString *password = @"Anvil4lyfe";
     if (uploaded) {
         NSString *urlName = [name stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         NSString *url = [NSString stringWithFormat:@"https://www.doc.ic.ac.uk/project/2015/271/g1527117/configs/%@-%@.png", username, urlName];
-        [self saveToDatabase:username configName:name url:url];
+        [self saveToDatabase:conn username:username configName:name url:url];
     }
     
+    return YES;
+}
+
++ (BOOL)nameTaken:(PGconn *)conn username:(NSString *)username configName:(NSString *)name {
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM configurations WHERE username='%@' and name='%@'", username, name];
+    const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
+    PGresult *result = PQexec(conn, const_sql);
+    int numRows = PQntuples(result);
+    
+    if (numRows > 0) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 + (NSString *)saveScreenshot:(UIView *)view {
@@ -55,7 +76,7 @@ NSString *password = @"Anvil4lyfe";
     return path;
 }
 
-+ (bool)uploadToServer:(NSString *)path remotePath:(NSString *)remotePath {
++ (BOOL)uploadToServer:(NSString *)path remotePath:(NSString *)remotePath {
     NMSSHSession *session = [NMSSHSession connectToHost:@"shell1.doc.ic.ac.uk"
                                            withUsername:@"jam614"];
     
@@ -73,10 +94,7 @@ NSString *password = @"Anvil4lyfe";
     return success;
 }
 
-+ (void)saveToDatabase:(NSString *)username configName:(NSString *)name url:(NSString *)url {
-    const char *conninfo = "host=db.doc.ic.ac.uk port=5432 dbname=g1527117_u user=g1527117_u password=pcauqNdppz";
-    PGconn *conn = PQconnectdb(conninfo);
-    
++ (void)saveToDatabase:(PGconn *)conn username:(NSString *)username configName:(NSString *)name url:(NSString *)url {
     if (PQstatus(conn) != CONNECTION_OK) {
         NSLog(@"Connection to database failed: %s", PQerrorMessage(conn));
     }
