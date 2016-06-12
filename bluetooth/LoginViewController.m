@@ -15,7 +15,7 @@
 
 @implementation LoginViewController
 
-@synthesize userField, passField, loginButton, errorLabel, delegate;
+@synthesize userField, passField, loginButton, errorLabel;
 NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
 
 - (void)viewDidLoad {
@@ -107,7 +107,7 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
     int numRows = PQntuples(result);
     if (numRows == 1) {
         [self startBluetooth];
-        [self.delegate passBackData:username loggedIn:YES];
+        [SSKeychain setPassword:password forService:@"Anvil" account:username];
         [self performSegueWithIdentifier: HOME_SCREEN_SEGUE sender: self];
     } else {
         [self displayError:1];

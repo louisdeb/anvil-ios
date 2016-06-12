@@ -11,8 +11,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LoginViewController.h"
 
-@protocol LoginDelegate;
-
 @interface RegisterViewController : UIViewController <UITextFieldDelegate>
 {
     NSArray *errorMessages, *fields;
