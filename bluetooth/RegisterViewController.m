@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+//#import "AppDelegate.h"
 
 @interface RegisterViewController ()
 
@@ -15,6 +16,8 @@
 @implementation RegisterViewController
 
 @synthesize userField, passField, confirmField, emailField, nameField, registerButton, errorLabel;
+
+//NSString *const HOME_SCREEN_SEGUE = @"registerToHomeSegue";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -153,9 +156,16 @@
         sql = [NSString stringWithFormat:@"INSERT INTO user_info(username, password, email, fullname) VALUES ('%@', '%@', '%@', '%@')", username, password, email, fullname];
         constSQL = [sql cStringUsingEncoding:NSASCIIStringEncoding];
         result = PQexec(conn, constSQL);
-        numRows = PQntuples(result);
-        [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+        [self startBluetooth];
+        [SSKeychain setPassword:password forService:@"Anvil" account:username];
+        [self performSegueWithIdentifier:@"registerToHomeSegue" sender:self];
     }
+}
+
+/* Ask the app delegate to start the bluetooth advertising. */
+- (void)startBluetooth {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate startBluetooth];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

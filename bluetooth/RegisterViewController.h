@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <libpq/libpq-fe.h>
 #import <QuartzCore/QuartzCore.h>
-#import "LoginViewController.h"
+#import "AppDelegate.h"
+#import "SSKeychain.h"
 
 @interface RegisterViewController : UIViewController <UITextFieldDelegate>
 {

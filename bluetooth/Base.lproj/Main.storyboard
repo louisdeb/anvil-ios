@@ -288,6 +288,7 @@
                         <outlet property="passField" destination="kcQ-gf-TZs" id="K0T-G8-uyi"/>
                         <outlet property="registerButton" destination="knS-uA-mOc" id="lfL-Ir-xHP"/>
                         <outlet property="userField" destination="yS2-Nb-xmk" id="36X-1L-Zrs"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="registerToHomeSegue" modalTransitionStyle="crossDissolve" id="Q1x-m6-12c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyr-K8-qZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -605,4 +606,7 @@
         <image name="Title" width="1701" height="567"/>
         <image name="WhiteTitle" width="1701" height="567"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Q1x-m6-12c"/>
+    </inferredMetricsTieBreakers>
 </document>
