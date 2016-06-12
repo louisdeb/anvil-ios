@@ -15,7 +15,7 @@
 
 @implementation LoginViewController
 
-@synthesize userField, passField, loginButton, errorLabel, delegate;
+@synthesize userField, passField, loginButton, errorLabel;
 NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
 
 - (void)viewDidLoad {
@@ -43,6 +43,8 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
     /* Set text field delegates. */
     userField.delegate = self;
     passField.delegate = self;
+    
+    fields = @[userField, passField];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -107,7 +109,7 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
     int numRows = PQntuples(result);
     if (numRows == 1) {
         [self startBluetooth];
-        [self.delegate passBackData:username loggedIn:YES];
+        [SSKeychain setPassword:password forService:@"Anvil" account:username];
         [self performSegueWithIdentifier: HOME_SCREEN_SEGUE sender: self];
     } else {
         [self displayError:1];
@@ -122,9 +124,12 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
 
 /* Minimise keyboards when return/done pressed. Click login button if password 'Done' pressed. */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    if(textField == passField) {
-      [self loginButtonPressed: self];
+    if (textField == [fields lastObject]) {
+        [textField resignFirstResponder];
+        [self loginButtonPressed:self];
+    } else {
+        NSInteger index = [fields indexOfObject:textField];
+        [[fields objectAtIndex:index+1] becomeFirstResponder];
     }
     return NO;
 }

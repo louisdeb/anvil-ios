@@ -20,6 +20,9 @@
 		AFF902921D0877FC00E23B48 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF902911D0877FC00E23B48 /* LoginViewController.m */; };
 		AFF902941D08B04D00E23B48 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF902931D08B04D00E23B48 /* QuartzCore.framework */; };
 		AFF902971D08CA5C00E23B48 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF902961D08CA5C00E23B48 /* RegisterViewController.m */; };
+		AFFF794A1D0CE50400037695 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFF79491D0CE50400037695 /* Security.framework */; };
+		AFFF79661D0CEE3500037695 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFF79651D0CEE3500037695 /* SSKeychain.m */; };
+		AFFF79691D0CEE8300037695 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFF79681D0CEE8300037695 /* SSKeychainQuery.m */; };
 		BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */; };
 		BF1F7F951D09DD7E00E250B1 /* ConfigurationSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1F7F941D09DD7E00E250B1 /* ConfigurationSelectViewController.m */; };
 		BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF61CEE0A5000BBE6F6 /* main.m */; };
@@ -60,6 +63,11 @@
 		AFF902931D08B04D00E23B48 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AFF902951D08CA5C00E23B48 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		AFF902961D08CA5C00E23B48 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		AFFF79491D0CE50400037695 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AFFF79641D0CEE3500037695 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		AFFF79651D0CEE3500037695 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		AFFF79671D0CEE8300037695 /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		AFFF79681D0CEE8300037695 /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		BF1F7F931D09DD6900E250B1 /* ConfigurationSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigurationSelectViewController.h; sourceTree = "<group>"; };
@@ -86,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFFF794A1D0CE50400037695 /* Security.framework in Frameworks */,
 				AFF902941D08B04D00E23B48 /* QuartzCore.framework in Frameworks */,
 				AFF9028B1D0864EA00E23B48 /* libpq.framework in Frameworks */,
 			);
@@ -114,10 +123,22 @@
 		AFF9028C1D08653300E23B48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AFFF79491D0CE50400037695 /* Security.framework */,
 				AFF902931D08B04D00E23B48 /* QuartzCore.framework */,
 				AFF9028A1D0864EA00E23B48 /* libpq.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFFF796A1D0D7A2800037695 /* SSKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF79671D0CEE8300037695 /* SSKeychainQuery.h */,
+				AFFF79681D0CEE8300037695 /* SSKeychainQuery.m */,
+				AFFF79641D0CEE3500037695 /* SSKeychain.h */,
+				AFFF79651D0CEE3500037695 /* SSKeychain.m */,
+			);
+			name = SSKeychain;
 			sourceTree = "<group>";
 		};
 		BF744DE91CEE0A5000BBE6F6 = {
@@ -142,6 +163,7 @@
 		BF744DF41CEE0A5000BBE6F6 /* bluetooth */ = {
 			isa = PBXGroup;
 			children = (
+				AFFF796A1D0D7A2800037695 /* SSKeychain */,
 				BF744DF81CEE0A5000BBE6F6 /* AppDelegate.h */,
 				BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */,
 				BF744E1A1CEE0BA800BBE6F6 /* Bluetooth */,
@@ -248,7 +270,7 @@
 				TargetAttributes = {
 					BF744DF11CEE0A5000BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 9966EZPA3G;
+						DevelopmentTeam = VWR855X7M3;
 					};
 					BF744E0A1CEE0A5100BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
@@ -304,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */,
+				AFFF79691D0CEE8300037695 /* SSKeychainQuery.m in Sources */,
 				7E6251121CF499AB0036058A /* UIElementSelectionViewController.swift in Sources */,
 				BF1F7F951D09DD7E00E250B1 /* ConfigurationSelectViewController.m in Sources */,
 				BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */,
@@ -313,6 +336,7 @@
 				7E4E38051CF3951900DF995B /* JSONViewElementHandler.swift in Sources */,
 				BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */,
 				AFF902921D0877FC00E23B48 /* LoginViewController.m in Sources */,
+				AFFF79661D0CEE3500037695 /* SSKeychain.m in Sources */,
 				AFF902971D08CA5C00E23B48 /* RegisterViewController.m in Sources */,
 				BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */,
 				7EE04A8E1CF852F4003791AD /* AttributeConfigurationViewController.swift in Sources */,
@@ -445,6 +469,7 @@
 		BF744E151CEE0A5100BBE6F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -454,6 +479,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluetooth",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/bluetooth";
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -468,6 +494,7 @@
 		BF744E161CEE0A5100BBE6F6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -477,6 +504,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/bluetooth",
 				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/bluetooth";
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
