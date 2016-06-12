@@ -169,7 +169,13 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
+    if (textField == [fields lastObject]) {
+        [textField resignFirstResponder];
+        [self registerButtonPressed:self];
+    } else {
+        NSInteger index = [fields indexOfObject:textField];
+        [[fields objectAtIndex:index+1] becomeFirstResponder];
+    }
     return NO;
 }
 

@@ -14,7 +14,7 @@
 
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
 {
-    NSArray *errorMessages;
+    NSArray *errorMessages, *fields;
 }
 
 @property (strong, nonatomic) IBOutlet UITextField *userField, *passField;
