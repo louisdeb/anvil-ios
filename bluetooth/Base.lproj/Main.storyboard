@@ -602,22 +602,45 @@
                                     <constraint firstAttribute="width" constant="146" id="HCl-hP-9cs"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GHW-ep-pHK">
-                                <rect key="frame" x="20" y="166" width="560" height="426"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate ya dunkno bout that velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHW-ep-pHK">
+                                <rect key="frame" x="20" y="157" width="560" height="427.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Use your iPhone or iPad as a controller for games on your computer!
+
+How it works: 
+  • Download Anvil on the Mac App Store 
+  • Create or download a controller
+  • Turn on Bluetooth on your iOS device and Mac
+  • Select your device (account name)
+  • Control your computer from your phone
+
+Creating a controller:
+  • Select a button to add
+  • Click to place it, drag it around, resize it and rotate it
+  • Click and hold to select a key to map the button to
+  • Save the controller when you're ready to play with it
+
+You can manage your controllers and check out other user's controllers at our Anvil Website.</string>
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="18" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.60784313725490191" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="flN-NT-A6C" firstAttribute="leading" secondItem="0dr-cU-GBN" secondAttribute="leadingMargin" constant="-20" id="AMb-Zz-MWa"/>
-                            <constraint firstItem="oe0-mQ-Kgt" firstAttribute="top" secondItem="GHW-ep-pHK" secondAttribute="bottom" constant="8" id="NhS-DF-JMR"/>
+                            <constraint firstItem="oe0-mQ-Kgt" firstAttribute="top" secondItem="GHW-ep-pHK" secondAttribute="bottom" constant="15.5" id="NhS-DF-JMR"/>
                             <constraint firstItem="GHW-ep-pHK" firstAttribute="trailing" secondItem="0dr-cU-GBN" secondAttribute="trailingMargin" id="VP5-yG-tTD"/>
                             <constraint firstItem="oe0-mQ-Kgt" firstAttribute="top" secondItem="flN-NT-A6C" secondAttribute="bottom" constant="470" id="a4M-Pc-rjy"/>
-                            <constraint firstItem="GHW-ep-pHK" firstAttribute="top" secondItem="flN-NT-A6C" secondAttribute="bottom" constant="36" id="d93-n9-8PM"/>
+                            <constraint firstItem="GHW-ep-pHK" firstAttribute="top" secondItem="flN-NT-A6C" secondAttribute="bottom" constant="27" id="d93-n9-8PM"/>
                             <constraint firstItem="GHW-ep-pHK" firstAttribute="leading" secondItem="0dr-cU-GBN" secondAttribute="leadingMargin" id="e7T-zb-CLK"/>
                             <constraint firstItem="flN-NT-A6C" firstAttribute="top" secondItem="PqR-uH-LD7" secondAttribute="bottom" constant="32" id="h1B-k4-dqV"/>
                         </constraints>
@@ -625,6 +648,9 @@
                             <outletCollection property="gestureRecognizers" destination="wJf-Z5-g6k" appends="YES" id="Ew4-5P-bO4"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="aboutText" destination="GHW-ep-pHK" id="Epf-MS-tB1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOp-7w-L8w" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="wJf-Z5-g6k">
