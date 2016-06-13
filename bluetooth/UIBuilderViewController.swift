@@ -160,7 +160,16 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func showControllerScreen (sender: AnyObject) {
-        let alertController = UIAlertController(title: "Configuration Name", message: "Please enter a name for the configuration", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Controller Name", message: "Please enter a name for the controller", preferredStyle: .Alert)
+        
+        let emptyKey = self.mappedLetter.count < self.elementsOnScreen.count
+        
+        if emptyKey {
+            let alertError = UIAlertController(title: "Button(s) missing key mapping", message: "Please make sure all buttons have a key mapping. Hold down a button to assign it to a letter.", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+            alertError.addAction(okAction)
+            self.presentViewController(alertError, animated: true, completion: nil)
+        }
         
         alertController.addTextFieldWithConfigurationHandler({
             textField in
@@ -168,7 +177,7 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
                 textField.addTarget(self, action: #selector(UIBuilderViewController.alertTextFieldDidChange(_:)), forControlEvents: .EditingChanged)
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil);
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         let saveAction = UIAlertAction(title: "Save", style: .Default, handler: {
             action in
                 let textField = alertController.textFields?.first
@@ -180,19 +189,20 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
                     let credentials = accounts[0] as! NSDictionary
                     username = credentials.objectForKey(kSSKeychainAccountKey) as! String
                 }
-                
+            
                 let success = SaveConfig.saveConfiguration(self.view, buttons: self.mappedLetter, configUser: username, configName: configName)
             
-                if success {
+                if success && !emptyKey {
                     self.dismissViewControllerAnimated(true, completion: {})
                 } else {
-                    alertController.setValue(NSAttributedString(string: "Name taken, please try again", attributes: [NSForegroundColorAttributeName: UIColor.redColor()]), forKey: "attributedMessage")
+                    alertController.title = "Controller name taken"
+                    alertController.message = "Please enter a different name"
                     textField?.text = ""
                     self.presentViewController(alertController, animated: true, completion: nil)
                 }
         })
         
-        saveAction.enabled = false;
+        saveAction.enabled = false
         
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
