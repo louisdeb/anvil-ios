@@ -104,6 +104,8 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
 }
 
 - (IBAction)logoutButtonPressed:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate stopBluetooth];
     [SSKeychain deletePasswordForService:KEYCHAIN_SERVICE account:username];
     [self presentViewController:navController animated:YES completion:nil];
 }

@@ -68,6 +68,10 @@ NSMutableDictionary *keyToUuidDict;
   [self.peripheralManager startAdvertising:advertisment];
 }
 
+- (void)stopAdvertising {
+  [self.peripheralManager stopAdvertising];
+}
+
 /* Did update state */
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
   switch (peripheral.state) {

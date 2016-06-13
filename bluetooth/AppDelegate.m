@@ -34,6 +34,10 @@
   self.peripheral = [[Peripheral alloc] initWithUsername:username];
 }
 
+- (void)stopBluetooth {
+  [self.peripheral stopAdvertising];
+}
+
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {
   [_peripheral addKeyService:keyCodes];
 }
