@@ -18,6 +18,17 @@ class ControllerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var lettersInUse: [String] = []
+        for (_, v) in mappedLetter! {
+            lettersInUse.append(v)
+        }
+        print("letters in use: ")
+        print(lettersInUse)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.addKeyService(NSMutableArray(array: lettersInUse))
+        
       
         controls?.forEach({ (elem) in 
             

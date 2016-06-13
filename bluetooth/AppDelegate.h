@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes;
+- (void)addKeyService:(NSMutableArray<NSString *> *)codes;
 - (void)keyPress:(NSString *)letter state:(Boolean)state;
 - (void)startBluetooth:(NSString *)username;
 - (void)stopBluetooth;
