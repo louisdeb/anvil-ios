@@ -596,14 +596,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteAnvilLogo" translatesAutoresizingMaskIntoConstraints="NO" id="flN-NT-A6C">
-                                <rect key="frame" x="0.0" y="52" width="146" height="78"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="146" id="HCl-hP-9cs"/>
-                                </constraints>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHW-ep-pHK">
-                                <rect key="frame" x="20" y="157" width="560" height="427.5"/>
+                                <rect key="frame" x="20" y="157" width="560" height="428"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Use your iPhone or iPad as a controller for games on your computer!
@@ -632,17 +626,39 @@ You can manage your controllers and check out other user's controllers at our An
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjn-ZV-XOD">
+                                <rect key="frame" x="494" y="52" width="86" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="zwi-ZO-20H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="24"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBack:" destination="6r6-Ee-Mip" eventType="touchUpInside" id="cuz-DH-byX"/>
+                                    <action selector="logoutButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wZ7-cv-9pE"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteAnvilLogo" translatesAutoresizingMaskIntoConstraints="NO" id="flN-NT-A6C">
+                                <rect key="frame" x="0.0" y="52" width="146" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="78" id="Odj-GH-xsZ"/>
+                                    <constraint firstAttribute="width" constant="146" id="uVO-Wh-OcW"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.60784313725490191" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="flN-NT-A6C" firstAttribute="leading" secondItem="0dr-cU-GBN" secondAttribute="leadingMargin" constant="-20" id="AMb-Zz-MWa"/>
+                            <constraint firstItem="GHW-ep-pHK" firstAttribute="top" secondItem="flN-NT-A6C" secondAttribute="bottom" constant="27" id="3jB-Ov-ucq"/>
+                            <constraint firstItem="Kjn-ZV-XOD" firstAttribute="top" secondItem="flN-NT-A6C" secondAttribute="top" id="CpN-3d-zOs"/>
+                            <constraint firstItem="Kjn-ZV-XOD" firstAttribute="trailing" secondItem="GHW-ep-pHK" secondAttribute="trailing" id="GhH-6q-Qy0"/>
                             <constraint firstItem="oe0-mQ-Kgt" firstAttribute="top" secondItem="GHW-ep-pHK" secondAttribute="bottom" constant="15.5" id="NhS-DF-JMR"/>
                             <constraint firstItem="GHW-ep-pHK" firstAttribute="trailing" secondItem="0dr-cU-GBN" secondAttribute="trailingMargin" id="VP5-yG-tTD"/>
-                            <constraint firstItem="oe0-mQ-Kgt" firstAttribute="top" secondItem="flN-NT-A6C" secondAttribute="bottom" constant="470" id="a4M-Pc-rjy"/>
-                            <constraint firstItem="GHW-ep-pHK" firstAttribute="top" secondItem="flN-NT-A6C" secondAttribute="bottom" constant="27" id="d93-n9-8PM"/>
                             <constraint firstItem="GHW-ep-pHK" firstAttribute="leading" secondItem="0dr-cU-GBN" secondAttribute="leadingMargin" id="e7T-zb-CLK"/>
-                            <constraint firstItem="flN-NT-A6C" firstAttribute="top" secondItem="PqR-uH-LD7" secondAttribute="bottom" constant="32" id="h1B-k4-dqV"/>
+                            <constraint firstItem="flN-NT-A6C" firstAttribute="top" secondItem="PqR-uH-LD7" secondAttribute="bottom" constant="32" id="eua-nX-7VO"/>
+                            <constraint firstItem="flN-NT-A6C" firstAttribute="leading" secondItem="GHW-ep-pHK" secondAttribute="leading" constant="-20" id="gQw-Sx-hkj"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="wJf-Z5-g6k" appends="YES" id="Ew4-5P-bO4"/>
