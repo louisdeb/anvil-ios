@@ -165,7 +165,52 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @IBAction func showControllerScreen (sender: AnyObject) {
-        performSegueWithIdentifier(CONTROLLER, sender: sender)
+        let alertController = UIAlertController(title: "Configuration Name", message: "Please enter a name for the configuration", preferredStyle: .Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler({
+            textField in
+                textField.placeholder = "name"
+                textField.addTarget(self, action: #selector(UIBuilderViewController.alertTextFieldDidChange(_:)), forControlEvents: .EditingChanged)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil);
+        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: {
+            action in
+                let textField = alertController.textFields?.first
+                let configName = textField?.text
+                let accounts = SSKeychain.accountsForService("Anvil") as NSArray
+                var username = String()
+            
+                if accounts.count > 0 {
+                    let credentials = accounts[0] as! NSDictionary
+                    username = credentials.objectForKey(kSSKeychainAccountKey) as! String
+                }
+                
+                let success = SaveConfig.saveConfiguration(self.view, buttons: self.elementsOnScreen, configUser: username, configName: configName)
+            
+                if success {
+                    self.performSegueWithIdentifier(self.CONTROLLER, sender: sender)
+                } else {
+                    alertController.setValue(NSAttributedString(string: "Name taken, please try again", attributes: [NSForegroundColorAttributeName: UIColor.redColor()]), forKey: "attributedMessage")
+                    textField?.text = ""
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
+        })
+        
+        saveAction.enabled = false;
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        alertController.preferredAction = saveAction
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func alertTextFieldDidChange(textField : UITextField) {
+        let alertController = self.presentedViewController as! UIAlertController
+        let textField = alertController.textFields?.first
+        let saveAction = alertController.actions.last
+        saveAction?.enabled = textField?.text?.characters.count > 0
     }
     
     @IBAction func showElementSelection (sender: AnyObject) {

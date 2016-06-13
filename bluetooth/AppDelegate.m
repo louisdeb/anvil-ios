@@ -9,12 +9,29 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    UINavigationController *navController = [storyboard instantiateViewControllerWithIdentifier:@"navController"];
+    ViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"initialView"];
+    NSArray *accounts = [SSKeychain accountsForService:@"Anvil"];
+    
+    if ([accounts count] > 0) {
+        self.window.rootViewController = viewController;
+    } else {
+        self.window.rootViewController = navController;
+    }
+    
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+
+- (void)startBluetooth {
   NSLog(@"Creating peripheral");
   self.peripheral = [[Peripheral alloc] init];
-  
-  return YES;
 }
 
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {

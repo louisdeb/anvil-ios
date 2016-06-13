@@ -1,8 +1,18 @@
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "RegisterViewController.h"
+#import "LoginViewController.h"
 
-- (void)showConfigSelectView:(NSNotification *) notif;
+@interface ViewController : UIViewController
+{
+    UINavigationController *navController;
+    NSString *username;
+}
+
+@property (strong, nonatomic) IBOutlet UILabel *welcomeLabel;
+@property (strong, nonatomic) IBOutlet UIButton *logoutButton;
+
+- (IBAction)logoutButtonPressed:(id)sender;
 
 @end
 

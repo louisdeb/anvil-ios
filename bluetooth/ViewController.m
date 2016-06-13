@@ -6,26 +6,44 @@
 
 @implementation ViewController
 
+@synthesize welcomeLabel, logoutButton;
+
 NSString *const ABOUT_SEGUE = @"aboutSegue";
 NSString *const SELECT_SEGUE = @"configSelectSegue";
 NSString *const BUILDER_SEGUE = @"toCIB";
 NSString *const SELECT_NOTIF = @"showSelect";
+NSString *const KEYCHAIN_SERVICE = @"Anvil";
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  [self setNeedsStatusBarAppearanceUpdate];
-  [self displayBluetoothGIF];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showConfigSelectView:) name:SELECT_NOTIF object:nil];
-}
-
-- (void)viewDidUnload {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidLoad];
+    [self setNeedsStatusBarAppearanceUpdate];
+    [self displayBluetoothGIF];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    navController = [storyboard instantiateViewControllerWithIdentifier:@"navController"];
+    
+    welcomeLabel.numberOfLines = 0;
+    welcomeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSArray *accounts = [SSKeychain accountsForService:KEYCHAIN_SERVICE];
+    if ([accounts count] > 0) {
+        NSDictionary *credentials = accounts[0];
+        username = [credentials objectForKey:kSSKeychainAccountKey];
+        if (username) {
+            welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
+        } else {
+            welcomeLabel.hidden = YES;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -74,6 +92,11 @@ NSString *const SELECT_NOTIF = @"showSelect";
 
 - (void)showConfigSelectView:(NSNotification *) notif {
   [self performSegueWithIdentifier:SELECT_SEGUE sender:self];
+}
+
+- (IBAction)logoutButtonPressed:(id)sender {
+    [SSKeychain deletePasswordForService:KEYCHAIN_SERVICE account:username];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 @end
