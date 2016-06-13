@@ -26,7 +26,6 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
     welcomeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSArray *accounts = [SSKeychain accountsForService:KEYCHAIN_SERVICE];
-    NSLog(@"%lu", (unsigned long)[accounts count]);
     if ([accounts count] > 0) {
         NSDictionary *credentials = accounts[0];
         username = [credentials objectForKey:kSSKeychainAccountKey];

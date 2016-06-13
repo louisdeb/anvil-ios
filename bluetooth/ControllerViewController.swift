@@ -18,6 +18,8 @@ class ControllerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        controls = SaveConfig.getButtonsFromJSON("jonomuller", configName: "json test 2") as! [UIView]?
 
         mappedLetter = [:]
       
