@@ -156,16 +156,16 @@
         sql = [NSString stringWithFormat:@"INSERT INTO user_info(username, password, email, fullname) VALUES ('%@', '%@', '%@', '%@')", username, password, email, fullname];
         constSQL = [sql cStringUsingEncoding:NSASCIIStringEncoding];
         result = PQexec(conn, constSQL);
-        [self startBluetooth];
+        [self startBluetooth:username];
         [SSKeychain setPassword:password forService:@"Anvil" account:username];
         [self performSegueWithIdentifier:@"registerToHomeSegue" sender:self];
     }
 }
 
 /* Ask the app delegate to start the bluetooth advertising. */
-- (void)startBluetooth {
+- (void)startBluetooth:(NSString *)username {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate startBluetooth];
+    [appDelegate startBluetooth:username];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
