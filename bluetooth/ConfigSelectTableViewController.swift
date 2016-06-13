@@ -142,9 +142,19 @@ class ConfigSelectTableViewController: UITableViewController {
         self.navigationController!.view.backgroundColor = UIColor.clearColor();
         self.navigationController!.navigationBar.backgroundColor = UIColor.clearColor();
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        
         if segue.identifier == CONTROLLER_SEGUE {
             let dest = segue.destinationViewController as! ControllerViewController
-            dest.controls = SaveConfig.getButtonsFromJSON(self.jsonString) as? [UIView]
+            let controller = SaveConfig.getButtonsFromJSON(self.jsonString)
+            let controls = controller[0] as! [UIView]
+            let mappings = controller[1] as! [String]
+            var mappedLetter : [UIView : String] = [:]
+            for (index, element) in controls.enumerate() {
+                mappedLetter[element] = mappings[index]
+            }
+            
+            dest.controls = controls
+            dest.mappedLetter = mappedLetter
         }
     }
     

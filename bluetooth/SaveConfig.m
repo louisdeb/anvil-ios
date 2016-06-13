@@ -14,7 +14,7 @@
 
 NSString *password = @"Anvil4lyfe";
 
-+ (BOOL)saveConfiguration:(UIView *)view buttons:(NSArray *)buttons configUser:(NSString *)username configName:(NSString *)name {
++ (BOOL)saveConfiguration:(UIView *)view buttons:(NSDictionary *)buttons configUser:(NSString *)username configName:(NSString *)name {
     PGconn *conn = [self connectToDatabase];
     
     if ([self nameTaken:conn username:username configName:name]) {
@@ -117,8 +117,9 @@ NSString *password = @"Anvil4lyfe";
     return conn;
 }
 
-+ (NSString *)convertButtonsToJSON:(NSArray *)buttons {
++ (NSString *)convertButtonsToJSON:(NSDictionary *)buttons {
     NSMutableArray *viewsData = [[NSMutableArray alloc] init];
+    NSMutableDictionary *viewsDict = [[NSMutableDictionary alloc] init];
     NSString *viewData;
     
     for (UIView *view in buttons) {
@@ -127,12 +128,14 @@ NSString *password = @"Anvil4lyfe";
         [archiver encodeObject:view forKey:@"view"];
         [archiver finishEncoding];
         viewData = [data base64EncodedStringWithOptions:kNilOptions];
-        [viewsData addObject:viewData];
+        NSString *key = [buttons objectForKey:view];
+        [viewsDict setObject:viewData forKey:@"data"];
+        [viewsDict setObject:key forKey:@"key"];
+        [viewsData addObject:[viewsDict copy]];
     }
     
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:viewsData options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
     return jsonString;
 }
 
@@ -141,16 +144,23 @@ NSString *password = @"Anvil4lyfe";
     NSMutableArray *viewsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
     
     NSMutableArray *buttons = [[NSMutableArray alloc] init];
+    NSMutableArray *mappings = [[NSMutableArray alloc] init];
     NSData *data;
-    for (NSString *viewData in viewsData) {
+    
+    for (NSDictionary *viewDict in viewsData) {
+        NSString *viewData = [viewDict objectForKey:@"data"];
         data = [[NSData alloc] initWithBase64EncodedString:viewData options:kNilOptions];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         UIView *view = [unarchiver decodeObjectForKey:@"view"];
         [unarchiver finishDecoding];
+        NSString *key = [viewDict objectForKey:@"key"];
         [buttons addObject:view];
+        [mappings addObject:key];
     }
     
-    return [buttons copy];
+    NSArray *controller = [NSArray arrayWithObjects:buttons, mappings, nil];
+    
+    return controller;
 }
 
 + (NSArray *)getConfigurations:(NSString *)username {

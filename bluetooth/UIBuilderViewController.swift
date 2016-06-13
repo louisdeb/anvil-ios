@@ -181,7 +181,7 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
                     username = credentials.objectForKey(kSSKeychainAccountKey) as! String
                 }
                 
-                let success = SaveConfig.saveConfiguration(self.view, buttons: self.elementsOnScreen, configUser: username, configName: configName)
+                let success = SaveConfig.saveConfiguration(self.view, buttons: self.mappedLetter, configUser: username, configName: configName)
             
                 if success {
                     self.dismissViewControllerAnimated(true, completion: {})

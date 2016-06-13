@@ -14,13 +14,13 @@
 
 @interface SaveConfig : NSObject
 
-+ (BOOL)saveConfiguration:(UIView *)view buttons:(NSArray *)buttons configUser:(NSString *)username configName:(NSString *)name;
++ (BOOL)saveConfiguration:(UIView *)view buttons:(NSDictionary *)buttons configUser:(NSString *)username configName:(NSString *)name;
 + (BOOL)nameTaken:(PGconn *)conn username:(NSString *)username configName:(NSString *)name;
 + (NSString *)saveScreenshot:(UIView *)view;
 + (BOOL)uploadToServer:(NSString *)path remotePath:(NSString *)remotePath;
 + (PGconn *)connectToDatabase;
 + (void)saveToDatabase:(PGconn *)conn username:(NSString *)username configName:(NSString *)name json:(NSString *)json url:(NSString *)url;
-+ (NSString *)convertButtonsToJSON:(NSArray *)buttons;
++ (NSString *)convertButtonsToJSON:(NSDictionary *)buttons;
 + (NSArray *)getButtonsFromJSON:(NSString *)jsonString;
 + (NSArray *)getConfigurations:(NSString *)username;
 

@@ -18,10 +18,6 @@ class ControllerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        controls = SaveConfig.getButtonsFromJSON("jonomuller", configName: "json test 2") as! [UIView]?
-
-        mappedLetter = [:]
       
         controls?.forEach({ (elem) in 
             
@@ -39,6 +35,7 @@ class ControllerViewController: UIViewController {
     
     func buttonPressedDown(sender: UIButton) {
         let letter = mappedLetter![sender]
+        print(letter)
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.keyPress(letter, state: true)
     }
