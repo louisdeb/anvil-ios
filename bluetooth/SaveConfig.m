@@ -150,7 +150,6 @@ NSString *password = @"Anvil4lyfe";
         [buttons addObject:view];
     }
     
-    NSLog(@"buttons: %@", buttons);
     return [buttons copy];
 }
 
@@ -171,7 +170,6 @@ NSString *password = @"Anvil4lyfe";
             char *data = PQgetvalue(result, i, j);
             NSString *key = [NSString stringWithUTF8String:name];
             NSString *value = [NSString stringWithUTF8String:data];
-            NSLog(@"key: %@, value: %@", key, value);
             [dictionary setValue:value forKey:key];
             
             if (j == numColumns - 3) {
@@ -179,8 +177,6 @@ NSString *password = @"Anvil4lyfe";
             }
         }
     }
-    
-    NSLog(@"configs: %@", configs);
     
     return configs;
 }

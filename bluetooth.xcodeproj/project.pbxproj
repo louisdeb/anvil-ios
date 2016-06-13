@@ -13,7 +13,6 @@
 		7E6251101CF499930036058A /* UIBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E62510F1CF499930036058A /* UIBuilderViewController.swift */; };
 		7E6251121CF499AB0036058A /* UIElementSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6251111CF499AB0036058A /* UIElementSelectionViewController.swift */; };
 		7E6251141CF4A7F60036058A /* button.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E6251131CF4A7F60036058A /* button.jpg */; };
-		7EA60D461D0CA2B800CD3194 /* ConfigurationSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA60D451D0CA2B800CD3194 /* ConfigurationSelectViewController.swift */; };
 		7EA60D481D0CB03700CD3194 /* asdf.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7EA60D471D0CB03700CD3194 /* asdf.mp3 */; };
 		7EDB2CA91CF4742700D9C9AF /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB2CA81CF4742700D9C9AF /* test.json */; };
 		7EE04A8E1CF852F4003791AD /* AttributeConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */; };
@@ -21,6 +20,7 @@
 		AF700C551D09BE2C002798E6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF700C541D09BE2C002798E6 /* CFNetwork.framework */; };
 		AF700C581D09BE9A002798E6 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AF700C561D09BE75002798E6 /* libz.1.dylib */; };
 		AFBB99901D09C9FB00F8995F /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFBB998F1D09C9FB00F8995F /* NMSSH.framework */; };
+		AFC3C4591D0ECBF100B82173 /* ConfigSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3C4581D0ECBF100B82173 /* ConfigSelectTableViewController.swift */; };
 		AFF9028B1D0864EA00E23B48 /* libpq.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF9028A1D0864EA00E23B48 /* libpq.framework */; };
 		AFF902921D0877FC00E23B48 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF902911D0877FC00E23B48 /* LoginViewController.m */; };
 		AFF902941D08B04D00E23B48 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFF902931D08B04D00E23B48 /* QuartzCore.framework */; };
@@ -57,7 +57,6 @@
 		7E6251111CF499AB0036058A /* UIElementSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIElementSelectionViewController.swift; sourceTree = "<group>"; };
 		7E6251131CF4A7F60036058A /* button.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = button.jpg; sourceTree = "<group>"; };
 		7E89E5D61CEF6738005BD9CA /* bluetooth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bluetooth-Bridging-Header.h"; sourceTree = "<group>"; };
-		7EA60D451D0CA2B800CD3194 /* ConfigurationSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationSelectViewController.swift; sourceTree = "<group>"; };
 		7EA60D471D0CB03700CD3194 /* asdf.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = asdf.mp3; sourceTree = "<group>"; };
 		7EDB2CA81CF4742700D9C9AF /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		7EE04A8D1CF852F4003791AD /* AttributeConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeConfigurationViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		AF700C541D09BE2C002798E6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		AF700C561D09BE75002798E6 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		AFBB998F1D09C9FB00F8995F /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMSSH.framework; sourceTree = "<group>"; };
+		AFC3C4581D0ECBF100B82173 /* ConfigSelectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigSelectTableViewController.swift; sourceTree = "<group>"; };
 		AFF9028A1D0864EA00E23B48 /* libpq.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpq.framework; path = bluetooth/libpq.framework; sourceTree = "<group>"; };
 		AFF902901D0877FC00E23B48 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		AFF902911D0877FC00E23B48 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 				BF744E1A1CEE0BA800BBE6F6 /* Bluetooth */,
 				BF744DFB1CEE0A5000BBE6F6 /* ViewController.h */,
 				BF744DFC1CEE0A5100BBE6F6 /* ViewController.m */,
-				7EA60D451D0CA2B800CD3194 /* ConfigurationSelectViewController.swift */,
+				AFC3C4581D0ECBF100B82173 /* ConfigSelectTableViewController.swift */,
 				AF0C08141D070492002C930E /* SaveConfig.h */,
 				AF0C08151D070492002C930E /* SaveConfig.m */,
 				AFF902901D0877FC00E23B48 /* LoginViewController.h */,
@@ -345,7 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */,
-				7EA60D461D0CA2B800CD3194 /* ConfigurationSelectViewController.swift in Sources */,
+				AFC3C4591D0ECBF100B82173 /* ConfigSelectTableViewController.swift in Sources */,
 				AFFF79691D0CEE8300037695 /* SSKeychainQuery.m in Sources */,
 				7E6251121CF499AB0036058A /* UIElementSelectionViewController.swift in Sources */,
 				BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */,
