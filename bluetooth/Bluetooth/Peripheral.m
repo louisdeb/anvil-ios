@@ -28,11 +28,16 @@ static int const RELEASE_SHIFT = 130;
 NSMutableDictionary *keyToUuidDict;
 
 - (id)init {
-  SERVICE_NAME = [[UIDevice currentDevice] name];
+  SERVICE_NAME = [self getAdvertisingName];
   
   self = [super init];
   [self setupPeripheral];
   return self;
+}
+
+/* Returns username if found. Otherwise returns device name. */
+- (NSString *)getAdvertisingName {
+  return [[UIDevice currentDevice] name];
 }
 
 /* Initialise default service, ready characteristic and peripheral manager. */
