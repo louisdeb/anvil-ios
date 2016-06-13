@@ -32,8 +32,10 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
         username = [credentials objectForKey:kSSKeychainAccountKey];
         if (username) {
             welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
+            [self startBluetooth:username];
         } else {
             welcomeLabel.hidden = YES;
+            [self startBluetooth:[[UIDevice currentDevice] name]];
         }
     }
 }
@@ -49,6 +51,12 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+/* Ask the app delegate to start the bluetooth advertising. */
+- (void)startBluetooth:(NSString *)username {
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  [appDelegate startBluetooth:username];
 }
 
 - (void)displayBluetoothGIF {
