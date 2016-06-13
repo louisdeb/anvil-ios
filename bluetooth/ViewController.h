@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *logoutButton;
 
 - (IBAction)logoutButtonPressed:(id)sender;
+- (IBAction)selectButtonPressed:(id)sender;
 
 @end
 

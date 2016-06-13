@@ -15,8 +15,7 @@
 NSString *password = @"Anvil4lyfe";
 
 + (BOOL)saveConfiguration:(UIView *)view buttons:(NSArray *)buttons configUser:(NSString *)username configName:(NSString *)name {
-    const char *conninfo = "host=db.doc.ic.ac.uk port=5432 dbname=g1527117_u user=g1527117_u password=pcauqNdppz";
-    PGconn *conn = PQconnectdb(conninfo);
+    PGconn *conn = [self connectToDatabase];
     
     if ([self nameTaken:conn username:username configName:name]) {
         return NO;
@@ -97,11 +96,6 @@ NSString *password = @"Anvil4lyfe";
 }
 
 + (void)saveToDatabase:(PGconn *)conn username:(NSString *)username configName:(NSString *)name json:(NSString *)json url:(NSString *)url {
-    if (PQstatus(conn) != CONNECTION_OK) {
-        NSLog(@"Connection to database failed: %s", PQerrorMessage(conn));
-    }
-    
-    NSLog(@"Connection successful");
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO configurations(username, name, json, img, numfavs) VALUES ('%@', '%@', '%@', '%@', '0')", username, name, json, url];
     const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
     PGresult *result = PQexec(conn, const_sql);
@@ -111,6 +105,16 @@ NSString *password = @"Anvil4lyfe";
     }
     
     NSLog(@"Data inserted into table successfully");
+}
+
++ (PGconn *)connectToDatabase {
+    const char *conninfo = "host=db.doc.ic.ac.uk port=5432 dbname=g1527117_u user=g1527117_u password=pcauqNdppz";
+    PGconn *conn = PQconnectdb(conninfo);
+    NSLog(@"Connection successful");
+    if (PQstatus(conn) != CONNECTION_OK) {
+        NSLog(@"Connection to database failed: %s", PQerrorMessage(conn));
+    }
+    return conn;
 }
 
 + (NSString *)convertButtonsToJSON:(NSArray *)buttons {
@@ -132,15 +136,7 @@ NSString *password = @"Anvil4lyfe";
     return jsonString;
 }
 
-+ (NSArray *)getButtonsFromJSON:(NSString *)username configName:(NSString *)name {
-    const char *conninfo = "host=db.doc.ic.ac.uk port=5432 dbname=g1527117_u user=g1527117_u password=pcauqNdppz";
-    PGconn *conn = PQconnectdb(conninfo);
-    NSLog(@"Connection successful");
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM configurations WHERE username='%@' and name='%@'", username, name];
-    const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
-    PGresult *result = PQexec(conn, const_sql);
-    char *value = PQgetvalue(result, 0, 2);
-    NSString *jsonString = [NSString stringWithUTF8String:value];
++ (NSArray *)getButtonsFromJSON:(NSString *)jsonString {
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableArray *viewsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
     
@@ -156,6 +152,37 @@ NSString *password = @"Anvil4lyfe";
     
     NSLog(@"buttons: %@", buttons);
     return [buttons copy];
+}
+
++ (NSArray *)getConfigurations:(NSString *)username {
+    PGconn *conn = [self connectToDatabase];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM configurations WHERE username='%@'", username];
+    const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
+    PGresult *result = PQexec(conn, const_sql);
+    
+    NSMutableArray *configs = [[NSMutableArray alloc] init];
+    
+    int numRows = PQntuples(result);
+    int numColumns = PQnfields(result);
+    for (int i = 0; i < numRows; i++) {
+        NSDictionary *dictionary = [[NSMutableDictionary alloc] init];
+        for (int j = 0; j < numColumns - 2; j++) {
+            char *name = PQfname(result, j);
+            char *data = PQgetvalue(result, i, j);
+            NSString *key = [NSString stringWithUTF8String:name];
+            NSString *value = [NSString stringWithUTF8String:data];
+            NSLog(@"key: %@, value: %@", key, value);
+            [dictionary setValue:value forKey:key];
+            
+            if (j == numColumns - 3) {
+                [configs addObject:dictionary];
+            }
+        }
+    }
+    
+    NSLog(@"configs: %@", configs);
+    
+    return configs;
 }
 
 @end

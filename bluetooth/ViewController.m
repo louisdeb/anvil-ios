@@ -99,4 +99,8 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
     [self presentViewController:navController animated:YES completion:nil];
 }
 
+- (IBAction)selectButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:SELECT_SEGUE sender:self];
+}
+
 @end

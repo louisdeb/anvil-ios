@@ -154,11 +154,6 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
             let dest = segue.destinationViewController as! UIElementSelectionViewController 
             dest.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             dest.builder = self
-        case CONTROLLER?:
-            let dest = segue.destinationViewController as! ControllerViewController
-            dest.controls = self.elementsOnScreen
-            dest.filenameToView = filenameToView
-            dest.mappedLetter = self.mappedLetter
         default:
             return
         }
@@ -189,7 +184,7 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
                 let success = SaveConfig.saveConfiguration(self.view, buttons: self.elementsOnScreen, configUser: username, configName: configName)
             
                 if success {
-                    self.performSegueWithIdentifier(self.CONTROLLER, sender: sender)
+                    self.dismissViewControllerAnimated(true, completion: {})
                 } else {
                     alertController.setValue(NSAttributedString(string: "Name taken, please try again", attributes: [NSForegroundColorAttributeName: UIColor.redColor()]), forKey: "attributedMessage")
                     textField?.text = ""
