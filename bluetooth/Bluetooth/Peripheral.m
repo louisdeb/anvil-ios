@@ -27,8 +27,14 @@ static int const RELEASE_SHIFT = 130;
 
 NSMutableDictionary *keyToUuidDict;
 
-- (id)init {
-  SERVICE_NAME = [[UIDevice currentDevice] name];
+- (id)initWithUsername:(NSString *)username {
+  if(username) {
+    SERVICE_NAME = username;
+  } else {
+    SERVICE_NAME = [[UIDevice currentDevice] name];
+  }
+
+  NSLog(@"name: %@", SERVICE_NAME);
   
   self = [super init];
   [self setupPeripheral];
@@ -60,6 +66,10 @@ NSMutableDictionary *keyToUuidDict;
                                  };
   [_peripheralManager addService:_defaultService];
   [self.peripheralManager startAdvertising:advertisment];
+}
+
+- (void)stopAdvertising {
+  [self.peripheralManager stopAdvertising];
 }
 
 /* Did update state */

@@ -174,4 +174,8 @@ extension UIElementSelectionViewController {
         }
         return elements
     }
+  
+    @IBAction func goBack(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }

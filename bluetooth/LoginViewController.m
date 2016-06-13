@@ -108,18 +108,11 @@ NSString *const HOME_SCREEN_SEGUE = @"homeScreenSegue";
     
     int numRows = PQntuples(result);
     if (numRows == 1) {
-        [self startBluetooth];
         [SSKeychain setPassword:password forService:@"Anvil" account:username];
         [self performSegueWithIdentifier: HOME_SCREEN_SEGUE sender: self];
     } else {
         [self displayError:1];
     }
-}
-
-/* Ask the app delegate to start the bluetooth advertising. */
-- (void)startBluetooth {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate startBluetooth];
 }
 
 /* Minimise keyboards when return/done pressed. Click login button if password 'Done' pressed. */

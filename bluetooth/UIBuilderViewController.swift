@@ -221,4 +221,8 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func showElementSelection (sender: AnyObject) {
         performSegueWithIdentifier(ELEMENT_SELECTION, sender: sender)
     }
+  
+    @IBAction func goBack (sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }

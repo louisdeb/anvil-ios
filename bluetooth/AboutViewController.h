@@ -5,6 +5,7 @@
 
 @interface AboutViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextView *aboutText;
 
 @end
 

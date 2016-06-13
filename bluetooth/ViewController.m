@@ -31,8 +31,10 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
         username = [credentials objectForKey:kSSKeychainAccountKey];
         if (username) {
             welcomeLabel.text = [NSString stringWithFormat:@"Welcome, %@", username];
+            [self startBluetooth:username];
         } else {
             welcomeLabel.hidden = YES;
+            [self startBluetooth:[[UIDevice currentDevice] name]];
         }
     }
 }
@@ -50,12 +52,18 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
     return UIStatusBarStyleLightContent;
 }
 
+/* Ask the app delegate to start the bluetooth advertising. */
+- (void)startBluetooth:(NSString *)username {
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  [appDelegate startBluetooth:username];
+}
+
 - (void)displayBluetoothGIF {
   CGFloat height = 200;
   CGFloat width = 200;
   CGFloat posX = (self.view.frame.size.width / 2) - (width / 2);
-  CGFloat posY = (self.view.frame.size.height / 2) - (height / 2);
-  CGFloat speed = 3.2;
+  CGFloat posY = (self.view.frame.size.height / 2) - (height / 2) - 70;
+  CGFloat speed = 3;
   
   UIImageView* animatedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(posX, posY, width, height)];
   NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:90];
@@ -95,6 +103,8 @@ NSString *const KEYCHAIN_SERVICE = @"Anvil";
 }
 
 - (IBAction)logoutButtonPressed:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate stopBluetooth];
     [SSKeychain deletePasswordForService:KEYCHAIN_SERVICE account:username];
     [self presentViewController:navController animated:YES completion:nil];
 }

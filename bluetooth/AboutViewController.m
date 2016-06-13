@@ -4,15 +4,19 @@
 
 int const PAN_TRANSLATION_MIN = 200;
 
--(void)viewDidLoad {
+- (void)viewDidLoad {
   [super viewDidLoad];
 }
 
--(IBAction)handlePan:(UIPanGestureRecognizer*) sender {
+- (IBAction)handlePan:(UIPanGestureRecognizer*) sender {
   CGPoint translation = [sender translationInView: self.view];
   
   if (fabs(translation.y) > PAN_TRANSLATION_MIN)
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)goBack:(id)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

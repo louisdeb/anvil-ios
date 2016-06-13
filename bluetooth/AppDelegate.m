@@ -29,9 +29,13 @@
     return YES;
 }
 
-- (void)startBluetooth {
+- (void)startBluetooth:(NSString *)username {
   NSLog(@"Creating peripheral");
-  self.peripheral = [[Peripheral alloc] init];
+  self.peripheral = [[Peripheral alloc] initWithUsername:username];
+}
+
+- (void)stopBluetooth {
+  [self.peripheral stopAdvertising];
 }
 
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {
