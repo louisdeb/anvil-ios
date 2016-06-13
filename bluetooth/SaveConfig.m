@@ -21,6 +21,12 @@ NSString *password = @"Anvil4lyfe";
         return NO;
     }
     
+    for (UIView *subView in [view subviews]) {
+        if ([[subView restorationIdentifier] isEqualToString:@"saveButton"] || [[subView restorationIdentifier] isEqualToString:@"elementsButton"]) {
+            [subView removeFromSuperview];
+        }
+    }
+    
     NSString *path = [self saveScreenshot:view];
     BOOL uploaded = false;
     
