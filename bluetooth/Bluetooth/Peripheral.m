@@ -28,186 +28,187 @@ static int const RELEASE_SHIFT = 130;
 NSMutableDictionary *keyToUuidDict;
 
 - (id)initWithUsername:(NSString *)username {
-  if(username) {
-    SERVICE_NAME = username;
-  } else {
-    SERVICE_NAME = [[UIDevice currentDevice] name];
-  }
+    if(username) {
+        SERVICE_NAME = username;
+    } else {
+        SERVICE_NAME = [[UIDevice currentDevice] name];
+    }
 
-  NSLog(@"name: %@", SERVICE_NAME);
-  
-  self = [super init];
-  [self setupPeripheral];
-  return self;
+    NSLog(@"name: %@", SERVICE_NAME);
+
+    self = [super init];
+    [self setupPeripheral];
+    return self;
 }
 
 /* Initialise default service, ready characteristic and peripheral manager. */
 - (void)setupPeripheral {
-  _serviceName = SERVICE_NAME;
-  _defaultServiceUUID = [CBUUID UUIDWithString:SERVICE_UUID_STRING];
-  _readyCUUID = [CBUUID UUIDWithString:READY_CUUID];
-  
-  _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-  
-  _readyCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_readyCUUID
+    _serviceName = SERVICE_NAME;
+    _defaultServiceUUID = [CBUUID UUIDWithString:SERVICE_UUID_STRING];
+    _readyCUUID = [CBUUID UUIDWithString:READY_CUUID];
+
+    _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+
+    _readyCharacteristic = [[CBMutableCharacteristic alloc] initWithType:_readyCUUID
                                                      properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify
                                                      value:nil
                                                      permissions:CBAttributePermissionsReadable];
-  
-  _defaultService = [[CBMutableService alloc] initWithType:_defaultServiceUUID primary:YES];
-  _defaultService.characteristics = @[_readyCharacteristic];
+
+    _defaultService = [[CBMutableService alloc] initWithType:_defaultServiceUUID primary:YES];
+
+    _defaultService.characteristics = @[_readyCharacteristic];
 }
 
 /* Add our default service and start advertising. */
 - (void)startAdvertising {
-  NSDictionary *advertisment = @{
+    NSDictionary *advertisment = @{
                                  CBAdvertisementDataServiceUUIDsKey : @[self.defaultServiceUUID],
                                  CBAdvertisementDataLocalNameKey: self.serviceName
                                  };
-  [_peripheralManager addService:_defaultService];
-  [self.peripheralManager startAdvertising:advertisment];
+    [_peripheralManager addService:_defaultService];
+    [self.peripheralManager startAdvertising:advertisment];
 }
 
 - (void)stopAdvertising {
-  [self.peripheralManager stopAdvertising];
+    [self.peripheralManager stopAdvertising];
 }
 
 /* Did update state */
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral {
-  switch (peripheral.state) {
-    case CBPeripheralManagerStatePoweredOn: {
-      NSLog(@"peripheralStateChange: Powered On");
-      [self startAdvertising];
-      break;
+    switch (peripheral.state) {
+        case CBPeripheralManagerStatePoweredOn: {
+            NSLog(@"peripheralStateChange: Powered On");
+            [self startAdvertising];
+            break;
+        }
+        case CBPeripheralManagerStatePoweredOff: {
+            NSLog(@"peripheralStateChange: Powered Off");
+            break;
+        }
+        case CBPeripheralManagerStateResetting: {
+            NSLog(@"peripheralStateChange: Resetting");
+            break;
+        }
+        case CBPeripheralManagerStateUnauthorized: {
+            NSLog(@"peripheralStateChange: Deauthorized");
+            break;
+        }
+        case CBPeripheralManagerStateUnsupported: {
+            NSLog(@"peripheralStateChange: Unsupported");
+            break;
+        }
+        case CBPeripheralManagerStateUnknown: {
+            NSLog(@"peripheralStateChange: Unknown");
+            break;
+        }
+        default:
+            break;
     }
-    case CBPeripheralManagerStatePoweredOff: {
-      NSLog(@"peripheralStateChange: Powered Off");
-      break;
-    }
-    case CBPeripheralManagerStateResetting: {
-      NSLog(@"peripheralStateChange: Resetting");
-      break;
-    }
-    case CBPeripheralManagerStateUnauthorized: {
-      NSLog(@"peripheralStateChange: Deauthorized");
-      break;
-    }
-    case CBPeripheralManagerStateUnsupported: {
-      NSLog(@"peripheralStateChange: Unsupported");
-      break;
-    }
-    case CBPeripheralManagerStateUnknown: {
-      NSLog(@"peripheralStateChange: Unknown");
-      break;
-    }
-    default:
-      break;
-  }
 }
 
 /* Did add service */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
             didAddService:(CBService *)service
                     error:(NSError *)error {
-  NSLog(@"Did add service");
-  NSLog(@"with %lu characteristics", [service.characteristics count]);
-  NSLog(@"%@", service.UUID);
-  if (error) {
-    NSLog(@"Error in adding service: %@", [error localizedDescription]);
-    NSLog(@"UUID: %@", service.UUID);
-  }
+    NSLog(@"Did add service");
+    NSLog(@"with %lu characteristics", [service.characteristics count]);
+    NSLog(@"%@", service.UUID);
+    if (error) {
+        NSLog(@"Error in adding service: %@", [error localizedDescription]);
+        NSLog(@"UUID: %@", service.UUID);
+    }
 }
 
 /* Did start advertising */
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral
                                        error:(NSError *)error {
-  NSLog(@"Did start advertising");
+    NSLog(@"Did start advertising");
 }
 
 /* Did subscribe to characteristic */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
                   central:(CBCentral *)central
         didSubscribeToCharacteristic:(CBCharacteristic *)characteristic {
-  NSLog(@"Central subscribed to a characteristic");
-  if(characteristic == _readyCharacteristic) {
-    NSLog(@"Subscribed to ready characteristic");
-    [self showConfigSelectView];
-  } else {
-    NSLog(@"Subscribed to key characteristic");
-  }
+    NSLog(@"Central subscribed to a characteristic");
+    if(characteristic == _readyCharacteristic) {
+        NSLog(@"Subscribed to ready characteristic");
+        [self showConfigSelectView];
+    } else {
+        NSLog(@"Subscribed to key characteristic");
+    }
 }
 
 - (void)showConfigSelectView {
-  [[NSNotificationCenter defaultCenter] postNotificationName:SELECT_NOTIF object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SELECT_NOTIF object:nil];
 }
 
 /* Update and set readyCharacteristic to let OSX know we have added
    the configuration service and characteristics. */
 - (void)setReady {
-  NSData *data = [READY_MESSAGE dataUsingEncoding:NSUTF8StringEncoding];
-  [self.peripheralManager updateValue:data forCharacteristic:_readyCharacteristic onSubscribedCentrals:nil];
-  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_readyCharacteristic onSubscribedCentrals:nil];
+    NSData *data = [READY_MESSAGE dataUsingEncoding:NSUTF8StringEncoding];
+    [self.peripheralManager updateValue:data forCharacteristic:_readyCharacteristic onSubscribedCentrals:nil];
+    [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:_readyCharacteristic onSubscribedCentrals:nil];
 }
 
 /* Did receive read request */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
     didReceiveReadRequest:(CBATTRequest *)request {
-  NSLog(@"Did receive read request");
-  [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
+    NSLog(@"Did receive read request");
+    [peripheral respondToRequest:request withResult:CBATTErrorSuccess];
 }
 
 /* Did receive write request. */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral
   didReceiveWriteRequests:(NSArray *)requests {
-  NSLog(@"Did receive write request");
+    NSLog(@"Did receive write request");
 }
 
 /* Did discover services. */
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
-  NSLog(@"Did discover services");
+    NSLog(@"Did discover services");
 }
 
 /* Produce service and characteristics for each button in configuration. */
 - (void)addKeyService:(NSMutableArray<NSNumber *> *)keyCodes {
-  /* Set up service. */
-  _keyServiceUUID = [CBUUID UUIDWithString:KEY_SERVICE_UUID_STRING];
-  _keyService = [[CBMutableService alloc] initWithType:_keyServiceUUID primary:YES];
-  
-  /* Add characteristics to service. */
-  NSArray *chars = [self addKeyCharacteristics:keyCodes];
-  _keyService.characteristics = chars;
-  
-  [_peripheralManager addService:_keyService];
-  [self setReady];
+    /* Set up service. */
+    _keyServiceUUID = [CBUUID UUIDWithString:KEY_SERVICE_UUID_STRING];
+    _keyService = [[CBMutableService alloc] initWithType:_keyServiceUUID primary:YES];
+
+    /* Add characteristics to service. */
+    NSArray *chars = [self addKeyCharacteristics:keyCodes];
+    _keyService.characteristics = chars;
+
+    [_peripheralManager addService:_keyService];
+    [self setReady];
 }
 
 /* Sets up key code service, which contains key code characteristics. Populates dictionary
    with mappings from key code to characteristic UUID. */
 - (NSArray<CBMutableCharacteristic *> *)addKeyCharacteristics:(NSMutableArray<NSNumber *> *)keyCodes {
-  keyToUuidDict = [[NSMutableDictionary alloc] init];
-  NSMutableArray<CBMutableCharacteristic *> *characteristics = [[NSMutableArray alloc] init];
-  
-  for(NSNumber *key in keyCodes) {
-    NSString *uuidString = [[NSUUID UUID] UUIDString];
-    CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
-    CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:uuid properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
-    [characteristics addObject:characteristic];
-    [keyToUuidDict setObject:characteristic forKey:key];
-  }
-  
-  NSArray *result = [characteristics copy];
-  return result;
+    keyToUuidDict = [[NSMutableDictionary alloc] init];
+    NSMutableArray<CBMutableCharacteristic *> *characteristics = [[NSMutableArray alloc] init];
+
+    for(NSNumber *key in keyCodes) {
+        NSString *uuidString = [[NSUUID UUID] UUIDString];
+        CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
+        CBMutableCharacteristic *characteristic = [[CBMutableCharacteristic alloc] initWithType:uuid properties:CBCharacteristicPropertyRead | CBCharacteristicPropertyNotify value:nil permissions:CBAttributePermissionsReadable];
+        [characteristics addObject:characteristic];
+        [keyToUuidDict setObject:characteristic forKey:key];
+    }
+
+    NSArray *result = [characteristics copy];
+    return result;
 }
 
 /* State true if key pressed down. State false if key pressed up. */
 - (void)keyPress:(NSNumber *)key state:(Boolean)state {
-  CBMutableCharacteristic *keyChar = keyToUuidDict[key];
-  int keyInt = [key intValue];
-  keyInt = state ? keyInt : keyInt + RELEASE_SHIFT; // Set to shifted value if key pressed up.
-  NSData *data = [NSData dataWithBytes:&keyInt length:sizeof(keyInt)];
-  [self.peripheralManager updateValue:data forCharacteristic:keyChar onSubscribedCentrals:nil];
-  [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:keyChar onSubscribedCentrals:nil];
-  NSLog(@"Sent key press %d", keyInt);
+    CBMutableCharacteristic *keyChar = keyToUuidDict[key];
+    int keyInt = [key intValue];
+    keyInt = state ? keyInt : keyInt + RELEASE_SHIFT; // Set to shifted value if key pressed up.
+    NSData *data = [NSData dataWithBytes:&keyInt length:sizeof(keyInt)];
+    [self.peripheralManager updateValue:data forCharacteristic:keyChar onSubscribedCentrals:nil];
+    [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:keyChar onSubscribedCentrals:nil];
+    NSLog(@"Sent key press %d", keyInt);
 }
 
 @end
