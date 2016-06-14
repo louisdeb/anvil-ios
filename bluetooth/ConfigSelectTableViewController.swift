@@ -61,8 +61,6 @@ class ConfigSelectTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        let tableSelection = self.tableView.indexPathForSelectedRow! as NSIndexPath;
-//        self.tableView.deselectRowAtIndexPath(tableSelection, animated: false)
         self.navigationController!.navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
         self.navigationController!.navigationBar.tintColor = UIColor.init(colorLiteralRed: 0, green: 0.478431, blue: 1.0, alpha: 1.0);
         let backButton = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(backButtonPressed))
@@ -109,6 +107,7 @@ class ConfigSelectTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("configCell", forIndexPath: indexPath)
         let config : NSDictionary
+        
         if indexPath.section == 0 {
             config = myConfigs[indexPath.row] as! NSDictionary
         } else if indexPath.section == 1 {
@@ -116,14 +115,23 @@ class ConfigSelectTableViewController: UITableViewController {
         } else {
             config = communityConfigs[indexPath.row] as! NSDictionary
         }
+        
         cell.textLabel?.text = config.objectForKey("name") as? String
         cell.detailTextLabel?.text = config.objectForKey("username") as? String
+        cell.detailTextLabel?.font = UIFont.systemFontOfSize(15)
+        
         if indexPath.section == 1 {
+            cell.textLabel?.text = config.objectForKey("config_name") as? String
             cell.detailTextLabel?.text = config.objectForKey("config_user") as? String
         }
+        
         let url = NSURL(string: config.objectForKey("img") as! String)
         let data = NSData(contentsOfURL: url!)
         cell.imageView?.image = UIImage(data: data!)
+        cell.imageView?.layer.borderColor = self.tableView.separatorColor?.CGColor
+        cell.imageView?.layer.borderWidth = 1
+        cell.imageView?.layer.cornerRadius = 8
+        cell.imageView?.layer.masksToBounds = true
         
         return cell
     }
