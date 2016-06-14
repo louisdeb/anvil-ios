@@ -174,9 +174,7 @@ NSString *password = @"Anvil4lyfe";
     NSString *sql;
     if (fav && username) {
         sql = [NSString stringWithFormat:@"SELECT * FROM fav_test WHERE username = '%@'", username];
-    }
-    
-    if (username) {
+    } else if (username) {
         sql = [NSString stringWithFormat:@"SELECT * FROM configurations WHERE username='%@'", username];
     } else {
         sql = @"SELECT * FROM configurations";
@@ -190,14 +188,13 @@ NSString *password = @"Anvil4lyfe";
     int numColumns = PQnfields(result);
     for (int i = 0; i < numRows; i++) {
         NSDictionary *dictionary = [[NSMutableDictionary alloc] init];
-        for (int j = 0; j < numColumns - 2; j++) {
+        for (int j = 0; j < numColumns; j++) {
             char *name = PQfname(result, j);
             char *data = PQgetvalue(result, i, j);
             NSString *key = [NSString stringWithUTF8String:name];
             NSString *value = [NSString stringWithUTF8String:data];
             [dictionary setValue:value forKey:key];
-            
-            if (j == numColumns - 3) {
+            if (j == numColumns - 1) {
                 [configs addObject:dictionary];
             }
         }

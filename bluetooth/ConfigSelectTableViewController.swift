@@ -40,10 +40,16 @@ class ConfigSelectTableViewController: UITableViewController {
         
         myConfigs = SaveConfig.getConfigurations(username, getFavourites: false)
         favConfigs = SaveConfig.getConfigurations(username, getFavourites: true)
-        communityConfigs = SaveConfig.getConfigurations(nil, getFavourites: false);
+        communityConfigs = SaveConfig.getConfigurations(nil, getFavourites: false)
         
-        print (communityConfigs.count)
-        print (myConfigs.count)
+        let count = communityConfigs.count - 5
+        for i in 0...count {
+            let config = communityConfigs[i] as! NSDictionary
+            if username == config.objectForKey("username") as! String {
+                communityConfigs.removeAtIndex(i)
+            }
+        }
+        
         
         if myConfigs.count == 0 && communityConfigs.count == 0 {
             let alertController = UIAlertController(title: "No controllers found", message: "Please build a controller first", preferredStyle: .Alert)
@@ -115,6 +121,9 @@ class ConfigSelectTableViewController: UITableViewController {
         }
         cell.textLabel?.text = config.objectForKey("name") as? String
         cell.detailTextLabel?.text = config.objectForKey("username") as? String
+        if indexPath.section == 1 {
+            cell.detailTextLabel?.text = config.objectForKey("config_user") as? String
+        }
         let url = NSURL(string: config.objectForKey("img") as! String)
         let data = NSData(contentsOfURL: url!)
         cell.imageView?.image = UIImage(data: data!)
