@@ -25,6 +25,8 @@ class ConfigSelectTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        self.navigationController!.interactivePopGestureRecognizer!.enabled = false;
+        
         let accounts = SSKeychain.accountsForService("Anvil") as NSArray
         var username = String()
         
@@ -34,6 +36,16 @@ class ConfigSelectTableViewController: UITableViewController {
         }
         
         configs = SaveConfig.getConfigurations(username)
+        
+        if configs.count == 0 {
+            let alertController = UIAlertController(title: "No controllers found", message: "Please build a controller first", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: {
+                action in
+                    self.backButtonPressed()
+                })
+            alertController.addAction(okAction)
+            presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

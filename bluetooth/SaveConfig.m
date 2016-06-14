@@ -22,7 +22,7 @@ NSString *password = @"Anvil4lyfe";
     }
     
     for (UIView *subView in [view subviews]) {
-        if ([[subView restorationIdentifier] isEqualToString:@"saveButton"] || [[subView restorationIdentifier] isEqualToString:@"elementsButton"]) {
+        if ([[subView restorationIdentifier] isEqualToString:@"saveButton"] || [[subView restorationIdentifier] isEqualToString:@"elementsButton"] || [[subView restorationIdentifier] isEqualToString:@"backButton"]) {
             [subView removeFromSuperview];
         }
     }

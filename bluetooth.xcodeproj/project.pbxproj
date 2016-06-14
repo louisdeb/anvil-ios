@@ -283,7 +283,7 @@
 				TargetAttributes = {
 					BF744DF11CEE0A5000BBE6F6 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = Q5L5446692;
+						DevelopmentTeam = VWR855X7M3;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 0;
@@ -503,7 +503,7 @@
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth1;
+				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetoothh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bluetooth/bluetooth-Bridging-Header.h";
@@ -529,7 +529,7 @@
 				INFOPLIST_FILE = bluetooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetooth1;
+				PRODUCT_BUNDLE_IDENTIFIER = webapps.bluetoothh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "bluetooth/bluetooth-Bridging-Header.h";
