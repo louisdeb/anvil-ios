@@ -22,6 +22,6 @@
 + (void)saveToDatabase:(PGconn *)conn username:(NSString *)username configName:(NSString *)name json:(NSString *)json url:(NSString *)url;
 + (NSString *)convertButtonsToJSON:(NSDictionary *)buttons;
 + (NSArray *)getButtonsFromJSON:(NSString *)jsonString;
-+ (NSArray *)getConfigurations:(NSString *)username;
++ (NSArray *)getConfigurations:(NSString *)username getFavourites:(BOOL)fav;
 
 @end

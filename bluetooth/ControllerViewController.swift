@@ -29,7 +29,6 @@ class ControllerViewController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.addKeyService(NSMutableArray(array: lettersInUse))
         
-      
         controls?.forEach({ (elem) in 
             
             elem.userInteractionEnabled = true

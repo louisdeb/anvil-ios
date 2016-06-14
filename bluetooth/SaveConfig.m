@@ -169,9 +169,18 @@ NSString *password = @"Anvil4lyfe";
     return controller;
 }
 
-+ (NSArray *)getConfigurations:(NSString *)username {
++ (NSArray *)getConfigurations:(NSString *)username getFavourites:(BOOL)fav {
     PGconn *conn = [self connectToDatabase];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM configurations WHERE username='%@'", username];
+    NSString *sql;
+    if (fav && username) {
+        sql = [NSString stringWithFormat:@"SELECT * FROM fav_test WHERE username = '%@'", username];
+    }
+    
+    if (username) {
+        sql = [NSString stringWithFormat:@"SELECT * FROM configurations WHERE username='%@'", username];
+    } else {
+        sql = @"SELECT * FROM configurations";
+    }
     const char *const_sql = [sql cStringUsingEncoding:NSASCIIStringEncoding];
     PGresult *result = PQexec(conn, const_sql);
     

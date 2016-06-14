@@ -10,10 +10,13 @@ import UIKit
 
 class ConfigSelectTableViewController: UITableViewController {
 
-    var configs: [AnyObject] = []
+    var myConfigs: [AnyObject] = []
+    var favConfigs: [AnyObject] = []
+    var communityConfigs: [AnyObject] = []
     
     let PAN_TRANSLATION_MIN: CGFloat = 200
     let CONTROLLER_SEGUE = "controllerSegue"
+    let headers : [String] = ["My controllers", "Favourites", "Community Controllers"]
     var jsonString : String = ""
     
     override func viewDidLoad() {
@@ -35,9 +38,14 @@ class ConfigSelectTableViewController: UITableViewController {
             username = credentials.objectForKey(kSSKeychainAccountKey) as! String
         }
         
-        configs = SaveConfig.getConfigurations(username)
+        myConfigs = SaveConfig.getConfigurations(username, getFavourites: false)
+        favConfigs = SaveConfig.getConfigurations(username, getFavourites: true)
+        communityConfigs = SaveConfig.getConfigurations(nil, getFavourites: false);
         
-        if configs.count == 0 {
+        print (communityConfigs.count)
+        print (myConfigs.count)
+        
+        if myConfigs.count == 0 && communityConfigs.count == 0 {
             let alertController = UIAlertController(title: "No controllers found", message: "Please build a controller first", preferredStyle: .Alert)
             let okAction = UIAlertAction(title: "OK", style: .Default, handler: {
                 action in
@@ -77,17 +85,34 @@ class ConfigSelectTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return headers.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return configs.count
+        if section == 0 {
+            return myConfigs.count
+        } else if section == 1 {
+            return favConfigs.count
+        } else {
+            return communityConfigs.count
+        }
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headers[section]
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("configCell", forIndexPath: indexPath)
-        let config = configs[indexPath.row] as! NSDictionary
+        let config : NSDictionary
+        if indexPath.section == 0 {
+            config = myConfigs[indexPath.row] as! NSDictionary
+        } else if indexPath.section == 1 {
+            config = favConfigs[indexPath.row] as! NSDictionary
+        } else {
+            config = communityConfigs[indexPath.row] as! NSDictionary
+        }
         cell.textLabel?.text = config.objectForKey("name") as? String
         cell.detailTextLabel?.text = config.objectForKey("username") as? String
         let url = NSURL(string: config.objectForKey("img") as! String)
@@ -98,7 +123,14 @@ class ConfigSelectTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let config = configs[indexPath.row] as! NSDictionary
+        let config : NSDictionary
+        if indexPath.section == 0 {
+            config = myConfigs[indexPath.row] as! NSDictionary
+        } else if indexPath.section == 1 {
+            config = favConfigs[indexPath.row] as! NSDictionary
+        } else {
+            config = communityConfigs[indexPath.row] as! NSDictionary
+        }
         jsonString = (config.objectForKey("json") as? String)!
         self.performSegueWithIdentifier(self.CONTROLLER_SEGUE, sender: self)
     }
@@ -157,6 +189,9 @@ class ConfigSelectTableViewController: UITableViewController {
         
         if segue.identifier == CONTROLLER_SEGUE {
             let dest = segue.destinationViewController as! ControllerViewController
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
             let controller = SaveConfig.getButtonsFromJSON(self.jsonString)
             let controls = controller[0] as! [UIView]
             let mappings = controller[1] as! [String]
