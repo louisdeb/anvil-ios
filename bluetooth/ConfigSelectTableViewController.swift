@@ -42,16 +42,7 @@ class ConfigSelectTableViewController: UITableViewController {
         favConfigs = SaveConfig.getConfigurations(username, getFavourites: true)
         communityConfigs = SaveConfig.getConfigurations(nil, getFavourites: false)
         
-        let count = communityConfigs.count - 5
-        for i in 0...count {
-            let config = communityConfigs[i] as! NSDictionary
-            if username == config.objectForKey("username") as! String {
-                communityConfigs.removeAtIndex(i)
-            }
-        }
-        
-        
-        if myConfigs.count == 0 && communityConfigs.count == 0 {
+        if myConfigs.count == 0 && favConfigs.count == 0 && communityConfigs.count == 0 {
             let alertController = UIAlertController(title: "No controllers found", message: "Please build a controller first", preferredStyle: .Alert)
             let okAction = UIAlertAction(title: "OK", style: .Default, handler: {
                 action in
@@ -59,6 +50,12 @@ class ConfigSelectTableViewController: UITableViewController {
                 })
             alertController.addAction(okAction)
             presentViewController(alertController, animated: true, completion: nil)
+        }
+        
+        for (i, config) in communityConfigs.enumerate() {
+            if username == config.objectForKey("username") as! String {
+                communityConfigs.removeAtIndex(i)
+            }
         }
     }
     
