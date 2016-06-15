@@ -52,11 +52,7 @@ class ConfigSelectTableViewController: UITableViewController {
             presentViewController(alertController, animated: true, completion: nil)
         }
         
-        for (i, config) in communityConfigs.enumerate() {
-            if username == config.objectForKey("username") as! String {
-                communityConfigs.removeAtIndex(i)
-            }
-        }
+        communityConfigs = communityConfigs.filter{username != $0.objectForKey("username") as! String}
     }
     
     override func viewWillAppear(animated: Bool) {
