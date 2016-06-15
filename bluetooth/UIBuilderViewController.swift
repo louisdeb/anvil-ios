@@ -109,10 +109,22 @@ class UIBuilderViewController: UIViewController, UIGestureRecognizerDelegate {
                     popup.addTextFieldWithConfigurationHandler({ (field) in
                         //
                         field.returnKeyType = .Done
+                        if (self.mappedLetter[elem] != nil) {
+                            field.text = self.mappedLetter[elem]
+                        }
                         
                     })
                     let textDone = UIAlertAction(title: "Done", style: .Default, handler: { (action) in
-                        self.mappedLetter[elem] = popup.textFields![0].text!
+                        let inDict = SaveConfig.isKeyInDict(popup.textFields![0].text!)
+                        if inDict {
+                            self.mappedLetter[elem] = popup.textFields![0].text!.uppercaseString
+                        } else {
+                            popup.title = "Invalid keypress"
+                            popup.message = "Please enter a valid letter"
+                            popup.textFields![0].text = ""
+                            self.presentViewController(popup, animated: true, completion: nil)
+                        }
+                        
                     })
                     popup.addAction(textDone)
                     

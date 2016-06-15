@@ -203,4 +203,14 @@ NSString *password = @"Anvil4lyfe";
     return configs;
 }
 
++ (BOOL)isKeyInDict:(NSString *)key {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSDictionary *dict = [appDelegate getKeyCodes];
+    if ([dict objectForKey:[key uppercaseString]]) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 @end

@@ -18,6 +18,7 @@
 - (void)keyPress:(NSString *)letter state:(Boolean)state;
 - (void)startBluetooth:(NSString *)username;
 - (void)stopBluetooth;
+- (NSDictionary *)getKeyCodes;
 
 @end
 

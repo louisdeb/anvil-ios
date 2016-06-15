@@ -85,32 +85,32 @@
 }
 
 - (void)populateKeyCodeDictionary {
-    [keyCodes setObject:[NSNumber numberWithInteger:0] forKey:@"a"];
-    [keyCodes setObject:[NSNumber numberWithInteger:11] forKey:@"b"];
-    [keyCodes setObject:[NSNumber numberWithInteger:8] forKey:@"c"];
-    [keyCodes setObject:[NSNumber numberWithInteger:2] forKey:@"d"];
-    [keyCodes setObject:[NSNumber numberWithInteger:14] forKey:@"e"];
-    [keyCodes setObject:[NSNumber numberWithInteger:3] forKey:@"f"];
-    [keyCodes setObject:[NSNumber numberWithInteger:5] forKey:@"g"];
-    [keyCodes setObject:[NSNumber numberWithInteger:4] forKey:@"h"];
-    [keyCodes setObject:[NSNumber numberWithInteger:34] forKey:@"i"];
-    [keyCodes setObject:[NSNumber numberWithInteger:38] forKey:@"j"];
-    [keyCodes setObject:[NSNumber numberWithInteger:40] forKey:@"k"];
-    [keyCodes setObject:[NSNumber numberWithInteger:37] forKey:@"l"];
-    [keyCodes setObject:[NSNumber numberWithInteger:46] forKey:@"m"];
-    [keyCodes setObject:[NSNumber numberWithInteger:45] forKey:@"n"];
-    [keyCodes setObject:[NSNumber numberWithInteger:31] forKey:@"o"];
-    [keyCodes setObject:[NSNumber numberWithInteger:35] forKey:@"p"];
-    [keyCodes setObject:[NSNumber numberWithInteger:12] forKey:@"q"];
-    [keyCodes setObject:[NSNumber numberWithInteger:15] forKey:@"r"];
-    [keyCodes setObject:[NSNumber numberWithInteger:1] forKey:@"s"];
-    [keyCodes setObject:[NSNumber numberWithInteger:17] forKey:@"t"];
-    [keyCodes setObject:[NSNumber numberWithInteger:32] forKey:@"u"];
-    [keyCodes setObject:[NSNumber numberWithInteger:9] forKey:@"v"];
-    [keyCodes setObject:[NSNumber numberWithInteger:13] forKey:@"w"];
-    [keyCodes setObject:[NSNumber numberWithInteger:7] forKey:@"x"];
-    [keyCodes setObject:[NSNumber numberWithInteger:16] forKey:@"y"];
-    [keyCodes setObject:[NSNumber numberWithInteger:6] forKey:@"z"];
+    [keyCodes setObject:[NSNumber numberWithInteger:0] forKey:@"A"];
+    [keyCodes setObject:[NSNumber numberWithInteger:11] forKey:@"B"];
+    [keyCodes setObject:[NSNumber numberWithInteger:8] forKey:@"C"];
+    [keyCodes setObject:[NSNumber numberWithInteger:2] forKey:@"D"];
+    [keyCodes setObject:[NSNumber numberWithInteger:14] forKey:@"E"];
+    [keyCodes setObject:[NSNumber numberWithInteger:3] forKey:@"F"];
+    [keyCodes setObject:[NSNumber numberWithInteger:5] forKey:@"G"];
+    [keyCodes setObject:[NSNumber numberWithInteger:4] forKey:@"H"];
+    [keyCodes setObject:[NSNumber numberWithInteger:34] forKey:@"I"];
+    [keyCodes setObject:[NSNumber numberWithInteger:38] forKey:@"J"];
+    [keyCodes setObject:[NSNumber numberWithInteger:40] forKey:@"K"];
+    [keyCodes setObject:[NSNumber numberWithInteger:37] forKey:@"L"];
+    [keyCodes setObject:[NSNumber numberWithInteger:46] forKey:@"M"];
+    [keyCodes setObject:[NSNumber numberWithInteger:45] forKey:@"N"];
+    [keyCodes setObject:[NSNumber numberWithInteger:31] forKey:@"O"];
+    [keyCodes setObject:[NSNumber numberWithInteger:35] forKey:@"P"];
+    [keyCodes setObject:[NSNumber numberWithInteger:12] forKey:@"Q"];
+    [keyCodes setObject:[NSNumber numberWithInteger:15] forKey:@"R"];
+    [keyCodes setObject:[NSNumber numberWithInteger:1] forKey:@"S"];
+    [keyCodes setObject:[NSNumber numberWithInteger:17] forKey:@"T"];
+    [keyCodes setObject:[NSNumber numberWithInteger:32] forKey:@"U"];
+    [keyCodes setObject:[NSNumber numberWithInteger:9] forKey:@"V"];
+    [keyCodes setObject:[NSNumber numberWithInteger:13] forKey:@"W"];
+    [keyCodes setObject:[NSNumber numberWithInteger:7] forKey:@"X"];
+    [keyCodes setObject:[NSNumber numberWithInteger:16] forKey:@"Y"];
+    [keyCodes setObject:[NSNumber numberWithInteger:6] forKey:@"Z"];
     [keyCodes setObject:[NSNumber numberWithInteger:126] forKey:@"UP"];
     [keyCodes setObject:[NSNumber numberWithInteger:125] forKey:@"DOWN"];
     [keyCodes setObject:[NSNumber numberWithInteger:123] forKey:@"LEFT"];
@@ -127,6 +127,10 @@
     [keyCodes setObject:[NSNumber numberWithInteger:29] forKey:@"0"];
     [keyCodes setObject:[NSNumber numberWithInteger:49] forKey:@"SPACE"];
     [keyCodes setObject:[NSNumber numberWithInteger:36] forKey:@"RETURN"];
+}
+
+- (NSDictionary *)getKeyCodes {
+    return keyCodes;
 }
 
 @end

@@ -23,5 +23,6 @@
 + (NSString *)convertButtonsToJSON:(NSDictionary *)buttons;
 + (NSArray *)getButtonsFromJSON:(NSString *)jsonString;
 + (NSArray *)getConfigurations:(NSString *)username getFavourites:(BOOL)fav;
++ (BOOL)isKeyInDict:(NSString *)key;
 
 @end
