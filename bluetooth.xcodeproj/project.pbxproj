@@ -29,6 +29,7 @@
 		AFFF79661D0CEE3500037695 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFF79651D0CEE3500037695 /* SSKeychain.m */; };
 		AFFF79691D0CEE8300037695 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFF79681D0CEE8300037695 /* SSKeychainQuery.m */; };
 		BF0AF0B11CEF826C0075FE65 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */; };
+		BF583AAA1D2A6D1600DAA6F9 /* WaitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF583AA91D2A6D1600DAA6F9 /* WaitViewController.m */; };
 		BF744DF71CEE0A5000BBE6F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF61CEE0A5000BBE6F6 /* main.m */; };
 		BF744DFA1CEE0A5000BBE6F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DF91CEE0A5000BBE6F6 /* AppDelegate.m */; };
 		BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF744DFC1CEE0A5100BBE6F6 /* ViewController.m */; };
@@ -79,6 +80,8 @@
 		AFFF79681D0CEE8300037695 /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		BF583AA91D2A6D1600DAA6F9 /* WaitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitViewController.m; sourceTree = "<group>"; };
+		BF583AAB1D2A6D2100DAA6F9 /* WaitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitViewController.h; sourceTree = "<group>"; };
 		BF744DF21CEE0A5000BBE6F6 /* bluetooth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bluetooth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF744DF61CEE0A5000BBE6F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BF744DF81CEE0A5000BBE6F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				AFF902951D08CA5C00E23B48 /* RegisterViewController.h */,
 				AFF902961D08CA5C00E23B48 /* RegisterViewController.m */,
 				BF0AF0B01CEF826C0075FE65 /* AboutViewController.m */,
+				BF583AA91D2A6D1600DAA6F9 /* WaitViewController.m */,
+				BF583AAB1D2A6D2100DAA6F9 /* WaitViewController.h */,
 				7EA60D471D0CB03700CD3194 /* asdf.mp3 */,
 				BF0AF0B21CEF827B0075FE65 /* AboutViewController.h */,
 				7E62510E1CF4995D0036058A /* Custom UI Builder */,
@@ -348,6 +353,7 @@
 				AFC3C4591D0ECBF100B82173 /* ConfigSelectTableViewController.swift in Sources */,
 				AFFF79691D0CEE8300037695 /* SSKeychainQuery.m in Sources */,
 				7E6251121CF499AB0036058A /* UIElementSelectionViewController.swift in Sources */,
+				BF583AAA1D2A6D1600DAA6F9 /* WaitViewController.m in Sources */,
 				BF744DFD1CEE0A5100BBE6F6 /* ViewController.m in Sources */,
 				7E3FBD8F1CFC93F4006FCB2E /* ControllerViewController.swift in Sources */,
 				AF0C08161D070492002C930E /* SaveConfig.m in Sources */,

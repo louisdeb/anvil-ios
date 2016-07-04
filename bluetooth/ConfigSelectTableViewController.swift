@@ -16,6 +16,7 @@ class ConfigSelectTableViewController: UITableViewController {
     
     let PAN_TRANSLATION_MIN: CGFloat = 200
     let CONTROLLER_SEGUE = "controllerSegue"
+    let WAIT_SEGUE = "waitSegue"
     let headers : [String] = ["My Controllers", "Favourites", "Community Controllers"]
     var jsonString : String = ""
     
