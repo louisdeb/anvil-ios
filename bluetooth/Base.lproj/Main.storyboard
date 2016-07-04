@@ -761,10 +761,10 @@ You can manage your controllers and check out other user's controllers at our An
             </objects>
             <point key="canvasLocation" x="-1059" y="-629"/>
         </scene>
-        <!--View Controller-->
+        <!--Wait View Controller-->
         <scene sceneID="z5A-Lg-4Zp">
             <objects>
-                <viewController id="kLB-QL-5cG" sceneMemberID="viewController">
+                <viewController id="kLB-QL-5cG" customClass="WaitViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jpn-b7-VMS"/>
                         <viewControllerLayoutGuide type="bottom" id="WXx-Vc-Cdg"/>
